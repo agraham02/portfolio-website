@@ -1,7 +1,11 @@
-import React from 'react'
+import React from "react";
 
 export default function Footer() {
-  return (
-    <div>Footer</div>
-  )
+    return (
+        <footer>
+            <p>Back to Top</p>
+            <i>Copyright &copy; Ahmad Graham 2022</i>
+            <p>Created by Ahmad Graham</p>
+        </footer>
+    );
 }

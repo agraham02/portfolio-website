@@ -4,15 +4,21 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Projects from "./components/Projects";
-import AboutMe from "./components/AboutMe";
+import AboutMe from "./components/About";
+import Contact from "./components/Contact";
+import StatsBanner from "./components/StatsBanner";
 
 function App() {
     return (
         <>
             <Nav />
             <Header />
-            <Projects />
-            <AboutMe />
+            <main>
+                <Projects />
+                <AboutMe />
+                <StatsBanner />
+                <Contact />
+            </main>
             <Footer />
         </>
     );
