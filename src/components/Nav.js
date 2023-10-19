@@ -4,7 +4,7 @@ import "../styles/Nav.css";
 export default function Nav() {
     return (
         <nav className="flex justify-between px-3 py-2">
-            <div className="border-2 border-black rounded-md p-2 px-6">
+            <div className="border-2 border-black rounded-md p-2 px-6 cursor-pointer">
                 <div>AG</div>
             </div>
             <div className="flex space-x-6 items-center">
@@ -16,6 +16,10 @@ export default function Nav() {
     );
 }
 
-function NavLink({text}) {
-    return <div className="px-4 h-4/5 items-center flex">{text}</div>
+function NavLink({ text }) {
+    return (
+        <div className="px-4 h-4/5 items-center flex cursor-pointer">
+            {text}
+        </div>
+    );
 }
