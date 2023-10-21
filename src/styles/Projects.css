@@ -1,0 +1,52 @@
+.scroll-parent {
+    border: solid red;
+    width: 100%;
+    height: 20rem;
+    padding: 2rem 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.scroll-element {
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.scroll-item {
+    display: inline-block;
+    border: solid black;
+    width: 100px;
+    height: 100px;
+}
+
+.primary {
+    animation: primary 25s linear infinite;
+}
+
+.secondary {
+    animation: secondary 25s linear infinite;
+}
+
+@keyframes primary {
+    from {
+        left: 0%;
+    }
+    to {
+        left: -100%;
+    }
+}
+
+@keyframes secondary {
+    from {
+        left: 100%;
+    }
+    to {
+        left: 0%;
+    }
+}

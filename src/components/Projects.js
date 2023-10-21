@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/Projects.css";
 import mongoDbLogo from "../company-logos/MongoDB_White.svg";
 import reactLogo from "../company-logos/React-icon.svg";
 import androidLogo from "../company-logos/Android_logo.svg";
@@ -236,10 +237,47 @@ function InfiniteScrollBanner() {
     );
 
     return (
+        <div class="scroll-parent">
+            <div className="scroll-element primary">
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+            </div>
+            <div className="scroll-element secondary">
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+                <div className="scroll-item">Logo</div>
+            </div>
+        </div>
+    );
+
+    return (
         <div className="bg bg-zinc-800 text-gray-300 flex space-x-24 overflow-hidden w-full p-4">
-            <img src={mongoDbLogo} className="w-40" />
+            {/* <img src={mongoDbLogo} className="w-40" />
             <img src={androidLogo} className="w-16" />
-            <img src={reactLogo} className="w-16" />
+            <img src={reactLogo} className="w-16" /> */}
             <div>Logo</div>
             <div>Logo</div>
             <div>Logo</div>
