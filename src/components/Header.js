@@ -14,24 +14,25 @@ export default function Header() {
                 </div>
             </div>
             <svg
+                className="w-10 h-10 self-center absolute bottom-0"
+                aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-16 h-16 self-center absolute bottom-0"
+                viewBox="0 0 14 8"
             >
                 <path
+                    stroke="currentColor"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                    strokeWidth="2"
+                    d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"
                 />
             </svg>
         </header>
     );
 }
 
-function CustomButton({text, type}) {
+function CustomButton({ text, type }) {
     const primaryStyle =
         "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 grow cursor-pointer";
     const secondaryStyle =
@@ -40,12 +41,8 @@ function CustomButton({text, type}) {
     let style = primaryStyle;
 
     if (type == "secondary") {
-        style = secondaryStyle
+        style = secondaryStyle;
     }
 
-    return (
-        <div className={style}>
-            {text}
-        </div>
-    );
+    return <div className={style}>{text}</div>;
 }

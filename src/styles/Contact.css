@@ -1,0 +1,59 @@
+.social-button:nth-child(1):hover .icon {
+    background: #0072b1;
+}
+
+.social-button:nth-child(2):hover .icon {
+    background: #4267b2;
+}
+
+.social-button:nth-child(3):hover .icon {
+    background: #24292F;
+}
+
+.social-button:nth-child(4):hover .icon {
+    background: #E1306C;
+}
+
+.social-button:nth-child(5):hover .icon {
+    background: #3b5998;
+}
+
+.social-button:nth-child(6):hover .icon {
+    background: #26a7de;
+}
+
+.social-button .icon svg {
+    transition: all 100ms ease-out;
+}
+
+.social-button:hover .icon svg{
+    color: white
+}
+
+.social-button:nth-child(1):hover .social-media {
+    color: #0072b1;
+}
+
+.social-button:nth-child(2):hover .social-media {
+    color: #4267b2;
+}
+
+.social-button:nth-child(3):hover .social-media {
+    color: #24292F;
+}
+
+.social-button:nth-child(4):hover .social-media {
+    color: #E1306C;
+}
+
+.social-button:nth-child(5):hover .social-media {
+    color: #3b5998;
+}
+
+.social-button:nth-child(6):hover .social-media {
+    color: #26a7de;
+}
+
+.social-button .social-media {
+    transition: all 100ms ease-out;
+}
