@@ -16,8 +16,8 @@ function App() {
             <main>
                 <Projects />
                 {/* <AboutMe />
-                <StatsBanner />
-                <Contact /> */}
+                <StatsBanner /> */}
+                <Contact />
             </main>
             {/* <Footer /> */}
         </>
