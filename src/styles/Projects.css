@@ -1,14 +1,14 @@
 .scroll-parent {
-    border: solid red;
     width: 100%;
-    height: 20rem;
+    height: 8rem;
     padding: 2rem 0;
     overflow: hidden;
     position: relative;
+    margin: 2rem 0;
 }
 
 .scroll-element {
-    width: inherit;
+    width: 1900px;
     height: inherit;
     position: absolute;
     left: 0;
@@ -16,6 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    flex-shrink: 0;
 }
 
 .scroll-item {
@@ -23,30 +24,35 @@
     border: solid black;
     width: 100px;
     height: 100px;
+    flex-shrink: 0;
 }
 
+/* .scroll-element img {
+    margin: 1rem;
+} */
+
 .primary {
-    animation: primary 25s linear infinite;
+    animation: primary 30s linear infinite;
 }
 
 .secondary {
-    animation: secondary 25s linear infinite;
+    animation: secondary 30s linear infinite;
 }
 
 @keyframes primary {
     from {
-        left: 0%;
+        left: 0;
     }
     to {
-        left: -100%;
+        left: -1900px;
     }
 }
 
 @keyframes secondary {
     from {
-        left: 100%;
+        left: 1900px;
     }
     to {
-        left: 0%;
+        left: 0;
     }
 }
