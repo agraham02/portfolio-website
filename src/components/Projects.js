@@ -1,7 +1,25 @@
 import React from "react";
-import mongoDbLogo from "../company-logos/MongoDB_White.svg";
-import reactLogo from "../company-logos/React-icon.svg";
+import "../styles/Projects.css";
+
+import awsLogo from "../company-logos/Amazon_Web_Services_Logo.svg";
 import androidLogo from "../company-logos/Android_logo.svg";
+import androidStudioLogo from "../company-logos/Android_Studio_Icon_3.6.svg";
+// import cLogo from "../company-logos/C_Programming_Language.svg";
+import cSharpLogo from "../company-logos/C_sharp.svg";
+import expressLogo from "../company-logos/expressjs-ar21.svg";
+import figmaLogo from "../company-logos/Figma-logo.svg";
+// import javaLogo from "../company-logos/Java-Logo.svg";
+import javascriptLogo from "../company-logos/JavaScript_logo.svg";
+import mongoDbLogo from "../company-logos/MongoDB_Spring-Green.svg";
+import nodeLogo from "../company-logos/Node.js_logo.svg";
+import postgresLogo from "../company-logos/Postgresql_elephant.svg";
+// import pythonLogo from "../company-logos/Python-logo.svg";
+import reactLogo from "../company-logos/React-icon.svg";
+import reactNativeLogo from "../company-logos/react-native-1.svg";
+import swiftLogo from "../company-logos/Swift_logo.svg";
+// import tensorFlowLogo from "../company-logos/Tensorflow_logo.svg";
+import unityLogo from "../company-logos/Unity_Technologies_logo.svg";
+import xcodeLogo from "../company-logos/xcode-seeklogo.com.svg";
 
 export default function Projects() {
     return (
@@ -14,7 +32,6 @@ export default function Projects() {
                 className="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2 cursor-pointer"
                 target="_blank"
             >
-
                 View on GitHub
                 <svg
                     className="w-3 h-3 ml-2.5"
@@ -200,64 +217,32 @@ function ProjectCardGrid() {
 }
 
 function InfiniteScrollBanner() {
-
-
-    const figmaSVG = (
-        <svg
-            width="42"
-            height="61"
-            viewBox="0 0 42 61"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <path
-                d="M21 30.5C21 27.9804 22.0009 25.5641 23.7825 23.7825C25.5641 22.0009 27.9804 21 30.5 21C33.0196 21 35.4359 22.0009 37.2175 23.7825C38.9991 25.5641 40 27.9804 40 30.5C40 33.0196 38.9991 35.4359 37.2175 37.2175C35.4359 38.9991 33.0196 40 30.5 40C27.9804 40 25.5641 38.9991 23.7825 37.2175C22.0009 35.4359 21 33.0196 21 30.5V30.5Z"
-                stroke="#1E1E1E"
-                stroke-width="3.5"
-            />
-            <path
-                d="M2 49.5C2 46.9804 3.00089 44.5641 4.78249 42.7825C6.56408 41.0009 8.98044 40 11.5 40H21V49.5C21 52.0196 19.9991 54.4359 18.2175 56.2175C16.4359 57.9991 14.0196 59 11.5 59C8.98044 59 6.56408 57.9991 4.78249 56.2175C3.00089 54.4359 2 52.0196 2 49.5Z"
-                stroke="#1E1E1E"
-                stroke-width="3.5"
-            />
-            <path
-                d="M21 2V21H30.5C33.0196 21 35.4359 19.9991 37.2175 18.2175C38.9991 16.4359 40 14.0196 40 11.5C40 8.98044 38.9991 6.56408 37.2175 4.78249C35.4359 3.00089 33.0196 2 30.5 2L21 2Z"
-                stroke="#1E1E1E"
-                stroke-width="3.5"
-            />
-            <path
-                d="M2 11.5C2 14.0196 3.00089 16.4359 4.78249 18.2175C6.56408 19.9991 8.98044 21 11.5 21H21V2H11.5C8.98044 2 6.56408 3.00089 4.78249 4.78249C3.00089 6.56408 2 8.98044 2 11.5Z"
-                stroke="#1E1E1E"
-                stroke-width="3.5"
-            />
-            <path
-                d="M2 30.5C2 33.0196 3.00089 35.4359 4.78249 37.2175C6.56408 38.9991 8.98044 40 11.5 40H21V21H11.5C8.98044 21 6.56408 22.0009 4.78249 23.7825C3.00089 25.5641 2 27.9804 2 30.5Z"
-                stroke="#1E1E1E"
-                stroke-width="3.5"
-            />
-        </svg>
-    );
-
     return (
-        <div className="bg bg-zinc-800 text-gray-300 flex space-x-24 overflow-hidden w-full p-4">
-            <img src={mongoDbLogo} className="w-40" />
-            <img src={androidLogo} className="w-16" />
+        <div className="scroll-parent bg-zinc-800">
+            <ScrollBannerElement type="primary" />
+            <ScrollBannerElement type="secondary" />
+        </div>
+    );
+}
+
+function ScrollBannerElement({ type }) {
+    return (
+        <div className={`scroll-element ${type}`}>
+            <img src={figmaLogo} className="w-16" />
             <img src={reactLogo} className="w-16" />
-            <div>Logo</div>
-            <div>Logo</div>
-            <div>Logo</div>
-            <div>Logo</div>
-            <div>Logo</div>
-            <div>Logo</div>
-            <div>Logo</div>
-            <div>Logo</div>
-            <div>Logo</div>
-            <div>Logo</div>
-            <div>Logo</div>
-            <div>Logo</div>
-            <div>Logo</div>
-            <div>Logo</div>
-            <div>Logo</div>
+            <img src={mongoDbLogo} className="w-16" />
+            <img src={javascriptLogo} className="w-16" />
+            <img src={reactNativeLogo} className="w-16" />
+            <img src={expressLogo} className="w-16" />
+            <img src={swiftLogo} className="w-16" />
+            <img src={postgresLogo} className="w-16" />
+            <img src={nodeLogo} className="w-16" />
+            <img src={cSharpLogo} className="w-16" />
+            <img src={androidLogo} className="w-16" />
+            <img src={xcodeLogo} className="w-16" />
+            <img src={unityLogo} className="w-16" />
+            <img src={androidStudioLogo} className="w-16" />
+            <img src={awsLogo} className="w-16" />
         </div>
     );
 }
