@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "../styles/Contact.css";
 
 const facebook = (
@@ -70,17 +70,42 @@ const email = (
 );
 
 export default function Contact() {
+    const contactComponent = useRef();
+
+    const observerOptions = {
+        // root: document.querySelector("#root"),
+        // rootMargin: "0px",
+        threshold: 0.9,
+    };
+    const observer = new IntersectionObserver(handleAnimation, observerOptions)
+
+    function handleAnimation(entries, observer) {
+        entries.forEach((entry) => {
+            console.log(entry);
+            if (entry.isIntersecting) {
+                entry.target.children[0].classList.add("anim-active");
+            }
+        })
+    }
+
+    useEffect(() => {
+        observer.observe(contactComponent.current); 
+    }, [])
+
     return (
-        <div className="h-screen flex flex-col items-center justify-center">
-            <h2 className="text-6xl">Ready to Connect?</h2>
-            <div className="">
+        <div
+            className="h-screen flex flex-col items-center justify-center"
+            ref={contactComponent}
+        >
+            <h2 className="contact-title text-7xl">Ready to Connect?</h2>
+            {/* <div className="">
                 <SocialMediaButton icon={linkedIn} text="LinkedIn" />
                 <SocialMediaButton icon={email} text="Email" />
                 <SocialMediaButton icon={github} text="GitHub" />
                 <SocialMediaButton icon={instagram} text="Instagram" />
                 <SocialMediaButton icon={facebook} text="Facebook" />
                 <SocialMediaButton icon={twitter} text="Twitter" />
-            </div>
+            </div> */}
         </div>
     );
 }

@@ -19,7 +19,7 @@ function App() {
                 {/* <StatsBanner /> */}
                 <Contact />
             </main>
-            {/* <Footer /> */}
+            <Footer />
         </>
     );
 }
