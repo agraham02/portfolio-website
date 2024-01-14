@@ -38,4 +38,24 @@
     margin: 0;
     top: 25vh;
     left: 0;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+
+.bar-outer {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    width: 90%;
+    height: 4rem;
+    background-color: #fff;
+}
+
+.bar-inner {
+    width: 10%;
+    height: 100%;
+    transition: width 1s ease-in-out;
+    background-color: goldenrod;
 }
