@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/Projects.css";
 
 import awsLogo from "../company-logos/Amazon_Web_Services_Logo.svg";
@@ -164,7 +164,7 @@ function SearchBar() {
     );
 }
 
-function ProjectCard() {
+function ProjectCard({ project }) {
     return (
         <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
             <div className="overflow-hidden">
@@ -172,7 +172,7 @@ function ProjectCard() {
             </div>
             <div className="p-5">
                 <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    Card Title
+                    {project.name}
                 </h3>
                 <p className="mb-3 font-norma text-gray-700 dark:text-gray-400">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -202,18 +202,43 @@ function ProjectCard() {
 }
 
 function ProjectCardGrid() {
-    return (
-        <div className="grid grid-cols-3 gap-8 m-5 mx-20">
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-        </div>
-    );
+    const [projects, setProjects] = useState([]);
+
+    async function fetchGitHubProjects() {
+        const response = await fetch(
+            "https://api.github.com/users/agraham02/repos",
+            { method: "GET" }
+        );
+        const jsonData = await response.json();
+        console.log(jsonData);
+        const projectsData = jsonData.map((project) => ({
+            name: project.name,
+            createdAt: project.created_at,
+            description: project.description,
+            link: project.homepage,
+            updatedAt: project.updated_at,
+            pushedAt: project.pushed_at,
+            topics: project.topics,
+        }));
+        console.log(projectsData);
+        setProjects(projectsData);
+    }
+
+    useEffect(() => {
+        fetchGitHubProjects();
+    }, []);
+
+    if (projects) {
+        return (
+            <div className="grid grid-cols-3 gap-8 m-5 mx-20">
+                {projects.map((project, index) => (
+                    <ProjectCard project={project} key={index} />
+                ))}
+            </div>
+        );
+    } else {
+        return <></>
+    }
 }
 
 function InfiniteScrollBanner() {
@@ -226,7 +251,6 @@ function InfiniteScrollBanner() {
 }
 
 function ScrollBannerElement({ type }) {
-
     return (
         <div className={`scroll-element ${type}`}>
             <img src={figmaLogo} className="w-16" />
