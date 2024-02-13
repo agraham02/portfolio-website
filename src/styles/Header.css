@@ -1,0 +1,33 @@
+.text-scroller > span {
+    animation: slide 8s infinite;
+}
+
+.text-scroller > span > * {
+    height: 5rem;
+    display: flex;
+    align-items: center;
+}
+
+:root {
+    --move-step: -5rem;
+}
+
+@keyframes slide {
+    0% {
+        top: 0;
+    }
+    25% {
+        top: calc(var(--move-step) * 1);
+    }
+    50% {
+        top: calc(
+            var(--move-step) * 2
+        );
+    }
+    75% {
+        top: calc(var(--move-step) * 3);
+    }
+    100% {
+        top: calc(var(--move-step) * 4);
+    }
+}
