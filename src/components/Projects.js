@@ -59,7 +59,7 @@ function SearchBar() {
         <form className="w-8/12 m-5">
             <div className="flex">
                 <label
-                    for="search-dropdown"
+                    htmlFor="search-dropdown"
                     className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
                 >
                     Your Email
@@ -80,9 +80,9 @@ function SearchBar() {
                     >
                         <path
                             stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             d="m1 1 4 4 4-4"
                         />
                     </svg>
@@ -150,9 +150,9 @@ function SearchBar() {
                         >
                             <path
                                 stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
                             />
                         </svg>
@@ -164,9 +164,44 @@ function SearchBar() {
     );
 }
 
-function ProjectCard({ project }) {
+function ProjectCard({ project, index }) {
+    const [opacity, setOpacity] = useState(0);
+
+    function scrollDetection() {
+        window.addEventListener("scroll", () => {
+            const startScroll = window.scrollY;
+            const endScroll = startScroll + window.innerHeight;
+            const scrollMiddle = (startScroll + endScroll) / 2;
+            const scrollLine = (startScroll + endScroll) / (20 / 13);
+            // console.log("middle: " + scrollMiddle);
+            // console.log("my line: " + scrollLine);
+
+            const section = document.getElementById(`project-card-${index}`);
+
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionBotom = sectionTop + sectionHeight;
+
+            if (scrollMiddle > sectionTop) {
+                // console.log("middle reached");
+                // setOpacity(100);
+            }
+            if (scrollLine > sectionTop && opacity !== 100) {
+                // console.log("my line reached");
+                console.log("set opacity");
+                setOpacity(100);
+            }
+        });
+    }
+
+    scrollDetection();
+
     return (
-        <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
+        <div
+            id={`project-card-${index}`}
+            className={`max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden transition-opacity duration-500`}
+            style={{ transitionDelay: `${index * 200}ms`, opacity: opacity }}
+        >
             <div className="overflow-hidden">
                 <img src="/defaul-image.jpg" />
             </div>
@@ -230,14 +265,17 @@ function ProjectCardGrid() {
 
     if (projects) {
         return (
-            <div className="grid grid-cols-3 gap-8 m-5 mx-20">
+            <div
+                id="projectsGridSection"
+                className="grid grid-cols-3 gap-8 m-5 mx-20"
+            >
                 {projects.map((project, index) => (
-                    <ProjectCard project={project} key={index} />
+                    <ProjectCard project={project} index={index} key={index} />
                 ))}
             </div>
         );
     } else {
-        return <></>
+        return <></>;
     }
 }
 
