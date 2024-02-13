@@ -5,13 +5,13 @@ export default function Header() {
     return (
         <header className="w-full h-screen flex flex-col justify-center align-baseline bg-neutral-300 relative">
             <div className="mx-8 w-fit">
-                <h1 className="text-8xl">Ahmad Graham</h1>
-                <strong className="text-5xl inline-block mb-6 mt-2 font-normal flex">
+                <h1 className="text-8xl mb-4">Ahmad Graham</h1>
+                <strong className="text-4xl mb-6 font-normal flex items-center justify-center">
                     <div className="flex items-center justify-center">
                         Sub-Title Text
                     </div>
-                    <div className="text-scroller h-20 relative font-semibold overflow-y-hidden grow">
-                        <span className="absolute top-0 mx-5">
+                    <div className="text-scroller relative font-semibold overflow-y-hidden grow">
+                        <span className="absolute top-0 mx-4">
                             <p>Cool</p>
                             <p>Art</p>
                             <p>Intruiging</p>

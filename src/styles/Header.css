@@ -1,16 +1,23 @@
+:root {
+    --move-step: -4rem;
+    --text-height: 4rem;
+}
+
+.text-scroller {
+    height: var(--text-height);
+}
+
 .text-scroller > span {
-    animation: slide 8s infinite;
+    animation: slide 12s infinite;
 }
 
 .text-scroller > span > * {
-    height: 5rem;
+    height: var(--text-height);
+    padding: 5px 0;
     display: flex;
     align-items: center;
 }
 
-:root {
-    --move-step: -5rem;
-}
 
 @keyframes slide {
     0% {
