@@ -16,8 +16,22 @@
 }
 
 .scrolly .step {
+    border: solid red;
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* min-height: 67vh;
+    margin-bottom: 50rem;
+    background-color: #5b5b5b;
+    transition: background-color 250ms ease-in-out; */
+}
+
+.scrolly .step .content {
+    border: solid blue;
+    width: 100%;
     min-height: 67vh;
-    margin-bottom: 1rem;
+    /* margin-bottom: 50rem; */
     background-color: #5b5b5b;
     transition: background-color 250ms ease-in-out;
 }

@@ -14,10 +14,10 @@ function App() {
             <Nav />
             <Header />
             <main>
-                <Projects />
+                {/* <Projects /> */}
                 <AboutMe />
                 {/* <StatsBanner /> */}
-                <Contact />
+                {/* <Contact /> */}
             </main>
             <Footer />
         </>
