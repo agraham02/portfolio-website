@@ -4,6 +4,7 @@
   -o-transition: all 800ms ease;  
   -ms-transition: all 800ms ease;  
   transition: all 800ms ease;
+  /* transition: margin 800ms ease; */
   /* font-size: 2.5rem; */
   
 }

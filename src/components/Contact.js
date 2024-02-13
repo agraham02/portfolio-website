@@ -70,42 +70,44 @@ const email = (
 );
 
 export default function Contact() {
-    const contactComponent = useRef();
+    function startAnimation() {}
 
-    const observerOptions = {
-        // root: document.querySelector("#root"),
-        // rootMargin: "0px",
-        threshold: 0.9,
-    };
-    const observer = new IntersectionObserver(handleAnimation, observerOptions)
+    function scrollDetection() {
+        window.addEventListener("scroll", () => {
+            const startScroll = window.scrollY;
+            const endScroll = startScroll + window.innerHeight;
+            const scrollMiddle = (startScroll + endScroll) / 2;
 
-    function handleAnimation(entries, observer) {
-        entries.forEach((entry) => {
-            console.log(entry);
-            if (entry.isIntersecting) {
-                entry.target.children[0].classList.add("anim-active");
+            const section = document.getElementById("contactSection");
+
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionBotom = sectionTop + sectionHeight;
+
+            if (endScroll > sectionBotom) {
+                startAnimation();
             }
-        })
+        });
     }
 
-    useEffect(() => {
-        observer.observe(contactComponent.current); 
-    }, [])
+    scrollDetection();
 
     return (
         <div
+            id="contactSection"
             className="h-screen flex flex-col items-center justify-center"
-            ref={contactComponent}
         >
-            <h2 className="contact-title text-7xl">Ready to Connect?</h2>
-            {/* <div className="">
+            <h2 className="contact-title text-7xl anim-active">
+                Ready to Connect?
+            </h2>
+            <div className="">
                 <SocialMediaButton icon={linkedIn} text="LinkedIn" />
                 <SocialMediaButton icon={email} text="Email" />
                 <SocialMediaButton icon={github} text="GitHub" />
                 <SocialMediaButton icon={instagram} text="Instagram" />
                 <SocialMediaButton icon={facebook} text="Facebook" />
                 <SocialMediaButton icon={twitter} text="Twitter" />
-            </div> */}
+            </div>
         </div>
     );
 }

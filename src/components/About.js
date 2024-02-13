@@ -51,53 +51,31 @@ export default function AboutMe() {
     scrollDetection();
 
     return (
-        <div id="scrollSection" className="scrolly">
-            <div className="left">
-                <div className="step" data-width="10%" data-index="0">
-                    <div className="content">
-                        <p>Bar is 10%</p>
+        <div>
+            <div id="scrollSection" className="scrolly">
+                <div className="left">
+                    <AboutTextSection text={text1} />
+                    <AboutTextSection text={text2} />
+                    <AboutTextSection text={text3} />
+                </div>
+                <div className="right">
+                    <div className="bar-outer">
+                        <div
+                            className="bar-inner"
+                            style={{ width: `${currentSectionIndex * 20}%` }}
+                        ></div>
                     </div>
                 </div>
-                <div className="step" data-width="90%" data-index="1">
-                    <div className="content">
-                        <p>Bar is 90%</p>
-                    </div>
-                </div>
-                <div className="step" data-width="50%" data-index="2">
-                    <AboutLeftSection />
-                </div>
             </div>
-            <div className="right">
-                <div className="bar-outer">
-                    <div
-                        className="bar-inner"
-                        style={{ width: `${currentSectionIndex * 20}%` }}
-                    ></div>
-                </div>
-            </div>
-        </div>
-    );
-
-    return (
-        <div className="flex flex-col justify-center items-center">
-            <h2 className="text-5xl">About</h2>
-            <div className="border border-red-700 w-full">
-                <AboutLeftSection text={text1} />
-                <AboutLeftSection text={text2} />
-                <AboutLeftSection text={text3} />
-            </div>
-            <div>
-                <div>Resume</div>
-            </div>
+            <div>Resume</div>
         </div>
     );
 }
 
-function AboutLeftSection({ text }) {
+function AboutTextSection({ text }) {
     return (
-        <div className="flex items-center justify-around my-96 border-green-700 border relative">
-            <p className="w-[500px]">{text}</p>
-            <div className="w-[200px] h-[200px] border sticky top-0"></div>
+        <div className="h-[1000px] p-4 flex items-center justify-center border-green-700 border">
+            <p className="">{text}</p>
         </div>
     );
 }
