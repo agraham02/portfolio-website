@@ -12,19 +12,19 @@ export default function AboutMe() {
     return (
         <div className="scrolly">
             <div className="left">
-                <div class="step" data-width="10%" data-index="0">
+                <div className="step" data-width="10%" data-index="0">
                     <p>Bar is 10%</p>
                 </div>
-                <div class="step" data-width="90%" data-index="1">
+                <div className="step" data-width="90%" data-index="1">
                     <p>Bar is 90%</p>
                 </div>
-                <div class="step" data-width="50%" data-index="2">
+                <div className="step" data-width="50%" data-index="2">
                     <p>Bar is 50%</p>
                 </div>
             </div>
             <div className="right">
-                <div class="bar-outer">
-                    <div class="bar-inner"></div>
+                <div className="bar-outer">
+                    <div className="bar-inner"></div>
                 </div>
             </div>
         </div>
