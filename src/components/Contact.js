@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "../styles/Contact.css";
 
 const facebook = (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
+        className="h-5 w-5"
         fill="currentColor"
         viewBox="0 0 24 24"
     >
@@ -15,7 +15,7 @@ const facebook = (
 const linkedIn = (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
+        className="h-5 w-5"
         fill="currentColor"
         viewBox="0 0 24 24"
     >
@@ -26,7 +26,7 @@ const linkedIn = (
 const twitter = (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
+        className="h-5 w-5"
         fill="currentColor"
         viewBox="0 0 24 24"
     >
@@ -37,7 +37,7 @@ const twitter = (
 const instagram = (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
+        className="h-5 w-5"
         fill="currentColor"
         viewBox="0 0 24 24"
     >
@@ -48,7 +48,7 @@ const instagram = (
 const github = (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
+        className="h-5 w-5"
         fill="currentColor"
         viewBox="0 0 24 24"
     >
@@ -58,7 +58,7 @@ const github = (
 
 const email = (
     <svg
-        class="w-5 h-5 text-gray-800 dark:text-white"
+        className="w-5 h-5 text-gray-800 dark:text-white"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
@@ -70,17 +70,42 @@ const email = (
 );
 
 export default function Contact() {
+    const contactComponent = useRef();
+
+    const observerOptions = {
+        // root: document.querySelector("#root"),
+        // rootMargin: "0px",
+        threshold: 0.9,
+    };
+    const observer = new IntersectionObserver(handleAnimation, observerOptions)
+
+    function handleAnimation(entries, observer) {
+        entries.forEach((entry) => {
+            console.log(entry);
+            if (entry.isIntersecting) {
+                entry.target.children[0].classList.add("anim-active");
+            }
+        })
+    }
+
+    useEffect(() => {
+        observer.observe(contactComponent.current); 
+    }, [])
+
     return (
-        <div className="h-screen flex flex-col items-center justify-center">
-            <h2 className="text-6xl">Ready to Connect?</h2>
-            <div className="">
+        <div
+            className="h-screen flex flex-col items-center justify-center"
+            ref={contactComponent}
+        >
+            <h2 className="contact-title text-7xl">Ready to Connect?</h2>
+            {/* <div className="">
                 <SocialMediaButton icon={linkedIn} text="LinkedIn" />
                 <SocialMediaButton icon={email} text="Email" />
                 <SocialMediaButton icon={github} text="GitHub" />
                 <SocialMediaButton icon={instagram} text="Instagram" />
                 <SocialMediaButton icon={facebook} text="Facebook" />
                 <SocialMediaButton icon={twitter} text="Twitter" />
-            </div>
+            </div> */}
         </div>
     );
 }

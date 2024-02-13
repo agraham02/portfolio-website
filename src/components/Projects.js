@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/Projects.css";
 
 import awsLogo from "../company-logos/Amazon_Web_Services_Logo.svg";
@@ -57,22 +57,22 @@ export default function Projects() {
 function SearchBar() {
     return (
         <form className="w-8/12 m-5">
-            <div class="flex">
+            <div className="flex">
                 <label
                     for="search-dropdown"
-                    class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+                    className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
                 >
                     Your Email
                 </label>
                 <button
                     id="dropdown-button"
                     data-dropdown-toggle="dropdown"
-                    class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+                    className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
                     type="button"
                 >
                     All categories{" "}
                     <svg
-                        class="w-2.5 h-2.5 ml-2.5"
+                        className="w-2.5 h-2.5 ml-2.5"
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -89,16 +89,16 @@ function SearchBar() {
                 </button>
                 <div
                     id="dropdown"
-                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                    className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
                 >
                     <ul
-                        class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                        className="py-2 text-sm text-gray-700 dark:text-gray-200"
                         aria-labelledby="dropdown-button"
                     >
                         <li>
                             <button
                                 type="button"
-                                class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                             >
                                 Mockups
                             </button>
@@ -106,7 +106,7 @@ function SearchBar() {
                         <li>
                             <button
                                 type="button"
-                                class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                             >
                                 Templates
                             </button>
@@ -114,7 +114,7 @@ function SearchBar() {
                         <li>
                             <button
                                 type="button"
-                                class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                             >
                                 Design
                             </button>
@@ -122,27 +122,27 @@ function SearchBar() {
                         <li>
                             <button
                                 type="button"
-                                class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                             >
                                 Logos
                             </button>
                         </li>
                     </ul>
                 </div>
-                <div class="relative w-full">
+                <div className="relative w-full">
                     <input
                         type="search"
                         id="search-dropdown"
-                        class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                        className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
                         placeholder="Search Mockups, Logos, Design Templates..."
                         required
                     />
                     <button
                         type="submit"
-                        class="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        className="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
                         <svg
-                            class="w-4 h-4"
+                            className="w-4 h-4"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -156,7 +156,7 @@ function SearchBar() {
                                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
                             />
                         </svg>
-                        <span class="sr-only">Search</span>
+                        <span className="sr-only">Search</span>
                     </button>
                 </div>
             </div>
@@ -164,7 +164,7 @@ function SearchBar() {
     );
 }
 
-function ProjectCard() {
+function ProjectCard({ project }) {
     return (
         <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
             <div className="overflow-hidden">
@@ -172,7 +172,7 @@ function ProjectCard() {
             </div>
             <div className="p-5">
                 <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    Card Title
+                    {project.name}
                 </h3>
                 <p className="mb-3 font-norma text-gray-700 dark:text-gray-400">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -202,18 +202,43 @@ function ProjectCard() {
 }
 
 function ProjectCardGrid() {
-    return (
-        <div className="grid grid-cols-3 gap-8 m-5 mx-20">
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-        </div>
-    );
+    const [projects, setProjects] = useState([]);
+
+    async function fetchGitHubProjects() {
+        const response = await fetch(
+            "https://api.github.com/users/agraham02/repos",
+            { method: "GET" }
+        );
+        const jsonData = await response.json();
+        console.log(jsonData);
+        const projectsData = jsonData.map((project) => ({
+            name: project.name,
+            createdAt: project.created_at,
+            description: project.description,
+            link: project.homepage,
+            updatedAt: project.updated_at,
+            pushedAt: project.pushed_at,
+            topics: project.topics,
+        }));
+        console.log(projectsData);
+        setProjects(projectsData);
+    }
+
+    useEffect(() => {
+        fetchGitHubProjects();
+    }, []);
+
+    if (projects) {
+        return (
+            <div className="grid grid-cols-3 gap-8 m-5 mx-20">
+                {projects.map((project, index) => (
+                    <ProjectCard project={project} key={index} />
+                ))}
+            </div>
+        );
+    } else {
+        return <></>
+    }
 }
 
 function InfiniteScrollBanner() {
@@ -226,7 +251,6 @@ function InfiniteScrollBanner() {
 }
 
 function ScrollBannerElement({ type }) {
-
     return (
         <div className={`scroll-element ${type}`}>
             <img src={figmaLogo} className="w-16" />
