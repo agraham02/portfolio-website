@@ -164,43 +164,14 @@ function SearchBar() {
     );
 }
 
-function ProjectCard({ project, index }) {
-    const [opacity, setOpacity] = useState(0);
-
-    function scrollDetection() {
-        window.addEventListener("scroll", () => {
-            const startScroll = window.scrollY;
-            const endScroll = startScroll + window.innerHeight;
-            const scrollMiddle = (startScroll + endScroll) / 2;
-            const scrollLine = (startScroll + endScroll) / (20 / 13);
-            // console.log("middle: " + scrollMiddle);
-            // console.log("my line: " + scrollLine);
-
-            const section = document.getElementById(`project-card-${index}`);
-
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionBotom = sectionTop + sectionHeight;
-
-            if (scrollMiddle > sectionTop) {
-                // console.log("middle reached");
-                // setOpacity(100);
-            }
-            if (scrollLine > sectionTop && opacity !== 100) {
-                // console.log("my line reached");
-                console.log("set opacity");
-                setOpacity(100);
-            }
-        });
-    }
-
-    scrollDetection();
-
+function ProjectCard({ project, index, opacity, isVisible }) {
     return (
         <div
             id={`project-card-${index}`}
-            className={`max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden transition-opacity duration-500`}
-            style={{ transitionDelay: `${index * 200}ms`, opacity: opacity }}
+            className={`project-card ${
+                isVisible ? "is-visible" : ""
+            } max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden`}
+            style={{ transitionDelay: `${index * 200}ms` }}
         >
             <div className="overflow-hidden">
                 <img src="/defaul-image.jpg" />
@@ -238,6 +209,36 @@ function ProjectCard({ project, index }) {
 
 function ProjectCardGrid() {
     const [projects, setProjects] = useState([]);
+    const [opacity, setOpacity] = useState(0);
+    const [isVisible, setIsVisible] = useState(false);
+
+    function scrollDetection() {
+        window.addEventListener("scroll", () => {
+            const startScroll = window.scrollY;
+            const endScroll = startScroll + window.innerHeight;
+            const scrollMiddle = (startScroll + endScroll) / 2;
+            const scrollLine = (startScroll + endScroll) / (5 / 3);
+
+            const section = document.getElementById("projectsGridSection");
+
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionBotom = sectionTop + sectionHeight;
+
+            if (scrollMiddle > sectionTop) {
+                // console.log("middle reached");
+                // setOpacity(100);
+            }
+            if (scrollLine > sectionTop && opacity !== 100) {
+                // console.log("my line reached");
+                console.log("set opacity");
+                setOpacity(100);
+                setIsVisible(true);
+            }
+        });
+    }
+
+    scrollDetection();
 
     async function fetchGitHubProjects() {
         const response = await fetch(
@@ -270,7 +271,13 @@ function ProjectCardGrid() {
                 className="grid grid-cols-3 gap-8 m-5 mx-20"
             >
                 {projects.map((project, index) => (
-                    <ProjectCard project={project} index={index} key={index} />
+                    <ProjectCard
+                        project={project}
+                        index={index}
+                        opacity={opacity}
+                        isVisible={isVisible}
+                        key={index}
+                    />
                 ))}
             </div>
         );
