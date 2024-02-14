@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../styles/Contact.css";
 
 const facebook = (
@@ -70,6 +70,7 @@ const email = (
 );
 
 export default function Contact() {
+    const [isVisible, setIsVisible] = useState(false);
     function startAnimation() {}
 
     function scrollDetection() {
@@ -85,7 +86,9 @@ export default function Contact() {
             const sectionBotom = sectionTop + sectionHeight;
 
             if (endScroll > sectionBotom) {
-                startAnimation();
+                setIsVisible(true);
+            } else {
+                setIsVisible(false);
             }
         });
     }
@@ -97,25 +100,68 @@ export default function Contact() {
             id="contactSection"
             className="h-screen flex flex-col items-center justify-center"
         >
-            <h2 className="contact-title text-7xl anim-active">
+            <h2
+                className={`${
+                    isVisible ? "is-visible" : ""
+                } contact-title text-7xl`}
+            >
                 Ready to Connect?
             </h2>
             <div className="">
-                <SocialMediaButton icon={linkedIn} text="LinkedIn" />
-                <SocialMediaButton icon={email} text="Email" />
-                <SocialMediaButton icon={github} text="GitHub" />
-                <SocialMediaButton icon={instagram} text="Instagram" />
-                <SocialMediaButton icon={facebook} text="Facebook" />
-                <SocialMediaButton icon={twitter} text="Twitter" />
+                <SocialMediaButton
+                    icon={linkedIn}
+                    text="LinkedIn"
+                    index={0}
+                    isVisible={isVisible}
+                />
+                <SocialMediaButton
+                    icon={email}
+                    text="Email"
+                    index={1}
+                    isVisible={isVisible}
+                />
+                <SocialMediaButton
+                    icon={github}
+                    text="GitHub"
+                    index={2}
+                    isVisible={isVisible}
+                />
+                <SocialMediaButton
+                    icon={instagram}
+                    text="Instagram"
+                    index={3}
+                    isVisible={isVisible}
+                />
+                <SocialMediaButton
+                    icon={facebook}
+                    text="Facebook"
+                    index={4}
+                    isVisible={isVisible}
+                />
+                <SocialMediaButton
+                    icon={twitter}
+                    text="Twitter"
+                    index={5}
+                    isVisible={isVisible}
+                />
             </div>
         </div>
     );
 }
 
-function SocialMediaButton({ icon, text }) {
+function SocialMediaButton({ icon, text, index, isVisible }) {
     return (
-        <div className="social-button inline-block h-14 w-14 flex items-center float-left mx-1 rounded-full cursor-pointer shadow-lg bg-[#fff] transition-all duration-300 ease-out hover:w-48 overflow-hidden">
-            <div className="icon h-14 w-14 inline-block rounded-[50px] leading-[60px] shrink-0 flex items-center justify-center transition-all duration-300 ease-out">
+        <div
+            className={`social-button ${
+                isVisible ? "is-visible" : ""
+            } h-14 w-14 flex items-center float-left mx-1 rounded-full cursor-pointer shadow-lg bg-[#fff] transition-all duration-300 ease-out hover:w-48 overflow-hidden`}
+            style={{
+                transition: `opacity 500ms ease-in-out ${
+                    (index * 200) + 2300
+                }ms, width 300ms ease-out`,
+            }}
+        >
+            <div className="icon h-14 w-14 rounded-[50px] leading-[60px] shrink-0 flex items-center justify-center transition-all duration-300 ease-out">
                 {icon}
             </div>
             <div className="social-media text-xl ml-2 font-medium">{text}</div>

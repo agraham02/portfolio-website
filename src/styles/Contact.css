@@ -1,17 +1,27 @@
 .contact-title {
-  -webkit-transition: all 800ms ease;  
-  -moz-transition: all 800ms ease;  
-  -o-transition: all 800ms ease;  
-  -ms-transition: all 800ms ease;  
-  transition: all 800ms ease;
-  /* transition: margin 800ms ease; */
-  /* font-size: 2.5rem; */
-  
+    /* -webkit-transition: all 1000ms ease;
+    -moz-transition: all 1000ms ease;
+    -o-transition: all 1000ms ease;
+    -ms-transition: all 1000ms ease; */
+    transition:
+        font-size 1500ms ease 800ms,
+        translate 1500ms ease 800ms;
+    /* transition-delay: 600ms; */
 }
 
-.contact-title.anim-active {
-  font-size: 2.5rem;
-  translate: 0 -800%;
+.contact-title.is-visible {
+    font-size: 2.5rem;
+    translate: 0 -800%;
+}
+
+.social-button {
+    opacity: 0;
+    translate: 0 100px;
+}
+
+.social-button.is-visible {
+    opacity: 100;
+    translate: 0 0;
 }
 
 .social-button:nth-child(1):hover .icon {
@@ -23,11 +33,11 @@
 }
 
 .social-button:nth-child(3):hover .icon {
-    background: #24292F;
+    background: #24292f;
 }
 
 .social-button:nth-child(4):hover .icon {
-    background: #E1306C;
+    background: #e1306c;
 }
 
 .social-button:nth-child(5):hover .icon {
@@ -39,11 +49,11 @@
 }
 
 .social-button .icon svg {
-    transition: all 100ms ease-out;
+    transition: color 100ms ease-out;
 }
 
-.social-button:hover .icon svg{
-    color: white
+.social-button:hover .icon svg {
+    color: white;
 }
 
 .social-button:nth-child(1):hover .social-media {
@@ -55,11 +65,11 @@
 }
 
 .social-button:nth-child(3):hover .social-media {
-    color: #24292F;
+    color: #24292f;
 }
 
 .social-button:nth-child(4):hover .social-media {
-    color: #E1306C;
+    color: #e1306c;
 }
 
 .social-button:nth-child(5):hover .social-media {
@@ -71,5 +81,5 @@
 }
 
 .social-button .social-media {
-    transition: all 100ms ease-out;
+    transition: color 100ms ease-out;
 }
