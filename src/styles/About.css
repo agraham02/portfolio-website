@@ -57,6 +57,10 @@
     justify-content: center; */
 }
 
+#aboutMedia.start-anim {
+    animation: mediaChange 1s;
+}
+
 .bar-outer {
     position: absolute;
     top: 50%;
@@ -72,4 +76,19 @@
     height: 100%;
     transition: width 1s ease-in-out;
     background-color: goldenrod;
+}
+
+@keyframes mediaChange {
+    0% {
+        opacity: 100;
+    }
+    25% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100;
+    }
 }

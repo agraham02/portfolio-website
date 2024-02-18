@@ -231,7 +231,7 @@ function ProjectCardGrid() {
             }
             if (scrollLine > sectionTop && opacity !== 100) {
                 // console.log("my line reached");
-                console.log("set opacity");
+                // console.log("set opacity");
                 setOpacity(100);
                 setIsVisible(true);
             }
