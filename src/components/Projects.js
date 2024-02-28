@@ -164,49 +164,6 @@ function SearchBar() {
     );
 }
 
-function ProjectCard({ project, index, opacity, isVisible }) {
-    return (
-        <div
-            id={`project-card-${index}`}
-            className={`project-card ${
-                isVisible ? "is-visible" : ""
-            } max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden`}
-            style={{ transitionDelay: `${index * 200}ms` }}
-        >
-            <div className="overflow-hidden">
-                <img src="/defaul-image.jpg" />
-            </div>
-            <div className="p-5">
-                <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    {project.name}
-                </h3>
-                <p className="mb-3 font-norma text-gray-700 dark:text-gray-400">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Morbi orci ligula, sodales et libero.
-                </p>
-                <div className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer">
-                    Expand
-                    <svg
-                        className="w-3.5 h-3.5 ml-2"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 14 10"
-                    >
-                        <path
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M1 5h12m0 0L9 1m4 4L9 9"
-                        />
-                    </svg>
-                </div>
-            </div>
-        </div>
-    );
-}
-
 function ProjectCardGrid() {
     const [projects, setProjects] = useState([]);
     const [opacity, setOpacity] = useState(0);
@@ -268,7 +225,7 @@ function ProjectCardGrid() {
         return (
             <div
                 id="projectsGridSection"
-                className="grid grid-cols-3 gap-8 m-5 mx-20"
+                className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mx-[15%]"
             >
                 {projects.map((project, index) => (
                     <ProjectCard
@@ -284,6 +241,70 @@ function ProjectCardGrid() {
     } else {
         return <></>;
     }
+}
+
+function ProjectCard({ project, index, opacity, isVisible }) {
+    function capitalizeTitle(title) {
+        // Helper function to capitalize the first letter of a word
+        function capitalize(word) {
+            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        }
+
+        // Improved regex to split title; avoids splitting acronyms
+        // Splits on hyphens, underscores, or between lowercase to uppercase transitions not preceded by uppercase (to keep acronyms together)
+        const words = title.split(/[-_]|(?<![A-Z])(?=[A-Z])/).map((word) => {
+            // Only capitalize if the word is not an acronym
+            console.log(word);
+            if (word.toUpperCase() !== word) {
+                if (word === "api") return word.toUpperCase();
+                return capitalize(word);
+            }
+            return word;
+        });
+
+        // Join the words with spaces
+        return words.join(" ");
+    }
+
+    return (
+        <div
+            id={`project-card-${index}`}
+            className={`project-card ${
+                isVisible ? "is-visible" : ""
+            } max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden`}
+            style={{ transitionDelay: `${index * 200}ms` }}
+        >
+            {/* <div className="overflow-hidden">
+                <img src="/defaul-image.jpg" />
+            </div> */}
+            <div className="p-5">
+                <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    {capitalizeTitle(project.name)}
+                </h3>
+                <p className="mb-3 font-norma text-gray-700 dark:text-gray-400">
+                    {project.description}
+                </p>
+                <div className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer">
+                    GitHub
+                    <svg
+                        className="w-3.5 h-3.5 ml-2"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 14 10"
+                    >
+                        <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9"
+                        />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 function InfiniteScrollBanner() {
