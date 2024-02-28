@@ -2,7 +2,6 @@
     display: flex;
     max-width: 60rem;
     margin: 3rem auto;
-    background-color: #f4f4f4;
     padding: 1rem;
 }
 
@@ -57,11 +56,15 @@
     justify-content: center; */
 }
 
-#aboutMedia.start-anim {
-    animation: mediaChange 1s;
+#aboutMedia {
+    transition: background-image 500ms ease-in-out;
 }
 
-.bar-outer {
+/* #aboutMedia.start-anim {
+    animation: mediaChange 1s;
+} */
+
+/* .bar-outer {
     position: absolute;
     top: 50%;
     left: 5%;
@@ -91,4 +94,4 @@
     100% {
         opacity: 100;
     }
-}
+} */

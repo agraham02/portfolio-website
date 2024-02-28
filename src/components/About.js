@@ -9,12 +9,23 @@ export default function AboutMe() {
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
     let needToChangeMedia = false;
 
-    const text1 =
-        "1Lorem ipsum dolor sit amet, consectetur adipiscing elit Proin sagittis quam nec mauris luctus, sed mollis est luctus. Morbi ut semper erat. Nulla congue sagittis suscipit. Nunc imperdiet neque sit amet risus ultrices, fermentum mollis tellus tincidunt.";
+    const text1 = `Hello there! I'm [Your Name], a passionate and dedicated Full-Stack Software Engineer with a knack for solving
+    complex problems and transforming ideas into tangible solutions. My journey in tech began [X years] ago, and since then, I've 
+    been immersed in coding, learning, and evolving alongside the rapidly changing tech landscape. My expertise spans from 
+    crafting intricate backend systems to designing intuitive user interfaces, ensuring a seamless and robust user experience 
+    from start to finish. With a Bachelor's degree in Computer Science and a continuous hunger for knowledge, I've honed my skills 
+    in [list some technologies you're skilled in, e.g., JavaScript, React, Node.js, Python, etc.], always aiming to leverage the latest 
+    technologies to drive innovation.`;
     const text2 =
-        "2Lorem ipsum dolor sit amet, consectetur adipiscing elit Proin sagittis quam nec mauris luctus, sed mollis est luctus. Morbi ut semper erat. Nulla congue sagittis suscipit. Nunc imperdiet neque sit amet risus ultrices, fermentum mollis tellus tincidunt.";
-    const text3 =
-        "3Lorem ipsum dolor sit amet, consectetur adipiscing elit Proin sagittis quam nec mauris luctus, sed mollis est luctus. Morbi ut semper erat. Nulla congue sagittis suscipit. Nunc imperdiet neque sit amet risus ultrices, fermentum mollis tellus tincidunt.";
+        `What sets me apart is not just my technical abilities but my approach to software development. I'm a firm believer in the power 
+        of teamwork, clear communication, and empathy, values that have guided me through various successful projects. My portfolio 
+        showcases a range of projects that illustrate my ability to tackle challenges head-on, whether it's developing a scalable web 
+        application for a startup or optimizing an existing system for better performance and user experience. Each project has been a 
+        stepping stone, further fueling my dedication to crafting software solutions that make a difference.`;
+    const text3 = `Beyond the world of code, I'm an avid learner, always curious about new technologies and methodologies that can enhance 
+    my skills and contribute to my projects. When I'm not glued to my computer screen, you might find me exploring the great outdoors, 
+    reading up on the latest tech trends, or mentoring budding software engineers. I'm eager to collaborate with innovative teams and 
+    individuals who are passionate about making an impact through technology. Let's connect and create something amazing together!`;
 
     async function changeSectionIndex(newIndex) {
         if (currentSectionIndex !== newIndex) {
@@ -45,27 +56,20 @@ export default function AboutMe() {
                 // let newIndex;
                 if (percentage < 33.3) {
                     if (currentSectionIndex !== 0) {
-                        // console.log("first section");
-                        // newIndex = 0;
                         setCurrentSectionIndex(0);
                     }
                     return;
                 } else if (percentage < 66.6) {
                     if (currentSectionIndex !== 1) {
-                        // console.log("second section");
-                        // newIndex = 1;
                         setCurrentSectionIndex(1);
                     }
                     return;
                 } else if (percentage < 100) {
                     if (currentSectionIndex !== 2) {
-                        // console.log("third section");
-                        // newIndex = 2;
                         setCurrentSectionIndex(2);
                     }
                     return;
                 }
-                // changeSectionIndex(newIndex);
             }
         });
     }
@@ -93,7 +97,7 @@ export default function AboutMe() {
 
 function AboutTextSection({ text }) {
     return (
-        <div className="h-[1000px] p-4 flex items-center justify-center border-green-700 border">
+        <div className="px-10 py-28 text-lg  flex items-center justify-center">
             <p className="">{text}</p>
         </div>
     );
@@ -101,15 +105,22 @@ function AboutTextSection({ text }) {
 
 function AboutMediaSection({ currentSectionIndex }) {
     const media = [number1, number2, number3];
+
+    function changeImage() {
+        const aboutMediaSection = document.getElementById("aboutMedia");
+
+        aboutMediaSection.style.backgroundImage = `url(${media[currentSectionIndex]})`;
+    }
+
+    useEffect(() => {
+        console.log(currentSectionIndex);
+        changeImage();
+    }, [currentSectionIndex]);
+
     return (
-        // <div id="aboutMedia" className="bar-outer">
-        //     <div
-        //         className="bar-inner"
-        //         style={{ width: `${currentSectionIndex * 20}%` }}
-        //     ></div>
-        // </div>
-        <div id="aboutMedia">
-            <img src={media[currentSectionIndex]} />
-        </div>
+        <div
+            id="aboutMedia"
+            className="border border-red-500 h-full bg-cover bg-no-repeat bg-center"
+        ></div>
     );
 }
