@@ -1,40 +1,75 @@
+header {
+    /* background-image: url("/public/stThomas.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; */
+}
+
 :root {
-    --move-step: -4rem;
+    --move-step: -3.8rem;
     --text-height: 4rem;
+}
+
+header p {
+    box-sizing: border-box;
+    /* border: solid red; */
+    height: 3.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* opacity: 0; */
+    background-clip: text;
+    /* background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%); */
+    /* font-size: 72px; */
+    background: -webkit-linear-gradient(#00d2ff 0%, #3a47d5 100%);
+    /* background: linear-gradient(); */
+    /* background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%); */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .text-scroller {
     height: var(--text-height);
 }
 
-.text-scroller > span {
-    animation: slide 12s infinite;
+.text-scroller > div {
+    animation: slide 30s infinite;
 }
-
-.text-scroller > span > * {
-    height: var(--text-height);
-    padding: 5px 0;
-    display: flex;
-    align-items: center;
-}
-
 
 @keyframes slide {
     0% {
         top: 0;
     }
-    25% {
+    10% {
         top: calc(var(--move-step) * 1);
     }
-    50% {
-        top: calc(
-            var(--move-step) * 2
-        );
+    20% {
+        top: calc(var(--move-step) * 2);
     }
-    75% {
+    30% {
         top: calc(var(--move-step) * 3);
     }
-    100% {
+    40% {
         top: calc(var(--move-step) * 4);
+    }
+    50% {
+        top: calc(var(--move-step) * 5);
+    }
+    60% {
+        top: calc(var(--move-step) * 6);
+    }
+    70% {
+        top: calc(var(--move-step) * 7);
+    }
+    80% {
+        top: calc(var(--move-step) * 8);
+    }
+    90% {
+        top: calc(var(--move-step) * 9);
+    }
+    100% {
+        top: calc(var(--move-step) * 10);
     }
 }

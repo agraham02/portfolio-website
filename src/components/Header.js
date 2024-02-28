@@ -3,26 +3,37 @@ import "../styles/Header.css";
 
 export default function Header() {
     return (
-        <header className="w-full h-screen flex flex-col justify-center align-baseline bg-neutral-300 relative">
-            <div className="mx-8 w-fit">
+        <header className="w-full h-screen flex flex-col justify-center align-baseline">
+            <div className="w-full h-full absolute"></div>
+            <div className="mx-auto flex flex-col items-center w-fit z-10 text-center">
                 <h1 className="text-8xl mb-4">Ahmad Graham</h1>
-                <strong className="text-4xl mb-6 font-normal flex items-center justify-center">
-                    <div className="flex items-center justify-center">
-                        Sub-Title Text
+                <h2 className="text-4xl mb-6 font-normal w-full">
+                    <div className="flex flex-col mx-10 items-center">
+                        <div className="flex justify-center items-center w-fit leading-snug">
+                            A Computer Scientist Who Is
+                        </div>
+                        <div className="text-scroller overflow-y-hidden relative font-semibold w-52 m-2">
+                            <div className="absolute top-0 w-full">
+                                <div className="flex flex-col items-center">
+                                    <p>Adaptable</p>
+                                    <p>Resourceful</p>
+                                    <p>Dedicated</p>
+                                    <p>Curious</p>
+                                    <p>Passionate</p>
+                                    <p>Meticulous</p>
+                                    <p>Resilient</p>
+                                    <p>Thorough</p>
+                                    <p>Empathetic</p>
+                                    <p>Pragmatic</p>
+                                    <p>Adaptable</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="text-scroller relative font-semibold overflow-y-hidden grow">
-                        <span className="absolute top-0 mx-4">
-                            <p>Cool</p>
-                            <p>Art</p>
-                            <p>Intruiging</p>
-                            <p>Challenging</p>
-                            <p>Cool</p>
-                        </span>
-                    </div>
-                </strong>
+                </h2>
                 <div className="flex w-9/12 text-center">
-                    <CustomButton text="Button 1" />
-                    <CustomButton text="Button 2" type="secondary" />
+                    <CustomButton text="View Projects" />
+                    <CustomButton text="Contact" type="secondary" />
                 </div>
             </div>
             <svg
