@@ -79,7 +79,7 @@ export default function Contact() {
             const endScroll = startScroll + window.innerHeight;
             const scrollMiddle = (startScroll + endScroll) / 2;
 
-            const section = document.getElementById("contactSection");
+            const section = document.getElementById("contact");
 
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
@@ -97,7 +97,7 @@ export default function Contact() {
 
     return (
         <div
-            id="contactSection"
+            id="contact"
             className="h-screen flex flex-col items-center justify-center"
         >
             <h2
