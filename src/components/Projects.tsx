@@ -22,12 +22,16 @@ import unityLogo from "../company-logos/Unity_Technologies_logo.svg";
 import xcodeLogo from "../company-logos/xcode-seeklogo.com.svg";
 
 export default function Projects() {
+    const [searchWord, setSearchWord] = useState("");
+
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center" id="projects">
             <h2 className="text-5xl">Projects</h2>
-            <SearchBar />
-            {/* <div>Filter</div> */}
-            <ProjectCardGrid />
+            <SearchBar searchWord={searchWord} setSearchWord={setSearchWord} />
+            <ProjectCardGrid
+                searchWord={searchWord}
+                setSearchWord={setSearchWord}
+            />
             <a
                 className="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2 cursor-pointer"
                 target="_blank"
@@ -54,7 +58,7 @@ export default function Projects() {
     );
 }
 
-function SearchBar() {
+function SearchBar({ searchWord, setSearchWord }) {
     return (
         <form className="w-8/12 m-5">
             <div className="flex">
@@ -135,10 +139,12 @@ function SearchBar() {
                         id="search-dropdown"
                         className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
                         placeholder="Search Mockups, Logos, Design Templates..."
+                        value={searchWord}
+                        onChange={(e) => setSearchWord(e.target.value)}
                         required
                     />
                     <button
-                        type="submit"
+                        type="button"
                         className="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
                         <svg
@@ -164,10 +170,32 @@ function SearchBar() {
     );
 }
 
-function ProjectCardGrid() {
+function ProjectCardGrid({ searchWord }) {
     const [projects, setProjects] = useState([]);
+    const [filteredProjects, setFilteredProjects] = useState([]);
     const [opacity, setOpacity] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
+
+    function filterProjects(searchWord) {
+        if (!searchWord) {
+            setFilteredProjects(projects); // Return all projects if searchWord is empty
+            return;
+        }
+
+        const searchWordLower = searchWord.toLowerCase();
+        const newFilteredProjects = projects.filter(
+            (project) =>
+                project.name.toLowerCase().includes(searchWordLower) ||
+                project.description?.toLowerCase().includes(searchWordLower) ||
+                project.title?.toLowerCase().includes(searchWordLower)
+        );
+
+        setFilteredProjects(newFilteredProjects);
+    }
+
+    useEffect(() => {
+        filterProjects(searchWord);
+    }, [searchWord, projects]);
 
     function scrollDetection() {
         window.addEventListener("scroll", () => {
@@ -197,53 +225,6 @@ function ProjectCardGrid() {
 
     scrollDetection();
 
-    async function fetchGitHubProjects() {
-        const response = await fetch(
-            "https://api.github.com/users/agraham02/repos",
-            { method: "GET" }
-        );
-        const jsonData = await response.json();
-        console.log(jsonData);
-        const projectsData = jsonData.map((project) => ({
-            name: project.name,
-            createdAt: project.created_at,
-            description: project.description,
-            link: project.homepage,
-            updatedAt: project.updated_at,
-            pushedAt: project.pushed_at,
-            topics: project.topics,
-        }));
-        console.log(projectsData);
-        setProjects(projectsData);
-    }
-
-    useEffect(() => {
-        fetchGitHubProjects();
-    }, []);
-
-    if (projects) {
-        return (
-            <div
-                id="projectsGridSection"
-                className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mx-[15%]"
-            >
-                {projects.map((project, index) => (
-                    <ProjectCard
-                        project={project}
-                        index={index}
-                        opacity={opacity}
-                        isVisible={isVisible}
-                        key={index}
-                    />
-                ))}
-            </div>
-        );
-    } else {
-        return <></>;
-    }
-}
-
-function ProjectCard({ project, index, opacity, isVisible }) {
     function capitalizeTitle(title) {
         // Helper function to capitalize the first letter of a word
         function capitalize(word) {
@@ -266,6 +247,55 @@ function ProjectCard({ project, index, opacity, isVisible }) {
         return words.join(" ");
     }
 
+    async function fetchGitHubProjects() {
+        const response = await fetch(
+            "https://api.github.com/users/agraham02/repos",
+            { method: "GET" }
+        );
+        const jsonData = await response.json();
+        console.log(jsonData);
+        const projectsData = jsonData.map((project) => ({
+            name: project.name,
+            title: capitalizeTitle(project.name),
+            createdAt: project.created_at,
+            description: project.description,
+            link: project.homepage,
+            updatedAt: project.updated_at,
+            pushedAt: project.pushed_at,
+            topics: project.topics,
+        }));
+        console.log(projectsData);
+        setProjects(projectsData);
+        setFilteredProjects(projectsData);
+    }
+
+    useEffect(() => {
+        fetchGitHubProjects();
+    }, []);
+
+    if (projects) {
+        return (
+            <div
+                id="projectsGridSection"
+                className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mx-[15%]"
+            >
+                {filteredProjects.map((project, index) => (
+                    <ProjectCard
+                        project={project}
+                        index={index}
+                        opacity={opacity}
+                        isVisible={isVisible}
+                        key={index}
+                    />
+                ))}
+            </div>
+        );
+    } else {
+        return <></>;
+    }
+}
+
+function ProjectCard({ project, index, opacity, isVisible }) {
     return (
         <div
             id={`project-card-${index}`}
@@ -279,7 +309,7 @@ function ProjectCard({ project, index, opacity, isVisible }) {
             </div> */}
             <div className="p-5">
                 <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    {capitalizeTitle(project.name)}
+                    {project.title}
                 </h3>
                 <p className="mb-3 font-norma text-gray-700 dark:text-gray-400">
                     {project.description}
