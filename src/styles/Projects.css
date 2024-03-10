@@ -1,4 +1,4 @@
-.project-card {
+/* .project-card {
     transition:
         opacity ease-in 500ms,
         translate ease-in-out 1200ms;
@@ -9,6 +9,21 @@
 .project-card.is-visible {
     opacity: 100;
     translate: 0 0;
+} */
+
+.topics-container {
+
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.topics-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.topics-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .scroll-parent {
