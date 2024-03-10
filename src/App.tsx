@@ -1,23 +1,24 @@
-import logo from "./logo.svg";
 import "./styles/App.css";
-import Nav from "./components/Nav";
+// import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Projects from "./components/Projects";
-import AboutMe from "./components/About";
-import Contact from "./components/Contact";
-import StatsBanner from "./components/StatsBanner";
+// import AboutMe from "./components/About";
+// import Contact from "./components/Contact";
+// import StatsBanner from "./components/StatsBanner";
+import UnderConstruction from "./components/UnderConstruction";
 
 function App() {
     return (
         <>
-            <Nav />
+            {/* <Nav /> */}
             <Header />
             <main>
                 <Projects />
-                <AboutMe />
+                {/* <AboutMe /> */}
                 {/* <StatsBanner /> */}
-                <Contact />
+                {/* <Contact /> */}
+                <UnderConstruction />
             </main>
             <Footer />
         </>
