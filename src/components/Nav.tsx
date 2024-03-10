@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/Nav.css";
 
 export default function Nav() {
@@ -16,7 +15,7 @@ export default function Nav() {
     );
 }
 
-function NavLink({ text }) {
+function NavLink({ text }: { text: string }) {
     return (
         <div className="px-4 h-4/5 items-center flex cursor-pointer hover:text-sky-700">
             {text}

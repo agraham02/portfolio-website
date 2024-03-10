@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "../../utils/cn";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createNoise3D } from "simplex-noise";
 
 export const WavyBackground = ({
@@ -65,14 +65,19 @@ export const WavyBackground = ({
         "#38bdf8",
         "#818cf8",
         "#c084fc",
+        // "#A846A0",
         "#e879f9",
         "#22d3ee",
+
+        // "#65DEF1",
+        // "#DAC4F7",
+        // "#CFE0C3",
     ];
     const drawWave = (n: number) => {
         nt += getSpeed();
         for (i = 0; i < n; i++) {
             ctx.beginPath();
-            ctx.lineWidth = waveWidth || 50;
+            ctx.lineWidth = waveWidth ?? 50;
             ctx.strokeStyle = waveColors[i % waveColors.length];
             for (x = 0; x < w; x += 5) {
                 var y = noise(x / 800, 0.3 * i, nt) * 100;
@@ -85,8 +90,12 @@ export const WavyBackground = ({
 
     let animationId: number;
     const render = () => {
-        ctx.fillStyle = backgroundFill || "black";
-        ctx.globalAlpha = waveOpacity || 0.5;
+        const grd = ctx.createLinearGradient(0, 0, w, h);
+        // const grd = ctx.createRadialGradient(75, 50, w / 2, 90, 60, w);
+        grd.addColorStop(0, "#000428");
+        grd.addColorStop(1, "#004e92");
+        ctx.fillStyle = grd || "black";
+        ctx.globalAlpha = waveOpacity ?? 0.5;
         ctx.fillRect(0, 0, w, h);
         drawWave(5);
         animationId = requestAnimationFrame(render);

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/About.css";
 import number1 from "../assets/number1.png";
 import number2 from "../assets/number2.png";
 import number3 from "../assets/number3.png";
 
 export default function AboutMe() {
-    const NUMBER_OF_SECTIONS = 3;
+    // const NUMBER_OF_SECTIONS = 3;
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
-    let needToChangeMedia = false;
+    // let needToChangeMedia = false;
 
     const text1 = `Hello there! I'm [Your Name], a passionate and dedicated Full-Stack Software Engineer with a knack for solving
     complex problems and transforming ideas into tangible solutions. My journey in tech began [X years] ago, and since then, I've 
@@ -16,8 +16,7 @@ export default function AboutMe() {
     from start to finish. With a Bachelor's degree in Computer Science and a continuous hunger for knowledge, I've honed my skills 
     in [list some technologies you're skilled in, e.g., JavaScript, React, Node.js, Python, etc.], always aiming to leverage the latest 
     technologies to drive innovation.`;
-    const text2 =
-        `What sets me apart is not just my technical abilities but my approach to software development. I'm a firm believer in the power 
+    const text2 = `What sets me apart is not just my technical abilities but my approach to software development. I'm a firm believer in the power 
         of teamwork, clear communication, and empathy, values that have guided me through various successful projects. My portfolio 
         showcases a range of projects that illustrate my ability to tackle challenges head-on, whether it's developing a scalable web 
         application for a startup or optimizing an existing system for better performance and user experience. Each project has been a 
@@ -27,12 +26,12 @@ export default function AboutMe() {
     reading up on the latest tech trends, or mentoring budding software engineers. I'm eager to collaborate with innovative teams and 
     individuals who are passionate about making an impact through technology. Let's connect and create something amazing together!`;
 
-    async function changeSectionIndex(newIndex) {
-        if (currentSectionIndex !== newIndex) {
-            console.log("i ran" + newIndex + "," + currentSectionIndex);
-            await Promise.resolve(setCurrentSectionIndex(newIndex));
-        }
-    }
+    // async function changeSectionIndex(newIndex) {
+    //     if (currentSectionIndex !== newIndex) {
+    //         console.log("i ran" + newIndex + "," + currentSectionIndex);
+    //         await Promise.resolve(setCurrentSectionIndex(newIndex));
+    //     }
+    // }
 
     function scrollDetection() {
         window.addEventListener("scroll", () => {
@@ -42,8 +41,8 @@ export default function AboutMe() {
 
             const section = document.getElementById("scrollSection");
 
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
+            const sectionTop = section!.offsetTop;
+            const sectionHeight = section!.offsetHeight;
             const sectionBotom = sectionTop + sectionHeight;
 
             if (scrollMiddle > sectionTop && scrollMiddle < sectionBotom) {
@@ -95,7 +94,7 @@ export default function AboutMe() {
     );
 }
 
-function AboutTextSection({ text }) {
+function AboutTextSection({ text }: { text: string }) {
     return (
         <div className="px-10 py-28 text-lg  flex items-center justify-center">
             <p className="">{text}</p>
@@ -103,17 +102,21 @@ function AboutTextSection({ text }) {
     );
 }
 
-function AboutMediaSection({ currentSectionIndex }) {
+function AboutMediaSection({
+    currentSectionIndex,
+}: {
+    currentSectionIndex: number;
+}) {
     const media = [number1, number2, number3];
 
     function changeImage() {
         const aboutMediaSection = document.getElementById("aboutMedia");
 
-        aboutMediaSection.style.backgroundImage = `url(${media[currentSectionIndex]})`;
+        aboutMediaSection!.style.backgroundImage = `url(${media[currentSectionIndex]})`;
     }
 
     useEffect(() => {
-        console.log(currentSectionIndex);
+        // console.log(currentSectionIndex);
         changeImage();
     }, [currentSectionIndex]);
 

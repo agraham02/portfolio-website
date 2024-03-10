@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import "../styles/Contact.css";
 
 const facebook = (
@@ -71,18 +71,17 @@ const email = (
 
 export default function Contact() {
     const [isVisible, setIsVisible] = useState(false);
-    function startAnimation() {}
 
     function scrollDetection() {
         window.addEventListener("scroll", () => {
             const startScroll = window.scrollY;
             const endScroll = startScroll + window.innerHeight;
-            const scrollMiddle = (startScroll + endScroll) / 2;
+            // const scrollMiddle = (startScroll + endScroll) / 2;
 
             const section = document.getElementById("contact");
 
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
+            const sectionTop = section!.offsetTop;
+            const sectionHeight = section!.offsetHeight;
             const sectionBotom = sectionTop + sectionHeight;
 
             if (endScroll > sectionBotom) {
@@ -149,7 +148,17 @@ export default function Contact() {
     );
 }
 
-function SocialMediaButton({ icon, text, index, isVisible }) {
+function SocialMediaButton({
+    icon,
+    text,
+    index,
+    isVisible,
+}: {
+    icon: JSX.Element;
+    text: string;
+    index: number;
+    isVisible: boolean;
+}) {
     return (
         <div
             className={`social-button ${
@@ -157,7 +166,7 @@ function SocialMediaButton({ icon, text, index, isVisible }) {
             } h-14 w-14 flex items-center float-left mx-1 rounded-full cursor-pointer shadow-lg bg-[#fff] transition-all duration-300 ease-out hover:w-48 overflow-hidden`}
             style={{
                 transition: `opacity 500ms ease-in-out ${
-                    (index * 200) + 2300
+                    index * 200 + 2300
                 }ms, width 300ms ease-out`,
             }}
         >
