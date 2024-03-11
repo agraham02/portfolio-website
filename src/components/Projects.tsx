@@ -100,7 +100,7 @@ interface Project {
     link: string;
     updatedAt: Date;
     pushedAt: Date;
-    topics: Array<String>;
+    topics: Array<string>;
     url: string;
     id: number;
 }
