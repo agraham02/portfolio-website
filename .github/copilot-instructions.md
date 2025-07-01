@@ -1,0 +1,46 @@
+# .instructions.md
+
+## Coding Style
+
+- **Use TypeScript** for all files.
+- **Prefer async/await** for all asynchronous code.
+- **Functional Components** only. Define like:
+  ```typescript
+  export default function ComponentName() { ... }
+  ```
+- Use **arrow functions** for small utilities and callbacks.
+
+## UI & Styling
+
+- **Tailwind CSS** for all styling. Use utility classes in JSX. Use `@apply` in global CSS for repeated patterns.
+- **shadcn/ui** for accessible, composable UI primitives.
+- **framer-motion** for animation.
+- **clsx** for conditional classNames.
+- Organize components in `/components/ui/` and `/components/layout/`.
+
+## Next.js & React Best Practices
+
+- Use the **App Router** (`/app` directory) and **React Server Components** where possible.
+- Use **next/image** and **next/font** for optimized images and fonts.
+- Keep a single global CSS file (e.g., `app/globals.css`).
+- Use **semantic HTML** and accessible ARIA attributes.
+- Prefer **server-side data fetching** (e.g., `async` server components, `getServerSideProps`) for dynamic content.
+- Use **React Context** or **Zustand** for state management if needed.
+- Write **small, reusable components**.
+- Use **ESLint** and **Prettier** for code quality and formatting.
+
+## Recommendations
+
+- Consider **Radix UI** for advanced accessibility.
+- Use **Jest** or **Vitest** for unit testing.
+- Use **GitHub Copilot** for code suggestions, but always review generated code for correctness and security.
+
+## Industry Standards
+
+- Keep dependencies up-to-date.
+- Write clear, concise commit messages.
+- Document complex logic with comments and JSDoc.
+- Use environment variables for secrets/configuration.
+- Optimize for performance and accessibility.
+
+---
