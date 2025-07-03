@@ -1,4 +1,5 @@
 "use client";
+import { cn } from "@/lib/utils";
 import {
     useMotionValueEvent,
     useScroll,
@@ -34,14 +35,14 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
     return (
         <div
-            className="w-full rounded-2xl bg-white dark:bg-neutral-950 font-sans px-5 lg:px-10"
+            className="w-full rounded-2xl bg-white dark:bg-neutral-950 font-sans px-5 lg:px-10 pt-14"
             ref={containerRef}
         >
             <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
                 {data.map((item, index) => (
                     <div
                         key={index}
-                        className="flex justify-start pt-14 lg:pt-40 lg:gap-10"
+                        className={cn("flex justify-start lg:gap-10", index === 0 ? "pt-0": "pt-14 lg:pt-40")}
                     >
                         <div className="sticky flex flex-col lg:flex-row z-40 items-center top-40 self-start max-w-xs lg:min-w-xs lg:max-w-full">
                             <div className="h-10 absolute left-0 lg:left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center">
