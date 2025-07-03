@@ -1,7 +1,5 @@
 import Header from "@/components/Header";
 import InfiniteScrollLogos from "@/components/InfiniteScrollLogos";
-import { TimelineSection } from "@/components/Timeline";
-import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
 import Image from "next/image";
 import {
     FaReact,
@@ -35,6 +33,10 @@ import {
     SiPandas,
     SiNumpy,
 } from "react-icons/si";
+import { Button } from "@/components/ui/button";
+import { MoveRight } from "lucide-react";
+import Link from "next/link";
+import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
 
 const content = [
     {
@@ -85,6 +87,31 @@ const content = [
     },
 ];
 
+function Hero() {
+    return (
+        <section className="container mx-auto flex min-h-[calc(100vh-80px)] flex-col items-center justify-center px-4 py-20 text-center md:py-32">
+            <h1 className="text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
+                Full-Stack Developer & Creative Technologist
+            </h1>
+            <p className="mt-6 max-w-3xl text-lg text-muted-foreground md:text-xl">
+                I build exceptional and accessible digital experiences.
+                Currently seeking new opportunities to apply my skills in a
+                challenging and collaborative environment.
+            </p>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                <Button asChild size="lg">
+                    <Link href="/projects">
+                        View My Work <MoveRight className="ml-2 h-5 w-5" />
+                    </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                    <Link href="/contact">Get In Touch</Link>
+                </Button>
+            </div>
+        </section>
+    );
+}
+
 const techIcons = [
     { id: "react", icon: <FaReact /> },
     { id: "nextjs", icon: <SiNextdotjs /> },
@@ -120,6 +147,7 @@ export default function Home() {
     return (
         <main>
             <Header />
+            <Hero />
             {/* <StickyScroll content={content} /> */}
             <InfiniteScrollLogos
                 icons={techIcons} // Pass the array of icon objects
@@ -128,7 +156,6 @@ export default function Home() {
                 iconHoverColor="hover:text-blue-400" // Example: Adjust hover color
                 speed="normal"
             />
-            {/* <TimelineSection /> */}
         </main>
     );
 }
