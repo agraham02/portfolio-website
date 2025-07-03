@@ -33,11 +33,11 @@ export default function TimelineSection() {
             variants={staggerContainer}
         >
             <div className="max-w-6xl mx-auto md:px-4">
-                <motion.div className="text-center mb-16" variants={fadeInUp}>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-indigo-900 dark:from-slate-100 dark:via-blue-200 dark:to-indigo-300 bg-clip-text text-transparent mb-6">
+                <motion.div className="text-center mb-8 px-8" variants={fadeInUp}>
+                    <h2 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-indigo-900 dark:from-slate-100 dark:via-blue-200 dark:to-indigo-300 bg-clip-text text-transparent mb-6">
                         My Journey
                     </h2>
-                    <p className="text-slate-600 dark:text-slate-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-slate-600 dark:text-slate-300 text-xl max-w-3xl mx-auto leading-relaxed">
                         From self-taught beginner to full-stack engineer, here's
                         how I've grown through real projects, internships, and
                         continuous learning.

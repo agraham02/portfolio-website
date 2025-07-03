@@ -19,10 +19,24 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
     const [height, setHeight] = useState(0);
 
     useEffect(() => {
-        if (ref.current) {
-            const rect = ref.current.getBoundingClientRect();
-            setHeight(rect.height);
-        }
+        const calculateHeight = () => {
+            if (ref.current) {
+                const rect = ref.current.getBoundingClientRect();
+                setHeight(rect.height);
+            }
+        };
+
+        calculateHeight();
+
+        const handleResize = () => {
+            calculateHeight();
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
     }, [ref]);
 
     const { scrollYProgress } = useScroll({
@@ -42,7 +56,10 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                 {data.map((item, index) => (
                     <div
                         key={index}
-                        className={cn("flex justify-start lg:gap-10", index === 0 ? "pt-0": "pt-14 lg:pt-40")}
+                        className={cn(
+                            "flex justify-start lg:gap-10",
+                            index === 0 ? "pt-0" : "pt-14 lg:pt-40"
+                        )}
                     >
                         <div className="sticky flex flex-col lg:flex-row z-40 items-center top-40 self-start max-w-xs lg:min-w-xs lg:max-w-full">
                             <div className="h-10 absolute left-0 lg:left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center">
