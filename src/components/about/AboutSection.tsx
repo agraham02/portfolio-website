@@ -100,7 +100,7 @@ export default function AboutSection() {
                     className="w-full lg:w-1/2 flex justify-center px-8 sm:px-12 lg:px-4"
                     variants={imageFloat}
                 >
-                    <div className="relative group max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl w-full">
+                    <div className="relative group max-w-sm sm:max-w-md w-full">
                         {/* Layered Background Effects - Responsive */}
                         <div className="absolute -inset-3 sm:-inset-4 lg:-inset-6 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-full opacity-20 blur-xl sm:blur-2xl animate-pulse group-hover:opacity-30 transition-opacity duration-500" />
                         <div className="absolute -inset-2 sm:-inset-3 lg:-inset-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 rounded-full opacity-10 blur-lg sm:blur-xl animate-pulse animation-delay-1000" />
@@ -163,7 +163,7 @@ export default function AboutSection() {
                     <div className="space-y-4">
                         <motion.div
                             variants={fadeInUp}
-                            className="flex items-center gap-3 mb-4"
+                            className="flex flex-wrap items-center gap-3 mb-4"
                         >
                             <Badge
                                 variant="outline"
@@ -171,14 +171,19 @@ export default function AboutSection() {
                             >
                                 Full-Stack Engineer
                             </Badge>
-                            <motion.div
-                                className="w-2 h-2 bg-green-400 rounded-full"
-                                animate={{ scale: [1, 1.2, 1] }}
-                                transition={{ duration: 2, repeat: Infinity }}
-                            />
-                            <span className="text-sm text-slate-500 dark:text-slate-400">
-                                Available for work
-                            </span>
+                            <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+                                <motion.div
+                                    className="w-2 h-2 bg-green-400 rounded-full"
+                                    animate={{ scale: [1, 1.2, 1] }}
+                                    transition={{
+                                        duration: 2,
+                                        repeat: Infinity,
+                                    }}
+                                />
+                                <span className="text-sm text-slate-500 dark:text-slate-400">
+                                    Available for work
+                                </span>
+                            </div>
                         </motion.div>
 
                         <motion.h2
