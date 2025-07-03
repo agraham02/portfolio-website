@@ -26,9 +26,9 @@ export default function AboutPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-blue-50/20 dark:from-slate-900 dark:via-slate-800 dark:to-blue-950/20">
+        <div className="min-h-screen px-5 md:px-10 bg-gradient-to-br from-white via-slate-50 to-blue-50/20 dark:from-slate-900 dark:via-slate-800 dark:to-blue-950/20">
             {/* Hero Section */}
-            <motion.section
+            {/* <motion.section
                 className="py-20 md:py-32 bg-gradient-to-br from-slate-50 via-blue-50/50 to-indigo-50/30 dark:from-slate-900 dark:via-blue-950/50 dark:to-indigo-950/30"
                 initial="hidden"
                 animate="visible"
@@ -51,41 +51,15 @@ export default function AboutPage() {
                         design.
                     </motion.p>
                 </div>
-            </motion.section>
+            </motion.section> */}
 
-            {/* About Section */}
-            <AboutSection />
+            {/* <AboutSection /> */}
 
             {/* Timeline Section */}
-            <motion.section
-                className="py-20 md:py-28 bg-gradient-to-br from-white via-slate-50 to-blue-50/30 dark:from-slate-900 dark:via-slate-800 dark:to-blue-950/30"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
-                variants={staggerContainer}
-            >
-                <div className="max-w-6xl mx-auto px-4">
-                    <motion.div
-                        className="text-center mb-16"
-                        variants={fadeInUp}
-                    >
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-indigo-900 dark:from-slate-100 dark:via-blue-200 dark:to-indigo-300 bg-clip-text text-transparent mb-6">
-                            My Journey
-                        </h2>
-                        <p className="text-slate-600 dark:text-slate-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-                            From self-taught beginner to full-stack engineer,
-                            here's how I've grown through real projects,
-                            internships, and continuous learning.
-                        </p>
-                    </motion.div>
-                    <motion.div variants={fadeInUp}>
-                        <TimelineSection />
-                    </motion.div>
-                </div>
-            </motion.section>
+            <TimelineSection />
 
             {/* Call to Action Section */}
-            <motion.section
+            {/* <motion.section
                 className="py-20 md:py-28 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50/50 dark:from-blue-950/30 dark:via-indigo-950/30 dark:to-purple-950/20 border-t border-slate-200/50 dark:border-slate-700/50"
                 initial="hidden"
                 whileInView="visible"
@@ -135,7 +109,7 @@ export default function AboutPage() {
                         </div>
                     </motion.div>
                 </div>
-            </motion.section>
+            </motion.section> */}
         </div>
     );
 }

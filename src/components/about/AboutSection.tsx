@@ -49,13 +49,13 @@ export default function AboutSection() {
                     variants={imageFloat}
                 >
                     <div className="relative">
-                        <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-3xl opacity-20 blur-xl animate-pulse" />
+                        <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-full opacity-20 blur-xl animate-pulse" />
                         <Image
                             src="/images/hero-template.png" // Placeholder - replace with your real photo
                             alt="Ahmad Graham"
                             width={450}
                             height={450}
-                            className="relative rounded-3xl object-cover shadow-2xl border-2 border-white/50 dark:border-slate-700/50 hover:scale-105 transition-transform duration-300"
+                            className="relative rounded-full object-cover shadow-2xl border-2 border-white/50 dark:border-slate-700/50 hover:scale-105 transition-transform duration-300"
                         />
                     </div>
                 </motion.div>
@@ -66,10 +66,13 @@ export default function AboutSection() {
                     variants={staggerContainer}
                 >
                     <motion.h2
-                        className="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-indigo-900 dark:from-slate-100 dark:via-blue-200 dark:to-indigo-300 bg-clip-text text-transparent mb-6"
+                        className="text-3xl md:text-4xl lg:text-5xl font-bold  mb-6"
                         variants={fadeInUp}
                     >
-                        Hi, I'm Ahmad Graham 👋
+                        Hi, I'm{" "}
+                        <span className="bg-gradient-to-r from-blue-400 to-indigo-800 dark:from-slate-100 dark:via-blue-200 dark:to-indigo-300 bg-clip-text text-transparent">
+                            Ahmad Graham
+                        </span>
                     </motion.h2>
                     <motion.p
                         className="text-slate-600 dark:text-slate-300 text-base md:text-lg leading-relaxed mb-6"
