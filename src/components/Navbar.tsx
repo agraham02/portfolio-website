@@ -17,25 +17,25 @@ export default function Navbar() {
                 {/* Nav links */}
                 <nav className="flex items-center space-x-8 text-gray-700 font-medium">
                     <Link
-                        href="#about"
-                        className="hover:text-blue-600 transition"
-                    >
-                        About
-                    </Link>
-                    <Link
-                        href="#skills"
-                        className="hover:text-blue-600 transition"
-                    >
-                        Skills
-                    </Link>
-                    <Link
-                        href="#projects"
+                        href="/projects"
                         className="hover:text-blue-600 transition"
                     >
                         Projects
                     </Link>
                     <Link
-                        href="#contact"
+                        href="/blog"
+                        className="hover:text-blue-600 transition"
+                    >
+                        Blog
+                    </Link>
+                    <Link
+                        href="/about"
+                        className="hover:text-blue-600 transition"
+                    >
+                        About
+                    </Link>
+                    <Link
+                        href="/contact"
                         className="hover:text-blue-600 transition"
                     >
                         Contact
