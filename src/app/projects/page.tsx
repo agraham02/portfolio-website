@@ -325,39 +325,177 @@ function FeaturedProjects() {
 
 // Project Statistics Section
 function ProjectStats() {
+    const [hasAnimated, setHasAnimated] = React.useState(false);
+    
     const stats = [
-        { number: "15+", label: "Projects Built", icon: "🚀" },
-        { number: "5+", label: "Technologies", icon: "⚡" },
-        { number: "2", label: "Years Experience", icon: "📈" },
-        { number: "100%", label: "Passion Driven", icon: "❤️" },
+        { 
+            number: 15, 
+            suffix: "+", 
+            label: "Projects Built", 
+            icon: (
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+            ),
+            color: "from-blue-500 to-blue-600"
+        },
+        { 
+            number: 8, 
+            suffix: "+", 
+            label: "Technologies", 
+            icon: (
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+            ),
+            color: "from-purple-500 to-purple-600"
+        },
+        { 
+            number: 2, 
+            suffix: "", 
+            label: "Years Experience", 
+            icon: (
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+            ),
+            color: "from-green-500 to-green-600"
+        },
+        { 
+            number: 100, 
+            suffix: "%", 
+            label: "Passion Driven", 
+            icon: (
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+            ),
+            color: "from-red-500 to-pink-600"
+        },
     ];
+
+    const cardVariants = {
+        hidden: (i: number) => ({
+            opacity: 0,
+            x: -100,
+            y: 20,
+            rotate: -10,
+            scale: 0.8,
+        }),
+        visible: (i: number) => ({
+            opacity: 1,
+            x: 0,
+            y: 0,
+            rotate: 0,
+            scale: 1,
+            transition: {
+                delay: i * 0.15,
+                duration: 0.6,
+                ease: "easeOut",
+                type: "spring",
+                stiffness: 100,
+            },
+        }),
+    };
+
+    const Counter = ({ end, suffix = "", duration = 2 }: { end: number; suffix?: string; duration?: number }) => {
+        const [count, setCount] = React.useState(0);
+        
+        React.useEffect(() => {
+            if (!hasAnimated) return;
+            
+            const startTime = Date.now();
+            const endTime = startTime + duration * 1000;
+            
+            const updateCount = () => {
+                const now = Date.now();
+                const progress = Math.min((now - startTime) / (duration * 1000), 1);
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                setCount(Math.floor(easeOut * end));
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCount);
+                }
+            };
+            
+            requestAnimationFrame(updateCount);
+        }, [end, duration, hasAnimated]);
+        
+        return (
+            <span>
+                {count}
+                {suffix}
+            </span>
+        );
+    };
 
     return (
         <motion.section
-            className="py-16 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-900"
+            className="py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-blue-900 overflow-hidden"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
+            viewport={{ once: true, margin: "-100px" }}
+            onViewportEnter={() => setHasAnimated(true)}
         >
             <div className="max-w-6xl mx-auto px-6">
-                <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-8" variants={staggerContainer}>
+                {/* Section Header */}
+                <motion.div 
+                    className="text-center mb-16"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                >
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">
+                        By the Numbers
+                    </h2>
+                    <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+                        A snapshot of my journey in software development and the impact I've made.
+                    </p>
+                </motion.div>
+
+                {/* Stats Cards */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                     {stats.map((stat, index) => (
                         <motion.div
                             key={index}
-                            className="text-center"
-                            variants={fadeInUp}
+                            custom={index}
+                            variants={cardVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            whileHover={{ 
+                                y: -8, 
+                                scale: 1.02,
+                                transition: { duration: 0.2 }
+                            }}
+                            className="relative group"
                         >
-                            <div className="text-3xl mb-2">{stat.icon}</div>
-                            <div className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-1">
-                                {stat.number}
-                            </div>
-                            <div className="text-sm text-slate-600 dark:text-slate-400">
-                                {stat.label}
+                            <div className="relative p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 overflow-hidden">
+                                {/* Gradient Background */}
+                                <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                                
+                                {/* Icon */}
+                                <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${stat.color} text-white mb-4 shadow-lg`}>
+                                    {stat.icon}
+                                </div>
+                                
+                                {/* Number */}
+                                <div className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-2">
+                                    <Counter end={stat.number} suffix={stat.suffix} duration={2} />
+                                </div>
+                                
+                                {/* Label */}
+                                <div className="text-sm font-medium text-slate-600 dark:text-slate-400">
+                                    {stat.label}
+                                </div>
+                                
+                                {/* Subtle decorative element */}
+                                <div className="absolute top-4 right-4 w-12 h-12 rounded-full bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800 opacity-50" />
                             </div>
                         </motion.div>
                     ))}
-                </motion.div>
+                </div>
             </div>
         </motion.section>
     );
