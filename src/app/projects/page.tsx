@@ -217,11 +217,59 @@ function ProjectsHero() {
     );
 }
 
-// Enhanced Featured Projects with parallax and interactions
+// Enhanced Featured Projects with Carousel
 function FeaturedProjects() {
+    const [currentIndex, setCurrentIndex] = React.useState(0);
+    const [direction, setDirection] = React.useState(0);
+
+    const slideVariants = {
+        enter: (direction: number) => ({
+            x: direction > 0 ? 1000 : -1000,
+            opacity: 0,
+            scale: 0.8,
+        }),
+        center: {
+            zIndex: 1,
+            x: 0,
+            opacity: 1,
+            scale: 1,
+        },
+        exit: (direction: number) => ({
+            zIndex: 0,
+            x: direction < 0 ? 1000 : -1000,
+            opacity: 0,
+            scale: 0.8,
+        }),
+    };
+
+    const swipeConfidenceThreshold = 10000;
+    const swipePower = (offset: number, velocity: number) => {
+        return Math.abs(offset) * velocity;
+    };
+
+    const paginate = (newDirection: number) => {
+        setDirection(newDirection);
+        setCurrentIndex((prevIndex) => {
+            if (newDirection === 1) {
+                return prevIndex === featured.length - 1 ? 0 : prevIndex + 1;
+            } else {
+                return prevIndex === 0 ? featured.length - 1 : prevIndex - 1;
+            }
+        });
+    };
+
+    // Auto-advance carousel every 5 seconds
+    React.useEffect(() => {
+        const timer = setInterval(() => {
+            paginate(1);
+        }, 5000);
+
+        return () => clearInterval(timer);
+    }, []);
+
     return (
         <motion.section
-            className="py-20 bg-white dark:bg-slate-900"
+            className="py-20 bg-white dark:bg-slate-900 overflow-hidden"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -237,89 +285,213 @@ function FeaturedProjects() {
                     </p>
                 </motion.div>
 
-                <div className="grid gap-12 lg:gap-16">
-                    {featured.map((project, index) => (
-                        <motion.div
-                            key={project.slug}
-                            className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 lg:gap-12 items-center`}
-                            variants={fadeInUp}
-                        >
-                            {/* Project Image */}
+                {/* Carousel Container */}
+                <div className="relative">
+                    {/* Main Carousel */}
+                    <div className="relative h-[600px] md:h-[500px] lg:h-[400px] overflow-hidden rounded-3xl">
+                        <AnimatePresence initial={false} custom={direction} mode="wait">
                             <motion.div
-                                className="flex-1 w-full"
-                                whileHover="hover"
-                                variants={scaleOnHover}
+                                key={currentIndex}
+                                custom={direction}
+                                variants={slideVariants}
+                                initial="enter"
+                                animate="center"
+                                exit="exit"
+                                transition={{
+                                    x: { type: "spring", stiffness: 300, damping: 30 },
+                                    opacity: { duration: 0.2 },
+                                    scale: { duration: 0.2 },
+                                }}
+                                drag="x"
+                                dragConstraints={{ left: 0, right: 0 }}
+                                dragElastic={1}
+                                onDragEnd={(e, { offset, velocity }) => {
+                                    const swipe = swipePower(offset.x, velocity.x);
+
+                                    if (swipe < -swipeConfidenceThreshold) {
+                                        paginate(1);
+                                    } else if (swipe > swipeConfidenceThreshold) {
+                                        paginate(-1);
+                                    }
+                                }}
+                                className="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing"
                             >
-                                <Link href={project.href} className="block group">
-                                    <div className="relative rounded-2xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-shadow duration-500">
-                                        <Image
-                                            src={project.image}
-                                            alt={project.title}
-                                            width={800}
-                                            height={500}
-                                            className="object-cover w-full h-64 md:h-80 lg:h-96 transition-transform duration-700 group-hover:scale-110"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                        <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                            <Badge className="bg-white/10 text-white border-white/20 backdrop-blur-sm">
-                                                View Project →
-                                            </Badge>
-                                        </div>
-                                    </div>
-                                </Link>
+                                <ProjectSlide project={featured[currentIndex]} />
                             </motion.div>
+                        </AnimatePresence>
+                    </div>
 
-                            {/* Project Info */}
-                            <div className="flex-1 space-y-4">
-                                <div className="flex items-center gap-3 mb-4">
-                                    <Badge variant="outline" className="bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-900/30 dark:border-blue-700 dark:text-blue-300">
-                                        {project.category}
-                                    </Badge>
-                                    <Badge variant={project.status === "Live" ? "default" : "outline"} 
-                                           className={project.status === "Live" ? "bg-green-500 text-white" : "border-orange-300 text-orange-600 dark:border-orange-600 dark:text-orange-400"}>
-                                        {project.status}
-                                    </Badge>
-                                    <span className="text-sm text-slate-500 dark:text-slate-400">{project.year}</span>
-                                </div>
+                    {/* Navigation Arrows */}
+                    <button
+                        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white shadow-lg hover:bg-white dark:hover:bg-slate-800 transition-all duration-200 hover:scale-110"
+                        onClick={() => paginate(-1)}
+                        aria-label="Previous project"
+                    >
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
 
-                                <h3 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">
-                                    {project.title}
-                                </h3>
-                                <p className="text-lg text-blue-600 dark:text-blue-400 font-medium">
-                                    {project.subtitle}
-                                </p>
-                                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                                    {project.description}
-                                </p>
+                    <button
+                        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white shadow-lg hover:bg-white dark:hover:bg-slate-800 transition-all duration-200 hover:scale-110"
+                        onClick={() => paginate(1)}
+                        aria-label="Next project"
+                    >
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
 
-                                {/* Tech Stack */}
-                                <div className="flex flex-wrap gap-2 pt-2">
-                                    {project.tech.map((tech) => (
-                                        <Badge
-                                            key={tech}
-                                            variant="outline"
-                                            className="bg-slate-50 border-slate-200 text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300"
-                                        >
-                                            {tech}
-                                        </Badge>
-                                    ))}
-                                </div>
-
-                                <Link
-                                    href={project.href}
-                                    className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-medium hover:gap-3 transition-all duration-300 group"
-                                >
-                                    <span>Explore Project</span>
-                                    <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                    </svg>
-                                </Link>
-                            </div>
-                        </motion.div>
+                {/* Carousel Indicators */}
+                <div className="flex justify-center mt-8 space-x-2">
+                    {featured.map((_, index) => (
+                        <button
+                            key={index}
+                            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                                index === currentIndex
+                                    ? "bg-blue-600 scale-125"
+                                    : "bg-slate-300 dark:bg-slate-600 hover:bg-slate-400 dark:hover:bg-slate-500"
+                            }`}
+                            onClick={() => {
+                                setDirection(index > currentIndex ? 1 : -1);
+                                setCurrentIndex(index);
+                            }}
+                            aria-label={`Go to project ${index + 1}`}
+                        />
                     ))}
                 </div>
+
+                {/* Project Counter */}
+                <motion.div 
+                    className="text-center mt-6"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                >
+                    <p className="text-sm text-slate-500 dark:text-slate-400">
+                        <span className="font-medium text-blue-600 dark:text-blue-400">
+                            {currentIndex + 1}
+                        </span>
+                        {" "} of {featured.length} projects
+                    </p>
+                </motion.div>
             </div>
         </motion.section>
+    );
+}
+
+// Individual Project Slide Component
+function ProjectSlide({ project }: { project: typeof featured[0] }) {
+    return (
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center h-full p-8">
+            {/* Project Image */}
+            <motion.div
+                className="flex-1 w-full h-64 lg:h-full"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+            >
+                <Link href={project.href} className="block group h-full">
+                    <div className="relative rounded-2xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-shadow duration-500 h-full">
+                        <Image
+                            src={project.image}
+                            alt={project.title}
+                            width={800}
+                            height={500}
+                            className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <Badge className="bg-white/10 text-white border-white/20 backdrop-blur-sm">
+                                View Project →
+                            </Badge>
+                        </div>
+                    </div>
+                </Link>
+            </motion.div>
+
+            {/* Project Info */}
+            <div className="flex-1 space-y-4">
+                <motion.div 
+                    className="flex items-center gap-3 mb-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                >
+                    <Badge variant="outline" className="bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-900/30 dark:border-blue-700 dark:text-blue-300">
+                        {project.category}
+                    </Badge>
+                    <Badge 
+                        variant={project.status === "Live" ? "default" : "outline"} 
+                        className={project.status === "Live" ? "bg-green-500 text-white" : "border-orange-300 text-orange-600 dark:border-orange-600 dark:text-orange-400"}
+                    >
+                        {project.status}
+                    </Badge>
+                    <span className="text-sm text-slate-500 dark:text-slate-400">{project.year}</span>
+                </motion.div>
+
+                <motion.h3 
+                    className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                >
+                    {project.title}
+                </motion.h3>
+
+                <motion.p 
+                    className="text-lg text-blue-600 dark:text-blue-400 font-medium"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                >
+                    {project.subtitle}
+                </motion.p>
+
+                <motion.p 
+                    className="text-slate-600 dark:text-slate-300 leading-relaxed"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                >
+                    {project.description}
+                </motion.p>
+
+                {/* Tech Stack */}
+                <motion.div 
+                    className="flex flex-wrap gap-2 pt-2"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                >
+                    {project.tech.map((tech) => (
+                        <Badge
+                            key={tech}
+                            variant="outline"
+                            className="bg-slate-50 border-slate-200 text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300"
+                        >
+                            {tech}
+                        </Badge>
+                    ))}
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                >
+                    <Link
+                        href={project.href}
+                        className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-medium hover:gap-3 transition-all duration-300 group"
+                    >
+                        <span>Explore Project</span>
+                        <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </Link>
+                </motion.div>
+            </div>
+        </div>
     );
 }
 
