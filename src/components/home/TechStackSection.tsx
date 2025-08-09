@@ -24,11 +24,13 @@ const TechStackSection = ({ techIcons }: TechStackSectionProps) => {
                     className="text-center mb-16"
                 >
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                        Technologies I <span className="text-primary">Work With</span>
+                        Technologies I{" "}
+                        <span className="text-primary">Work With</span>
                     </h2>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                        A diverse toolkit of modern technologies and frameworks that I use to build 
-                        scalable, performant, and maintainable applications.
+                        A diverse toolkit of modern technologies and frameworks
+                        that I use to build scalable, performant, and
+                        maintainable applications.
                     </p>
                 </motion.div>
 
@@ -42,7 +44,7 @@ const TechStackSection = ({ techIcons }: TechStackSectionProps) => {
                 >
                     {/* Background decoration */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent rounded-3xl" />
-                    
+
                     {/* Infinite scroll component */}
                     <div className="relative z-10 py-8">
                         <InfiniteScrollLogos
@@ -90,20 +92,36 @@ const TechStackSection = ({ techIcons }: TechStackSectionProps) => {
                     className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto"
                 >
                     <div className="text-center p-4">
-                        <div className="text-2xl font-bold text-primary mb-2">Frontend</div>
-                        <div className="text-sm text-muted-foreground">React, Next.js, TypeScript</div>
+                        <div className="text-2xl font-bold text-primary mb-2">
+                            Frontend
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                            React, Next.js, TypeScript
+                        </div>
                     </div>
                     <div className="text-center p-4">
-                        <div className="text-2xl font-bold text-primary mb-2">Backend</div>
-                        <div className="text-sm text-muted-foreground">Node.js, Python, Java</div>
+                        <div className="text-2xl font-bold text-primary mb-2">
+                            Backend
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                            Node.js, Python, Java
+                        </div>
                     </div>
                     <div className="text-center p-4">
-                        <div className="text-2xl font-bold text-primary mb-2">Database</div>
-                        <div className="text-sm text-muted-foreground">PostgreSQL, MongoDB</div>
+                        <div className="text-2xl font-bold text-primary mb-2">
+                            Database
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                            PostgreSQL, MongoDB
+                        </div>
                     </div>
                     <div className="text-center p-4">
-                        <div className="text-2xl font-bold text-primary mb-2">Cloud</div>
-                        <div className="text-sm text-muted-foreground">AWS, Docker, Vercel</div>
+                        <div className="text-2xl font-bold text-primary mb-2">
+                            Cloud
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                            AWS, Docker, Vercel
+                        </div>
                     </div>
                 </motion.div>
             </div>

@@ -36,7 +36,7 @@ export default function NotFound() {
         <div className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
             {/* Background gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" />
-            
+
             {/* Animated background elements */}
             <div className="absolute inset-0 overflow-hidden">
                 <motion.div
@@ -120,8 +120,9 @@ export default function NotFound() {
                         variants={itemVariants}
                         className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed"
                     >
-                        The page you're looking for seems to have wandered off into the digital void. 
-                        Don't worry though, let's get you back on track!
+                        The page you're looking for seems to have wandered off
+                        into the digital void. Don't worry though, let's get you
+                        back on track!
                     </motion.p>
 
                     {/* Navigation buttons */}
@@ -130,18 +131,18 @@ export default function NotFound() {
                         className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
                     >
                         <Link href="/">
-                            <Button 
-                                size="lg" 
+                            <Button
+                                size="lg"
                                 className="group text-lg px-8 py-6 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg hover:shadow-xl transition-all duration-300"
                             >
                                 <Home className="mr-2 h-5 w-5" />
                                 Go Home
                             </Button>
                         </Link>
-                        
-                        <Button 
-                            variant="outline" 
-                            size="lg" 
+
+                        <Button
+                            variant="outline"
+                            size="lg"
                             className="text-lg px-8 py-6 border-2 hover:bg-primary/5 hover:border-primary/50 transition-all duration-300"
                             onClick={() => router.back()}
                         >
@@ -167,7 +168,11 @@ export default function NotFound() {
                                 Return to the main page and explore my work
                             </p>
                             <Link href="/">
-                                <Button variant="ghost" size="sm" className="w-full">
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="w-full"
+                                >
                                     Visit Homepage
                                 </Button>
                             </Link>
@@ -185,7 +190,11 @@ export default function NotFound() {
                                 Check out my latest work and projects
                             </p>
                             <Link href="/projects">
-                                <Button variant="ghost" size="sm" className="w-full">
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="w-full"
+                                >
                                     View Projects
                                 </Button>
                             </Link>
@@ -203,7 +212,11 @@ export default function NotFound() {
                                 Have questions? Let's connect!
                             </p>
                             <Link href="/about">
-                                <Button variant="ghost" size="sm" className="w-full">
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="w-full"
+                                >
                                     Contact Me
                                 </Button>
                             </Link>
@@ -211,10 +224,7 @@ export default function NotFound() {
                     </motion.div>
 
                     {/* Fun easter egg */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="text-center"
-                    >
+                    <motion.div variants={itemVariants} className="text-center">
                         <motion.div
                             className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/20 text-secondary-foreground rounded-full text-sm"
                             whileHover={{ scale: 1.05 }}

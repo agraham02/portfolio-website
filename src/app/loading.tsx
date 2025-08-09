@@ -7,7 +7,7 @@ export default function Loading() {
         <div className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
             {/* Background gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5" />
-            
+
             {/* Animated background elements */}
             <div className="absolute inset-0 overflow-hidden">
                 <motion.div
@@ -55,7 +55,7 @@ export default function Loading() {
                                 ease: "linear",
                             }}
                         />
-                        
+
                         {/* Inner ring */}
                         <motion.div
                             className="absolute inset-2 w-12 h-12 border-4 border-t-primary border-r-transparent border-b-transparent border-l-transparent rounded-full"
@@ -66,7 +66,7 @@ export default function Loading() {
                                 ease: "linear",
                             }}
                         />
-                        
+
                         {/* Center dot */}
                         <motion.div
                             className="absolute inset-6 w-4 h-4 bg-primary rounded-full"

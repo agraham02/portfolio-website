@@ -84,7 +84,7 @@ const FloatingNavigation = () => {
                                     : "bg-muted-foreground/30 hover:bg-primary/50"
                             }`}
                         />
-                        
+
                         {/* Tooltip */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.8, x: 10 }}

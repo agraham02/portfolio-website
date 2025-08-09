@@ -40,7 +40,7 @@ export default function Error({ error, reset }: ErrorPageProps) {
         <div className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
             {/* Background gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-destructive/5" />
-            
+
             {/* Animated background elements */}
             <div className="absolute inset-0 overflow-hidden">
                 <motion.div
@@ -112,8 +112,9 @@ export default function Error({ error, reset }: ErrorPageProps) {
                         variants={itemVariants}
                         className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed"
                     >
-                        An unexpected error has occurred. Don't worry, it's not your fault! 
-                        Please try refreshing the page or return to the homepage.
+                        An unexpected error has occurred. Don't worry, it's not
+                        your fault! Please try refreshing the page or return to
+                        the homepage.
                     </motion.p>
 
                     {/* Error details (in development only) */}
@@ -122,7 +123,9 @@ export default function Error({ error, reset }: ErrorPageProps) {
                             variants={itemVariants}
                             className="mb-8 p-4 bg-destructive/5 border border-destructive/20 rounded-lg text-left max-w-2xl mx-auto"
                         >
-                            <h3 className="font-semibold mb-2 text-destructive">Error Details:</h3>
+                            <h3 className="font-semibold mb-2 text-destructive">
+                                Error Details:
+                            </h3>
                             <code className="text-sm text-muted-foreground block whitespace-pre-wrap">
                                 {error.message}
                             </code>
@@ -139,19 +142,19 @@ export default function Error({ error, reset }: ErrorPageProps) {
                         variants={itemVariants}
                         className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
                     >
-                        <Button 
+                        <Button
                             onClick={reset}
-                            size="lg" 
+                            size="lg"
                             className="group text-lg px-8 py-6 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg hover:shadow-xl transition-all duration-300"
                         >
                             <RefreshCw className="mr-2 h-5 w-5" />
                             Try Again
                         </Button>
-                        
+
                         <Link href="/">
-                            <Button 
-                                variant="outline" 
-                                size="lg" 
+                            <Button
+                                variant="outline"
+                                size="lg"
                                 className="text-lg px-8 py-6 border-2 hover:bg-primary/5 hover:border-primary/50 transition-all duration-300"
                             >
                                 <Home className="mr-2 h-5 w-5" />
@@ -161,17 +164,16 @@ export default function Error({ error, reset }: ErrorPageProps) {
                     </motion.div>
 
                     {/* Helpful message */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="text-center"
-                    >
+                    <motion.div variants={itemVariants} className="text-center">
                         <motion.div
                             className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/20 text-secondary-foreground rounded-full text-sm"
                             whileHover={{ scale: 1.05 }}
                             transition={{ duration: 0.2 }}
                         >
                             <span>💻</span>
-                            <span>If the problem persists, please contact support</span>
+                            <span>
+                                If the problem persists, please contact support
+                            </span>
                         </motion.div>
                     </motion.div>
 

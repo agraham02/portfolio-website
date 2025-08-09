@@ -10,7 +10,7 @@ const CallToActionSection = () => {
         <section className="py-20 px-4 relative overflow-hidden">
             {/* Background gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary/5 to-background" />
-            
+
             {/* Animated background elements */}
             <div className="absolute inset-0 overflow-hidden">
                 <motion.div
@@ -70,8 +70,9 @@ const CallToActionSection = () => {
                         transition={{ duration: 0.6, delay: 0.4 }}
                         className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed"
                     >
-                        Let's collaborate to turn your ideas into exceptional digital experiences. 
-                        I'm always excited to work on innovative projects and solve complex challenges.
+                        Let's collaborate to turn your ideas into exceptional
+                        digital experiences. I'm always excited to work on
+                        innovative projects and solve complex challenges.
                     </motion.p>
 
                     {/* CTA Buttons */}
@@ -83,8 +84,8 @@ const CallToActionSection = () => {
                         className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
                     >
                         <Link href="mailto:your.email@example.com">
-                            <Button 
-                                size="lg" 
+                            <Button
+                                size="lg"
                                 className="group text-lg px-8 py-6 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg hover:shadow-xl transition-all duration-300"
                             >
                                 <Mail className="mr-2 h-5 w-5" />
@@ -92,11 +93,11 @@ const CallToActionSection = () => {
                                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                             </Button>
                         </Link>
-                        
+
                         <Link href="/projects">
-                            <Button 
-                                variant="outline" 
-                                size="lg" 
+                            <Button
+                                variant="outline"
+                                size="lg"
                                 className="text-lg px-8 py-6 border-2 hover:bg-primary/5 hover:border-primary/50 transition-all duration-300"
                             >
                                 <MessageSquare className="mr-2 h-5 w-5" />
@@ -125,7 +126,11 @@ const CallToActionSection = () => {
                                 Drop me a line for project inquiries
                             </p>
                             <Link href="mailto:your.email@example.com">
-                                <Button variant="ghost" size="sm" className="w-full">
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="w-full"
+                                >
                                     Send Email
                                 </Button>
                             </Link>
@@ -138,11 +143,17 @@ const CallToActionSection = () => {
                             className="p-6 bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl hover:border-primary/30 transition-all duration-300"
                         >
                             <Calendar className="h-8 w-8 text-primary mx-auto mb-3" />
-                            <h3 className="font-semibold mb-2">Schedule a Call</h3>
+                            <h3 className="font-semibold mb-2">
+                                Schedule a Call
+                            </h3>
                             <p className="text-sm text-muted-foreground mb-3">
                                 Let's discuss your project in detail
                             </p>
-                            <Button variant="ghost" size="sm" className="w-full">
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                className="w-full"
+                            >
                                 Book Meeting
                             </Button>
                         </motion.div>
@@ -158,7 +169,11 @@ const CallToActionSection = () => {
                             <p className="text-sm text-muted-foreground mb-3">
                                 Follow me on social media
                             </p>
-                            <Button variant="ghost" size="sm" className="w-full">
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                className="w-full"
+                            >
                                 View Profiles
                             </Button>
                         </motion.div>

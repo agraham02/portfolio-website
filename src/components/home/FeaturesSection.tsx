@@ -2,17 +2,17 @@
 
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
-import { 
-    Code2, 
-    Palette, 
-    Zap, 
-    Users, 
-    Shield, 
+import {
+    Code2,
+    Palette,
+    Zap,
+    Users,
+    Shield,
     Smartphone,
     Cloud,
     Database,
     GitBranch,
-    Brain
+    Brain,
 } from "lucide-react";
 
 interface Feature {
@@ -26,50 +26,58 @@ const features: Feature[] = [
     {
         icon: <Code2 className="h-8 w-8" />,
         title: "Full-Stack Development",
-        description: "End-to-end application development with modern frameworks and best practices",
-        color: "from-blue-500 to-cyan-500"
+        description:
+            "End-to-end application development with modern frameworks and best practices",
+        color: "from-blue-500 to-cyan-500",
     },
     {
         icon: <Palette className="h-8 w-8" />,
         title: "UI/UX Design",
-        description: "Creating beautiful, intuitive interfaces that provide exceptional user experiences",
-        color: "from-purple-500 to-pink-500"
+        description:
+            "Creating beautiful, intuitive interfaces that provide exceptional user experiences",
+        color: "from-purple-500 to-pink-500",
     },
     {
         icon: <Cloud className="h-8 w-8" />,
         title: "Cloud Architecture",
-        description: "Scalable cloud solutions using AWS, Azure, and modern DevOps practices",
-        color: "from-green-500 to-emerald-500"
+        description:
+            "Scalable cloud solutions using AWS, Azure, and modern DevOps practices",
+        color: "from-green-500 to-emerald-500",
     },
     {
         icon: <Smartphone className="h-8 w-8" />,
         title: "Mobile Development",
-        description: "Cross-platform mobile apps with React Native and Flutter for iOS and Android",
-        color: "from-orange-500 to-red-500"
+        description:
+            "Cross-platform mobile apps with React Native and Flutter for iOS and Android",
+        color: "from-orange-500 to-red-500",
     },
     {
         icon: <Database className="h-8 w-8" />,
         title: "Database Design",
-        description: "Efficient database architecture and optimization for high-performance applications",
-        color: "from-indigo-500 to-blue-500"
+        description:
+            "Efficient database architecture and optimization for high-performance applications",
+        color: "from-indigo-500 to-blue-500",
     },
     {
         icon: <Shield className="h-8 w-8" />,
         title: "Security & Performance",
-        description: "Implementing robust security measures and performance optimization strategies",
-        color: "from-red-500 to-pink-500"
+        description:
+            "Implementing robust security measures and performance optimization strategies",
+        color: "from-red-500 to-pink-500",
     },
     {
         icon: <GitBranch className="h-8 w-8" />,
         title: "DevOps & CI/CD",
-        description: "Automated deployment pipelines and infrastructure as code for reliable releases",
-        color: "from-teal-500 to-green-500"
+        description:
+            "Automated deployment pipelines and infrastructure as code for reliable releases",
+        color: "from-teal-500 to-green-500",
     },
     {
         icon: <Brain className="h-8 w-8" />,
         title: "AI/ML Integration",
-        description: "Integrating machine learning models and AI capabilities into web applications",
-        color: "from-violet-500 to-purple-500"
+        description:
+            "Integrating machine learning models and AI capabilities into web applications",
+        color: "from-violet-500 to-purple-500",
     },
 ];
 
@@ -105,11 +113,13 @@ const FeaturesSection = () => {
                     className="text-center mb-16"
                 >
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                        What I <span className="text-primary">Bring</span> to the Table
+                        What I <span className="text-primary">Bring</span> to
+                        the Table
                     </h2>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                        A comprehensive skill set covering the entire software development lifecycle, 
-                        from conception to deployment and beyond.
+                        A comprehensive skill set covering the entire software
+                        development lifecycle, from conception to deployment and
+                        beyond.
                     </p>
                 </motion.div>
 
@@ -137,7 +147,10 @@ const FeaturesSection = () => {
                                     <div className="mb-6">
                                         <motion.div
                                             className={`inline-flex p-4 rounded-xl bg-gradient-to-r ${feature.color} shadow-lg`}
-                                            whileHover={{ scale: 1.1, rotate: 5 }}
+                                            whileHover={{
+                                                scale: 1.1,
+                                                rotate: 5,
+                                            }}
                                             transition={{ duration: 0.3 }}
                                         >
                                             <div className="text-white">
@@ -178,7 +191,9 @@ const FeaturesSection = () => {
                 >
                     <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full border border-primary/20">
                         <Zap className="h-5 w-5 text-primary" />
-                        <span className="text-sm font-medium">Always learning and adapting to new technologies</span>
+                        <span className="text-sm font-medium">
+                            Always learning and adapting to new technologies
+                        </span>
                     </div>
                 </motion.div>
             </div>

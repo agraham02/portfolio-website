@@ -11,7 +11,7 @@ const HeroSection = () => {
         <section className="min-h-screen flex items-center justify-center px-4 py-20 relative overflow-hidden">
             {/* Background gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" />
-            
+
             {/* Animated background elements */}
             <div className="absolute inset-0 overflow-hidden">
                 <motion.div
@@ -81,7 +81,7 @@ const HeroSection = () => {
                                     [Your Name]
                                 </motion.span>
                             </motion.h1>
-                            
+
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -99,9 +99,10 @@ const HeroSection = () => {
                             transition={{ delay: 1, duration: 0.6 }}
                             className="text-lg text-muted-foreground leading-relaxed max-w-2xl"
                         >
-                            I craft exceptional digital experiences through clean code and innovative solutions. 
-                            Passionate about full-stack development, cloud technologies, and creating software 
-                            that makes a difference.
+                            I craft exceptional digital experiences through
+                            clean code and innovative solutions. Passionate
+                            about full-stack development, cloud technologies,
+                            and creating software that makes a difference.
                         </motion.p>
 
                         {/* CTA Buttons */}
@@ -112,19 +113,30 @@ const HeroSection = () => {
                             className="flex flex-col sm:flex-row gap-4"
                         >
                             <Link href="/projects">
-                                <Button size="lg" className="group text-lg px-8 py-6">
+                                <Button
+                                    size="lg"
+                                    className="group text-lg px-8 py-6"
+                                >
                                     View My Work
                                     <MoveRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                                 </Button>
                             </Link>
-                            
-                            <Button variant="outline" size="lg" className="text-lg px-8 py-6">
+
+                            <Button
+                                variant="outline"
+                                size="lg"
+                                className="text-lg px-8 py-6"
+                            >
                                 <Download className="mr-2 h-5 w-5" />
                                 Download Resume
                             </Button>
-                            
+
                             <Link href="mailto:your.email@example.com">
-                                <Button variant="ghost" size="lg" className="text-lg px-8 py-6">
+                                <Button
+                                    variant="ghost"
+                                    size="lg"
+                                    className="text-lg px-8 py-6"
+                                >
                                     <Mail className="mr-2 h-5 w-5" />
                                     Get in Touch
                                 </Button>
@@ -139,16 +151,28 @@ const HeroSection = () => {
                             className="grid grid-cols-3 gap-8 pt-8 border-t border-border/50"
                         >
                             <div className="text-center">
-                                <div className="text-2xl font-bold text-primary">50+</div>
-                                <div className="text-sm text-muted-foreground">Projects</div>
+                                <div className="text-2xl font-bold text-primary">
+                                    50+
+                                </div>
+                                <div className="text-sm text-muted-foreground">
+                                    Projects
+                                </div>
                             </div>
                             <div className="text-center">
-                                <div className="text-2xl font-bold text-primary">3+</div>
-                                <div className="text-sm text-muted-foreground">Years Experience</div>
+                                <div className="text-2xl font-bold text-primary">
+                                    3+
+                                </div>
+                                <div className="text-sm text-muted-foreground">
+                                    Years Experience
+                                </div>
                             </div>
                             <div className="text-center">
-                                <div className="text-2xl font-bold text-primary">100%</div>
-                                <div className="text-sm text-muted-foreground">Client Satisfaction</div>
+                                <div className="text-2xl font-bold text-primary">
+                                    100%
+                                </div>
+                                <div className="text-sm text-muted-foreground">
+                                    Client Satisfaction
+                                </div>
                             </div>
                         </motion.div>
                     </motion.div>
@@ -157,7 +181,11 @@ const HeroSection = () => {
                     <motion.div
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+                        transition={{
+                            duration: 0.8,
+                            delay: 0.4,
+                            ease: "easeOut",
+                        }}
                         className="relative flex justify-center lg:justify-end"
                     >
                         <div className="relative">
@@ -240,12 +268,20 @@ const HeroSection = () => {
             >
                 <motion.div
                     animate={{ y: [0, 10, 0] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                    }}
                     className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center"
                 >
                     <motion.div
                         animate={{ y: [0, 12, 0] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
                         className="w-1 h-3 bg-muted-foreground/50 rounded-full mt-2"
                     />
                 </motion.div>

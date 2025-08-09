@@ -93,31 +93,31 @@ export default function Home() {
                 <section id="hero">
                     <HeroSection />
                 </section>
-                
+
                 {/* About Me - Bento Grid */}
                 <section id="about">
                     <BentoGrid />
                 </section>
-                
+
                 {/* Features/Skills Section */}
                 <section id="features">
                     <FeaturesSection />
                 </section>
-                
+
                 {/* Technology Stack */}
                 <section id="tech">
                     <TechStackSection techIcons={techIcons} />
                 </section>
-                
+
                 {/* Call to Action */}
                 <section id="contact">
                     <CallToActionSection />
                 </section>
             </main>
-            
+
             {/* Floating Navigation */}
             <FloatingNavigation />
-            
+
             {/* Scroll to Top */}
             <ScrollToTop />
         </>
