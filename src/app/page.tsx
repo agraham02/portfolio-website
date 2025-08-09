@@ -1,5 +1,11 @@
-import Header from "@/components/Header";
 import InfiniteScrollLogos from "@/components/InfiniteScrollLogos";
+import HeroSection from "@/components/home/HeroSection";
+import BentoGrid from "@/components/home/BentoGrid";
+import FeaturesSection from "@/components/home/FeaturesSection";
+import TechStackSection from "@/components/home/TechStackSection";
+import CallToActionSection from "@/components/home/CallToActionSection";
+import FloatingNavigation from "@/components/FloatingNavigation";
+import ScrollToTop from "@/components/ScrollToTop";
 import Image from "next/image";
 import {
     FaReact,
@@ -36,81 +42,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { MoveRight } from "lucide-react";
 import Link from "next/link";
-import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
-
-const content = [
-    {
-        title: "Collaborative Editing",
-        description:
-            "Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.",
-        content: (
-            <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] text-white">
-                Collaborative Editing
-            </div>
-        ),
-    },
-    {
-        title: "Real time changes",
-        description:
-            "See changes as they happen. With our platform, you can track every modification in real time. No more confusion about the latest version of your project. Say goodbye to the chaos of version control and embrace the simplicity of real-time updates.",
-        content: (
-            <div className="flex h-full w-full items-center justify-center text-white">
-                <Image
-                    src="/linear.webp"
-                    width={300}
-                    height={300}
-                    className="h-full w-full object-cover"
-                    alt="linear board demo"
-                />
-            </div>
-        ),
-    },
-    {
-        title: "Version control",
-        description:
-            "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
-        content: (
-            <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] text-white">
-                Version control
-            </div>
-        ),
-    },
-    {
-        title: "Running out of content",
-        description:
-            "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
-        content: (
-            <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] text-white">
-                Running out of content
-            </div>
-        ),
-    },
-];
-
-function Hero() {
-    return (
-        <section className="container mx-auto flex min-h-[calc(100vh-80px)] flex-col items-center justify-center px-4 py-20 text-center md:py-32">
-            <h1 className="text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
-                Full-Stack Developer & Creative Technologist
-            </h1>
-            <p className="mt-6 max-w-3xl text-lg text-muted-foreground md:text-xl">
-                I build exceptional and accessible digital experiences.
-                Currently seeking new opportunities to apply my skills in a
-                challenging and collaborative environment.
-            </p>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <Button asChild size="lg">
-                    <Link href="/projects">
-                        View My Work <MoveRight className="ml-2 h-5 w-5" />
-                    </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                    <Link href="/contact">Get In Touch</Link>
-                </Button>
-            </div>
-        </section>
-    );
-}
 
 const techIconsRaw = [
     { id: "react", icon: <FaReact />, displayName: "React" },
@@ -156,17 +87,39 @@ const techIcons = shuffleArray(techIconsRaw);
 
 export default function Home() {
     return (
-        <main>
-            <Header />
-            <Hero />
-            {/* <StickyScroll content={content} /> */}
-            <InfiniteScrollLogos
-                icons={techIcons} // Pass the array of icon objects
-                iconSize="text-5xl" // Example: Increase size
-                iconColor="text-gray-600" // Example: Adjust default color
-                iconHoverColor="hover:text-blue-400" // Example: Adjust hover color
-                speed="normal"
-            />
-        </main>
+        <>
+            <main className="min-h-screen">
+                {/* Hero Section */}
+                <section id="hero">
+                    <HeroSection />
+                </section>
+                
+                {/* About Me - Bento Grid */}
+                <section id="about">
+                    <BentoGrid />
+                </section>
+                
+                {/* Features/Skills Section */}
+                <section id="features">
+                    <FeaturesSection />
+                </section>
+                
+                {/* Technology Stack */}
+                <section id="tech">
+                    <TechStackSection techIcons={techIcons} />
+                </section>
+                
+                {/* Call to Action */}
+                <section id="contact">
+                    <CallToActionSection />
+                </section>
+            </main>
+            
+            {/* Floating Navigation */}
+            <FloatingNavigation />
+            
+            {/* Scroll to Top */}
+            <ScrollToTop />
+        </>
     );
 }
