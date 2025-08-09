@@ -15,34 +15,9 @@ interface ImageGridProps {
 }
 
 export default function ImageGrid({ images, className }: ImageGridProps) {
-    // Animation variants for staggered appearance
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.2,
-            },
-        },
-    };
-
-    const itemVariants = {
-        hidden: {
-            opacity: 0,
-            y: 20,
-            scale: 0.95,
-        },
-        visible: {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            transition: {
-                duration: 0.5,
-                ease: "easeOut",
-            },
-        },
-    };
+    // Simple inline animation helpers
+    const itemInitial = { opacity: 0, y: 20, scale: 0.95 };
+    const itemAnimate = { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5 } };
 
     // Generate grid layout based on number of images
     const getGridLayout = (count: number) => {
@@ -185,10 +160,10 @@ export default function ImageGrid({ images, className }: ImageGridProps) {
                 getGridLayout(images.length),
                 className
             )}
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
         >
             {images.map((image, index) => (
                 <motion.div
@@ -202,11 +177,10 @@ export default function ImageGrid({ images, className }: ImageGridProps) {
                         image.className,
                         "border-2"
                     )}
-                    variants={itemVariants}
-                    whileHover={{
-                        scale: 1.02,
-                        transition: { duration: 0.2 },
-                    }}
+                    initial={itemInitial}
+                    whileInView={itemAnimate}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
                 >
                     <Image
                         src={image.src}

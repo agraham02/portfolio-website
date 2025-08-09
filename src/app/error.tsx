@@ -112,7 +112,7 @@ export default function Error({ error, reset }: ErrorPageProps) {
                         variants={itemVariants}
                         className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed"
                     >
-                        An unexpected error has occurred. Don't worry, it's not
+                        An unexpected error has occurred. Don&apos;t worry, it&apos;s not
                         your fault! Please try refreshing the page or return to
                         the homepage.
                     </motion.p>

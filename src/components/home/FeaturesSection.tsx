@@ -6,7 +6,6 @@ import {
     Code2,
     Palette,
     Zap,
-    Users,
     Shield,
     Smartphone,
     Cloud,

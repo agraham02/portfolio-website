@@ -26,36 +26,12 @@ export default function CallToAction({
     badgeText = "Available for hire",
     variant = "default",
 }: CallToActionProps) {
-    const fadeInUp = {
-        hidden: { opacity: 0, y: 20 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.5, ease: "easeOut" },
-        },
-    };
+    // Simple animation settings used directly on motion components
+    const fadeInTransition = { duration: 0.5, ease: "easeOut" as const };
 
-    const staggerContainer = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.1,
-            },
-        },
-    };
+    // Stagger handled via viewport/transition props instead of variants
 
-    const subtleFloat = {
-        animate: {
-            y: [0, -8, 0],
-            transition: {
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-            },
-        },
-    };
+    // Removed unused subtleFloat animation config
 
     const getVariantClasses = () => {
         switch (variant) {
@@ -82,10 +58,10 @@ export default function CallToAction({
     return (
         <motion.section
             className={`relative py-16 md:py-20 overflow-hidden ${getVariantClasses()}`}
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true, margin: "-50px" }}
-            variants={staggerContainer}
         >
             {/* CSS Dot Grid Background */}
             <div
@@ -135,7 +111,10 @@ export default function CallToAction({
                 {showBadge && (
                     <motion.div
                         className="flex justify-center mb-6"
-                        variants={fadeInUp}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={fadeInTransition}
+                        viewport={{ once: true }}
                     >
                         <Badge
                             variant="outline"
@@ -166,7 +145,10 @@ export default function CallToAction({
                             ? "bg-gradient-to-r from-slate-900 via-blue-800 to-indigo-900 dark:from-slate-100 dark:via-blue-200 dark:to-indigo-300 bg-clip-text text-transparent"
                             : "text-white"
                     }`}
-                    variants={fadeInUp}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={fadeInTransition}
+                    viewport={{ once: true }}
                 >
                     {title}
                 </motion.h2>
@@ -174,7 +156,10 @@ export default function CallToAction({
                 {/* Subtitle */}
                 <motion.p
                     className={`text-lg md:text-xl leading-relaxed mb-8 max-w-2xl mx-auto ${getTextClasses()}`}
-                    variants={fadeInUp}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ ...fadeInTransition, delay: 0.05 }}
+                    viewport={{ once: true }}
                 >
                     {subtitle}
                 </motion.p>
@@ -182,7 +167,10 @@ export default function CallToAction({
                 {/* Buttons - Simple and Clean */}
                 <motion.div
                     className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
-                    variants={fadeInUp}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ ...fadeInTransition, delay: 0.1 }}
+                    viewport={{ once: true }}
                 >
                     <motion.button
                         onClick={onPrimaryClick}

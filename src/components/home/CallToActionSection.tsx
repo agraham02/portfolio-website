@@ -70,8 +70,8 @@ const CallToActionSection = () => {
                         transition={{ duration: 0.6, delay: 0.4 }}
                         className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed"
                     >
-                        Let's collaborate to turn your ideas into exceptional
-                        digital experiences. I'm always excited to work on
+                        Let&apos;s collaborate to turn your ideas into exceptional
+                        digital experiences. I&apos;m always excited to work on
                         innovative projects and solve complex challenges.
                     </motion.p>
 
@@ -147,7 +147,7 @@ const CallToActionSection = () => {
                                 Schedule a Call
                             </h3>
                             <p className="text-sm text-muted-foreground mb-3">
-                                Let's discuss your project in detail
+                                Let&apos;s discuss your project in detail
                             </p>
                             <Button
                                 variant="ghost"

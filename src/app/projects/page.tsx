@@ -75,58 +75,8 @@ const featured = [
 // ───────────────────────────────────────────────────────────
 //  3. Animation variants
 // ───────────────────────────────────────────────────────────
-const fadeInUp = {
-    hidden: { opacity: 0, y: 60 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.6, ease: "easeOut" },
-    },
-};
-
-const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.2,
-            delayChildren: 0.1,
-        },
-    },
-};
-
-const scaleOnHover = {
-    hover: {
-        scale: 1.05,
-        transition: { duration: 0.3, ease: "easeOut" },
-    },
-};
-
-const gridItemVariants = {
-    hidden: { 
-        opacity: 0, 
-        scale: 0.8,
-        y: 20,
-    },
-    visible: { 
-        opacity: 1, 
-        scale: 1,
-        y: 0,
-        transition: { 
-            duration: 0.4, 
-            ease: "easeOut" 
-        },
-    },
-    exit: { 
-        opacity: 0, 
-        scale: 0.8,
-        y: -20,
-        transition: { 
-            duration: 0.3, 
-            ease: "easeIn" 
-        },
-    },
-};
+// Simplified animation helpers (inline usage instead of typed variants to avoid TS friction)
+const fadeInUp = { initial: { opacity: 0, y: 60 }, animate: { opacity: 1, y: 0 } } as const;
 
 // ───────────────────────────────────────────────────────────
 //  4. Components
@@ -137,71 +87,56 @@ function ProjectsHero() {
     return (
         <motion.section
             className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-blue-900"
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
         >
             {/* Animated background patterns */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                {/* Floating code symbols */}
                 {Array.from({ length: 8 }).map((_, i) => (
                     <motion.div
                         key={i}
                         className="absolute text-2xl md:text-4xl font-mono text-blue-200/20 dark:text-blue-400/10"
-                        style={{
-                            left: `${10 + Math.random() * 80}%`,
-                            top: `${10 + Math.random() * 80}%`,
-                        }}
-                        animate={{
-                            y: [-20, 20, -20],
-                            rotate: [-5, 5, -5],
-                            opacity: [0.2, 0.4, 0.2],
-                        }}
-                        transition={{
-                            duration: 8 + Math.random() * 4,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: Math.random() * 3,
-                        }}
+                        style={{ left: `${10 + Math.random() * 80}%`, top: `${10 + Math.random() * 80}%` }}
+                        animate={{ y: [-20, 20, -20], rotate: [-5, 5, -5], opacity: [0.2, 0.4, 0.2] }}
+                        transition={{ duration: 8 + Math.random() * 4, repeat: Infinity, ease: "easeInOut", delay: Math.random() * 3 }}
                     >
                         {['</>', '{}', '[]', '()', '</>'][Math.floor(Math.random() * 5)]}
                     </motion.div>
                 ))}
             </div>
-
             <div className="relative max-w-7xl mx-auto px-6 text-center">
-                <motion.div variants={fadeInUp}>
-                    <Badge 
-                        variant="outline" 
-                        className="mb-6 px-4 py-2 bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-900/30 dark:border-blue-700 dark:text-blue-300"
-                    >
-                        <motion.div
-                            className="w-2 h-2 bg-green-500 rounded-full mr-2"
-                            animate={{ opacity: [1, 0.5, 1] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                        />
+                <motion.div initial={fadeInUp.initial} whileInView={fadeInUp.animate} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+                    <Badge variant="outline" className="mb-6 px-4 py-2 bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-900/30 dark:border-blue-700 dark:text-blue-300">
+                        <motion.div className="w-2 h-2 bg-green-500 rounded-full mr-2" animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity }} />
                         Portfolio Showcase
                     </Badge>
                 </motion.div>
-
                 <motion.h1
                     className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-slate-900 via-blue-800 to-slate-900 dark:from-white dark:via-blue-200 dark:to-white bg-clip-text text-transparent"
-                    variants={fadeInUp}
+                    initial={fadeInUp.initial}
+                    whileInView={fadeInUp.animate}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
                 >
                     Featured Projects
                 </motion.h1>
-
                 <motion.p
                     className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto mb-8 leading-relaxed"
-                    variants={fadeInUp}
+                    initial={fadeInUp.initial}
+                    whileInView={fadeInUp.animate}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
                 >
                     From mobile apps that solve real-world problems to interactive web experiences — 
-                    explore the projects I'm most passionate about building and shipping.
+                    explore the projects I&apos;m most passionate about building and shipping.
                 </motion.p>
-
                 <motion.div
                     className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-                    variants={fadeInUp}
+                    initial={fadeInUp.initial}
+                    whileInView={fadeInUp.animate}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
                 >
                     <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
                         <div className="w-4 h-4 rounded-full bg-gradient-to-r from-green-400 to-blue-400"></div>
@@ -217,77 +152,56 @@ function ProjectsHero() {
     );
 }
 
-// Enhanced Featured Projects with Carousel
+// Featured Projects Carousel Section (extracted & cleaned)
 function FeaturedProjects() {
     const [currentIndex, setCurrentIndex] = React.useState(0);
     const [direction, setDirection] = React.useState(0);
 
     const slideVariants = {
-        enter: (direction: number) => ({
-            x: direction > 0 ? 1000 : -1000,
-            opacity: 0,
-            scale: 0.8,
-        }),
-        center: {
-            zIndex: 1,
-            x: 0,
-            opacity: 1,
-            scale: 1,
-        },
-        exit: (direction: number) => ({
-            zIndex: 0,
-            x: direction < 0 ? 1000 : -1000,
-            opacity: 0,
-            scale: 0.8,
-        }),
+        enter: (dir: number) => ({ x: dir > 0 ? 1000 : -1000, opacity: 0, scale: 0.8 }),
+        center: { zIndex: 1, x: 0, opacity: 1, scale: 1 },
+        exit: (dir: number) => ({ zIndex: 0, x: dir < 0 ? 1000 : -1000, opacity: 0, scale: 0.8 }),
     };
 
     const swipeConfidenceThreshold = 10000;
-    const swipePower = (offset: number, velocity: number) => {
-        return Math.abs(offset) * velocity;
-    };
+    const swipePower = (offset: number, velocity: number) => Math.abs(offset) * velocity;
 
     const paginate = (newDirection: number) => {
         setDirection(newDirection);
-        setCurrentIndex((prevIndex) => {
-            if (newDirection === 1) {
-                return prevIndex === featured.length - 1 ? 0 : prevIndex + 1;
-            } else {
-                return prevIndex === 0 ? featured.length - 1 : prevIndex - 1;
-            }
+        setCurrentIndex(prev => {
+            if (newDirection === 1) return prev === featured.length - 1 ? 0 : prev + 1;
+            return prev === 0 ? featured.length - 1 : prev - 1;
         });
     };
 
-    // Auto-advance carousel every 5 seconds
     React.useEffect(() => {
-        const timer = setInterval(() => {
-            paginate(1);
-        }, 5000);
-
+        const timer = setInterval(() => paginate(1), 5000);
         return () => clearInterval(timer);
     }, []);
 
     return (
         <motion.section
             className="py-20 bg-white dark:bg-slate-900 overflow-hidden"
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
+            transition={{ duration: 0.6 }}
         >
             <div className="max-w-7xl mx-auto px-6">
-                <motion.div className="text-center mb-16" variants={fadeInUp}>
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">
-                        Featured Work
-                    </h2>
+                <motion.div
+                    className="text-center mb-16"
+                    initial={fadeInUp.initial}
+                    whileInView={fadeInUp.animate}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                >
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">Featured Work</h2>
                     <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-                        Dive deep into the products and experiences I've crafted with attention to detail and user-centered design.
+                        Dive deep into the products and experiences I&apos;ve crafted with attention to detail and user-centered design.
                     </p>
                 </motion.div>
 
-                {/* Carousel Container */}
                 <div className="relative">
-                    {/* Main Carousel */}
                     <div className="relative h-[600px] md:h-[500px] lg:h-[400px] overflow-hidden rounded-3xl">
                         <AnimatePresence initial={false} custom={direction} mode="wait">
                             <motion.div
@@ -307,12 +221,8 @@ function FeaturedProjects() {
                                 dragElastic={1}
                                 onDragEnd={(e, { offset, velocity }) => {
                                     const swipe = swipePower(offset.x, velocity.x);
-
-                                    if (swipe < -swipeConfidenceThreshold) {
-                                        paginate(1);
-                                    } else if (swipe > swipeConfidenceThreshold) {
-                                        paginate(-1);
-                                    }
+                                    if (swipe < -swipeConfidenceThreshold) paginate(1);
+                                    else if (swipe > swipeConfidenceThreshold) paginate(-1);
                                 }}
                                 className="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing"
                             >
@@ -321,7 +231,6 @@ function FeaturedProjects() {
                         </AnimatePresence>
                     </div>
 
-                    {/* Navigation Arrows */}
                     <button
                         className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white shadow-lg hover:bg-white dark:hover:bg-slate-800 transition-all duration-200 hover:scale-110"
                         onClick={() => paginate(-1)}
@@ -343,16 +252,11 @@ function FeaturedProjects() {
                     </button>
                 </div>
 
-                {/* Carousel Indicators */}
                 <div className="flex justify-center mt-8 space-x-2">
                     {featured.map((_, index) => (
                         <button
                             key={index}
-                            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                                index === currentIndex
-                                    ? "bg-blue-600 scale-125"
-                                    : "bg-slate-300 dark:bg-slate-600 hover:bg-slate-400 dark:hover:bg-slate-500"
-                            }`}
+                            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex ? "bg-blue-600 scale-125" : "bg-slate-300 dark:bg-slate-600 hover:bg-slate-400 dark:hover:bg-slate-500"}`}
                             onClick={() => {
                                 setDirection(index > currentIndex ? 1 : -1);
                                 setCurrentIndex(index);
@@ -362,18 +266,9 @@ function FeaturedProjects() {
                     ))}
                 </div>
 
-                {/* Project Counter */}
-                <motion.div 
-                    className="text-center mt-6"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                >
+                <motion.div className="text-center mt-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
                     <p className="text-sm text-slate-500 dark:text-slate-400">
-                        <span className="font-medium text-blue-600 dark:text-blue-400">
-                            {currentIndex + 1}
-                        </span>
-                        {" "} of {featured.length} projects
+                        <span className="font-medium text-blue-600 dark:text-blue-400">{currentIndex + 1}</span> of {featured.length} projects
                     </p>
                 </motion.div>
             </div>
@@ -546,59 +441,39 @@ function ProjectStats() {
         },
     ];
 
-    const cardVariants = {
-        hidden: (i: number) => ({
-            opacity: 0,
-            x: -100,
-            y: 20,
-            rotate: -10,
-            scale: 0.8,
-        }),
-        visible: (i: number) => ({
-            opacity: 1,
-            x: 0,
-            y: 0,
-            rotate: 0,
-            scale: 1,
-            transition: {
-                delay: i * 0.15,
-                duration: 0.6,
-                ease: "easeOut",
-                type: "spring",
-                stiffness: 100,
-            },
-        }),
-    };
+    // inline animations instead of variants to avoid TS friction
+    const cardInitial = { opacity: 0, x: -100, y: 20, rotate: -10, scale: 0.8 };
+    const cardAnimate = (i: number) => ({
+        opacity: 1,
+        x: 0,
+        y: 0,
+        rotate: 0,
+        scale: 1,
+        transition: {
+            delay: i * 0.15,
+            type: "spring" as const,
+            stiffness: 100,
+            damping: 20,
+        },
+    });
 
     const Counter = ({ end, suffix = "", duration = 2 }: { end: number; suffix?: string; duration?: number }) => {
         const [count, setCount] = React.useState(0);
-        
-        React.useEffect(() => {
-            if (!hasAnimated) return;
-            
+    React.useEffect(() => {
+            if (!hasAnimated) return; // run only after animation trigger
+            let frame: number;
             const startTime = Date.now();
-            const endTime = startTime + duration * 1000;
-            
-            const updateCount = () => {
-                const now = Date.now();
-                const progress = Math.min((now - startTime) / (duration * 1000), 1);
-                const easeOut = 1 - Math.pow(1 - progress, 3);
-                setCount(Math.floor(easeOut * end));
-                
-                if (progress < 1) {
-                    requestAnimationFrame(updateCount);
-                }
+            const total = duration * 1000;
+            const tick = () => {
+                const progress = Math.min((Date.now() - startTime) / total, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                setCount(Math.floor(eased * end));
+                if (progress < 1) frame = requestAnimationFrame(tick);
             };
-            
-            requestAnimationFrame(updateCount);
-        }, [end, duration, hasAnimated]);
-        
-        return (
-            <span>
-                {count}
-                {suffix}
-            </span>
-        );
+            frame = requestAnimationFrame(tick);
+            return () => cancelAnimationFrame(frame);
+    }, [end, duration]);
+        return <span>{count}{suffix}</span>;
     };
 
     return (
@@ -622,7 +497,7 @@ function ProjectStats() {
                         By the Numbers
                     </h2>
                     <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-                        A snapshot of my journey in software development and the impact I've made.
+                        A snapshot of my journey in software development and the impact I&apos;ve made.
                     </p>
                 </motion.div>
 
@@ -631,11 +506,8 @@ function ProjectStats() {
                     {stats.map((stat, index) => (
                         <motion.div
                             key={index}
-                            custom={index}
-                            variants={cardVariants}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
+                            initial={cardInitial}
+                            animate={cardAnimate(index)}
                             whileHover={{ 
                                 y: -8, 
                                 scale: 1.02,
@@ -700,13 +572,13 @@ function GitHubProjects({ repos }: { repos: Repo[] }) {
     return (
         <motion.section
             className="py-20 bg-slate-50 dark:bg-slate-800"
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-50px" }}
-            variants={staggerContainer}
+            transition={{ duration: 0.6 }}
         >
             <div className="max-w-7xl mx-auto px-6">
-                <motion.div className="text-center mb-12" variants={fadeInUp}>
+                <motion.div className="text-center mb-12" initial={fadeInUp.initial} whileInView={fadeInUp.animate} viewport={{ once: true }} transition={{ duration: 0.6 }}>
                     <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">
                         Open Source & Experiments
                     </h2>
@@ -719,7 +591,10 @@ function GitHubProjects({ repos }: { repos: Repo[] }) {
                 {/* Search and Filter Controls */}
                 <motion.div 
                     className="flex flex-col md:flex-row gap-4 mb-12 max-w-2xl mx-auto"
-                    variants={fadeInUp}
+                    initial={fadeInUp.initial}
+                    whileInView={fadeInUp.animate}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
                 >
                     <div className="flex-1">
                         <Input
@@ -764,27 +639,11 @@ function GitHubProjects({ repos }: { repos: Repo[] }) {
                 </motion.div>
 
                 {/* Projects Grid with AnimatePresence */}
-                <motion.div 
-                    className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
-                    initial="hidden"
-                    animate="visible"
-                    variants={{
-                        hidden: { opacity: 0 },
-                        visible: {
-                            opacity: 1,
-                            transition: {
-                                staggerChildren: 0.1,
-                                delayChildren: 0.1,
-                            },
-                        },
-                    }}
-                >
-                    <AnimatePresence mode="popLayout">
-                        {filteredRepos.map((repo) => (
-                            <ProjectCard key={repo.id} repo={repo} />
-                        ))}
-                    </AnimatePresence>
-                </motion.div>
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    {filteredRepos.map((repo) => (
+                        <ProjectCard key={repo.id} repo={repo} />
+                    ))}
+                </div>
 
                 {filteredRepos.length === 0 && (
                     <AnimatePresence>
@@ -811,19 +670,19 @@ function ProjectCard({ repo }: { repo: Repo }) {
     return (
         <motion.div
             className="group"
-            layout
-            variants={gridItemVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            whileHover="hover"
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            whileHover={{ scale: 1.02 }}
         >
             <motion.a
                 href={repo.homepage || repo.html_url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block h-full"
-                variants={scaleOnHover}
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.3 }}
             >
                 <div className="h-full p-6 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-blue-300 dark:hover:border-blue-600">
                     {/* Header */}
@@ -961,7 +820,7 @@ export default function ProjectsPage() {
             {/* Call to Action */}
             <CallToAction
                 title="Ready to Collaborate?"
-                subtitle="Let's build something amazing together! I'm always excited to work on new projects and bring innovative ideas to life."
+                subtitle="Let&apos;s build something amazing together! I&apos;m always excited to work on new projects and bring innovative ideas to life."
                 primaryButtonText="Start a Project"
                 secondaryButtonText="View Resume"
                 variant="default"

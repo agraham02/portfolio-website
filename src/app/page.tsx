@@ -1,4 +1,3 @@
-import InfiniteScrollLogos from "@/components/InfiniteScrollLogos";
 import HeroSection from "@/components/home/HeroSection";
 import BentoGrid from "@/components/home/BentoGrid";
 import FeaturesSection from "@/components/home/FeaturesSection";
@@ -6,7 +5,6 @@ import TechStackSection from "@/components/home/TechStackSection";
 import CallToActionSection from "@/components/home/CallToActionSection";
 import FloatingNavigation from "@/components/FloatingNavigation";
 import ScrollToTop from "@/components/ScrollToTop";
-import Image from "next/image";
 import {
     FaReact,
     FaNodeJs,
@@ -39,9 +37,7 @@ import {
     SiPandas,
     SiNumpy,
 } from "react-icons/si";
-import { Button } from "@/components/ui/button";
-import { MoveRight } from "lucide-react";
-import Link from "next/link";
+// Removed unused imports: InfiniteScrollLogos, Image, Button, MoveRight, Link
 
 const techIconsRaw = [
     { id: "react", icon: <FaReact />, displayName: "React" },

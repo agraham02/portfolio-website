@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import Image from "next/image";
+// Removed unused Image import
 
 export default function DivyoPage() {
     return (
@@ -86,7 +86,7 @@ export default function DivyoPage() {
                                         Divyo is the smartest way to split
                                         expenses. Just snap a photo of any
                                         receipt, and our app instantly reads
-                                        every item, calculates each person's
+                                        every item, calculates each person&apos;s
                                         exact share—including tax and tip—and
                                         lets you settle up in seconds.
                                     </p>
@@ -198,9 +198,9 @@ export default function DivyoPage() {
                             </h2>
                             <p className="text-xl text-gray-300 leading-relaxed">
                                 You had a great time out. Then the bill arrives.
-                                Suddenly, you're the designated accountant,
+                                Suddenly, you&apos;re the designated accountant,
                                 trying to decipher who had the extra appetizer
-                                and manually calculating tax and tip. It's slow,
+                                and manually calculating tax and tip. It&apos;s slow,
                                 awkward, and someone always feels like they
                                 overpaid.
                             </p>
@@ -228,7 +228,7 @@ export default function DivyoPage() {
                                 </span>
                             </div>
                             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-                                Why You'll{" "}
+                                Why You&apos;ll{" "}
                                 <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
                                     Love Divyo
                                 </span>
@@ -400,7 +400,7 @@ export default function DivyoPage() {
                     <div className="container mx-auto">
                         <div className="text-center mb-16">
                             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-                                Don't Just Take{" "}
+                                Don&apos;t Just Take{" "}
                                 <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
                                     Our Word For It
                                 </span>
@@ -425,10 +425,10 @@ export default function DivyoPage() {
                                 </CardHeader>
                                 <CardContent>
                                     <p className="text-lg font-medium text-white mb-4">
-                                        "Divyo is a game-changer for group
+                                        Divyo is a game-changer for group
                                         dinners. It completely eliminated the
-                                        awkward 'who owes what' conversation. We
-                                        use it every time we go out."
+                                        awkward who owes what conversation. We
+                                        use it every time we go out.
                                     </p>
                                     <p className="text-gray-400">
                                         - Sarah K., San Francisco
@@ -449,11 +449,11 @@ export default function DivyoPage() {
                                 </CardHeader>
                                 <CardContent>
                                     <p className="text-lg font-medium text-white mb-4">
-                                        "The receipt scanner is shockingly
+                                        The receipt scanner is shockingly
                                         accurate. I use it for tracking business
                                         lunches and it saves me so much time on
                                         expense reports. The export feature is
-                                        brilliant."
+                                        brilliant.
                                     </p>
                                     <p className="text-gray-400">
                                         - Michael B., New York
@@ -504,7 +504,7 @@ export default function DivyoPage() {
                                 </span>
                             </h2>
                             <p className="text-xl text-gray-300">
-                                It's free. And it will change the way you dine
+                                It&apos;s free. And it will change the way you dine
                                 out forever.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">

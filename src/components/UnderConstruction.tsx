@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Mail, Calendar, Github, Linkedin } from "lucide-react";
+import { Mail, Github, Linkedin } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function UnderConstruction() {
@@ -156,7 +155,7 @@ export default function UnderConstruction() {
                         variants={itemVariants}
                         className="text-xl md:text-2xl lg:text-4xl text-gray-300 mb-8 md:mb-12 font-light"
                     >
-                        Ahmad Graham's Portfolio Website
+                        Ahmad Graham&apos;s Portfolio Website
                     </motion.h2>
 
                     {/* Description */}
@@ -164,8 +163,8 @@ export default function UnderConstruction() {
                         variants={itemVariants}
                         className="text-base md:text-lg lg:text-xl text-gray-400 mb-12 md:mb-16 max-w-3xl mx-auto leading-relaxed px-4"
                     >
-                        I'm currently putting the finishing touches on my
-                        portfolio website. It's going to be amazing! Check back
+                        I&apos;m currently putting the finishing touches on my
+                        portfolio website. It&apos;s going to be amazing! Check back
                         soon to see my latest projects and skills.
                     </motion.p>
 
@@ -180,7 +179,7 @@ export default function UnderConstruction() {
                                 { label: "Hours", value: timeLeft.hours },
                                 { label: "Minutes", value: timeLeft.minutes },
                                 { label: "Seconds", value: timeLeft.seconds },
-                            ].map((item, index) => (
+                            ].map((item) => (
                                 <motion.div
                                     key={item.label}
                                     className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-4 md:p-6 hover:border-blue-500/30 transition-all duration-300 hover:bg-gray-800/70"

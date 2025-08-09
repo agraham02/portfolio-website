@@ -1,30 +1,11 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
 import AboutSection from "@/components/about/AboutSection";
 import TimelineSection from "@/components/about/Timeline";
 import CallToAction from "@/components/CallToAction";
 
 export default function AboutPage() {
-    const fadeInUp = {
-        hidden: { opacity: 0, y: 30 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.6, ease: "easeOut" },
-        },
-    };
-
-    const staggerContainer = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.3,
-                delayChildren: 0.2,
-            },
-        },
-    };
+    // Removed unused animation variant objects (fadeInUp, staggerContainer)
 
     return (
         <div className="min-h-screen  bg-gradient-to-br from-white via-slate-50 to-blue-50/20 dark:from-slate-900 dark:via-slate-800 dark:to-blue-950/20">

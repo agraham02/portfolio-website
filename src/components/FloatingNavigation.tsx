@@ -69,7 +69,7 @@ const FloatingNavigation = () => {
             className="fixed right-6 top-1/2 transform -translate-y-1/2 z-50 hidden lg:block"
         >
             <nav className="flex flex-col gap-4 p-4 bg-card/80 backdrop-blur-md border border-border/50 rounded-full shadow-lg">
-                {sections.map((section, index) => (
+                {sections.map((section) => (
                     <motion.button
                         key={section.id}
                         onClick={() => scrollToSection(section.id)}

@@ -16,7 +16,7 @@ import {
     ExternalLink,
 } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+// Removed unused Image import
 
 const BentoGrid = () => {
     const containerVariants = {
@@ -88,7 +88,7 @@ const BentoGrid = () => {
                                         </h3>
                                     </div>
                                     <p className="text-muted-foreground leading-relaxed mb-6">
-                                        I'm a passionate software engineer with
+                                        I&apos;m a passionate software engineer with
                                         expertise in full-stack development,
                                         cloud computing, and modern web
                                         technologies. I love solving complex
@@ -324,7 +324,7 @@ const BentoGrid = () => {
                                     <MessageSquare className="h-6 w-6 text-primary" />
                                 </div>
                                 <h4 className="font-semibold mb-3">
-                                    Let's Connect
+                                    Let&apos;s Connect
                                 </h4>
                                 <Button
                                     size="sm"

@@ -5,46 +5,13 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 
 export default function AboutSection() {
-    const fadeInUp = {
-        hidden: { opacity: 0, y: 30 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.6, ease: "easeOut" },
-        },
-    };
+    const fadeIn = { duration: 0.6, ease: "easeOut" as const };
 
-    const staggerContainer = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2,
-                delayChildren: 0.1,
-            },
-        },
-    };
+    // Removed complex variants to avoid type friction; using direct props
 
-    const imageFloat = {
-        hidden: { opacity: 0, x: -50, scale: 0.9 },
-        visible: {
-            opacity: 1,
-            x: 0,
-            scale: 1,
-            transition: { duration: 0.8, ease: "easeOut" },
-        },
-    };
+    // helper for initial/whileInView animations
 
-    const floatingElements = {
-        animate: {
-            y: [0, -10, 0],
-            transition: {
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-            },
-        },
-    };
+    // removed unused floatingElements variant (replaced with inline animations)
 
     const techStackData = [
         { name: "React", icon: "⚛️", color: "from-cyan-500 to-blue-500" },
@@ -68,29 +35,27 @@ export default function AboutSection() {
     return (
         <motion.section
             className="relative py-20 md:py-28 bg-gradient-to-br from-white via-slate-50 to-blue-50/30 dark:from-slate-900 dark:via-slate-800 dark:to-blue-950/30 border-b border-slate-200/50 dark:border-slate-700/50"
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={fadeIn}
             viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
         >
             {/* Animated Background Elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <motion.div
                     className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full blur-xl"
-                    variants={floatingElements}
-                    animate="animate"
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 />
                 <motion.div
                     className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-r from-pink-400/10 to-orange-400/10 rounded-full blur-xl"
-                    variants={floatingElements}
-                    animate="animate"
-                    transition={{ delay: 1 }}
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                 />
                 <motion.div
                     className="absolute bottom-20 left-1/3 w-40 h-40 bg-gradient-to-r from-green-400/10 to-teal-400/10 rounded-full blur-xl"
-                    variants={floatingElements}
-                    animate="animate"
-                    transition={{ delay: 2 }}
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 2 }}
                 />
             </div>
 
@@ -98,7 +63,10 @@ export default function AboutSection() {
                 {/* Left Side – Enhanced Image */}
                 <motion.div
                     className="w-full lg:w-1/2 flex justify-center px-8 sm:px-12 lg:px-4"
-                    variants={imageFloat}
+                    initial={{ opacity: 0, x: -50, scale: 0.9 }}
+                    whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    viewport={{ once: true }}
                 >
                     <div className="relative group max-w-sm sm:max-w-md w-full">
                         {/* Layered Background Effects - Responsive */}
@@ -157,13 +125,19 @@ export default function AboutSection() {
                 {/* Right Side – Enhanced Bio */}
                 <motion.div
                     className="w-full lg:w-1/2 space-y-8"
-                    variants={staggerContainer}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ ...fadeIn, delay: 0.1 }}
+                    viewport={{ once: true }}
                 >
                     {/* Enhanced Header with Badge */}
                     <div className="space-y-4">
                         <motion.div
-                            variants={fadeInUp}
                             className="flex flex-wrap items-center gap-3 mb-4"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ ...fadeIn, delay: 0.15 }}
+                            viewport={{ once: true }}
                         >
                             <Badge
                                 variant="outline"
@@ -188,9 +162,12 @@ export default function AboutSection() {
 
                         <motion.h2
                             className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
-                            variants={fadeInUp}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ ...fadeIn, delay: 0.2 }}
+                            viewport={{ once: true }}
                         >
-                            Hi, I'm{" "}
+                            Hi, I&apos;m{" "}
                             <span className="relative">
                                 <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
                                     Ahmad Graham
@@ -210,7 +187,10 @@ export default function AboutSection() {
                     <div className="space-y-6">
                         <motion.div
                             className="relative p-6 bg-white/50 dark:bg-slate-800/50 rounded-2xl border border-slate-200/50 dark:border-slate-700/50 backdrop-blur-sm"
-                            variants={fadeInUp}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ ...fadeIn, delay: 0.25 }}
+                            viewport={{ once: true }}
                             whileHover={{
                                 scale: 1.02,
                                 transition: { duration: 0.2 },
@@ -218,7 +198,7 @@ export default function AboutSection() {
                         >
                             <div className="absolute top-4 left-4 w-1 h-12 bg-gradient-to-b from-blue-400 to-indigo-500 rounded-full" />
                             <p className="text-slate-600 dark:text-slate-300 text-base md:text-lg leading-relaxed pl-6">
-                                I'm a full-stack software engineer with a
+                                I&apos;m a full-stack software engineer with a
                                 passion for solving real-world problems through
                                 code. My journey began in the U.S. Virgin
                                 Islands and took shape after relocating to
@@ -229,7 +209,10 @@ export default function AboutSection() {
 
                         <motion.div
                             className="relative p-6 bg-white/50 dark:bg-slate-800/50 rounded-2xl border border-slate-200/50 dark:border-slate-700/50 backdrop-blur-sm"
-                            variants={fadeInUp}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ ...fadeIn, delay: 0.35 }}
+                            viewport={{ once: true }}
                             whileHover={{
                                 scale: 1.02,
                                 transition: { duration: 0.2 },
@@ -240,14 +223,17 @@ export default function AboutSection() {
                                 I thrive where code meets creativity, building
                                 everything from pixel-perfect UIs to optimized
                                 backend systems. My mission is to create
-                                software that's functional, thoughtful, and
+                                software that&apos;s functional, thoughtful, and
                                 human-centered.
                             </p>
                         </motion.div>
 
                         <motion.div
                             className="relative p-6 bg-white/50 dark:bg-slate-800/50 rounded-2xl border border-slate-200/50 dark:border-slate-700/50 backdrop-blur-sm"
-                            variants={fadeInUp}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ ...fadeIn, delay: 0.45 }}
+                            viewport={{ once: true }}
                             whileHover={{
                                 scale: 1.02,
                                 transition: { duration: 0.2 },
@@ -255,7 +241,7 @@ export default function AboutSection() {
                         >
                             <div className="absolute top-4 left-4 w-1 h-12 bg-gradient-to-b from-purple-400 to-pink-500 rounded-full" />
                             <p className="text-slate-600 dark:text-slate-300 text-base md:text-lg leading-relaxed pl-6">
-                                When I'm not coding, you'll find me at the gym,
+                                When I&apos;m not coding, you&apos;ll find me at the gym,
                                 discovering new music, or spending quality time
                                 with friends. I believe in building things that
                                 make life better! 🚀
@@ -264,7 +250,11 @@ export default function AboutSection() {
                     </div>
 
                     {/* Enhanced Tech Stack */}
-                    <motion.div className="space-y-4" variants={fadeInUp}>
+                    <motion.div className="space-y-4"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ ...fadeIn, delay: 0.55 }}
+                        viewport={{ once: true }}>
                         <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2">
                             <span className="text-2xl">🛠️</span>
                             Tech Stack & Tools
@@ -312,14 +302,17 @@ export default function AboutSection() {
                     {/* Call to Action */}
                     <motion.div
                         className="flex flex-col sm:flex-row gap-4 pt-6"
-                        variants={fadeInUp}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ ...fadeIn, delay: 0.65 }}
+                        viewport={{ once: true }}
                     >
                         <motion.button
                             className="px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.98 }}
                         >
-                            <span>Let's Connect</span>
+                            <span>Let&apos;s Connect</span>
                             <motion.span className="group-hover:translate-x-1 transition-transform duration-300">
                                 🚀
                             </motion.span>

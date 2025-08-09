@@ -9,7 +9,7 @@ export default function Header() {
             {/* Left Side */}
             <div className="max-w-xl text-center lg:text-left">
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                    Hi, I'm <span className="text-blue-600">John Doe</span>
+                    Hi, I&apos;m <span className="text-blue-600">John Doe</span>
                 </h1>
                 <h2 className="text-xl md:text-2xl text-gray-700 mb-4">
                     Software Engineer &amp; Problem Solver

@@ -120,7 +120,7 @@ const InfiniteScrollLogos: React.FC<InfiniteScrollLogosProps> = ({
                     className={`flex flex-nowrap items-center w-max ${animationClass} ${pauseUtility}`}
                 >
                     {extendedIcons.map((item, index) => {
-                        const reactType: any = (item.icon as any)?.type;
+                        const reactType = (item.icon as React.ReactElement).type as { displayName?: string; name?: string } | undefined;
                         // Attempt to derive a readable name if no explicit label provided
                         const derivedName =
                             item.displayName ||

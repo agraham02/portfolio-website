@@ -120,8 +120,8 @@ export default function NotFound() {
                         variants={itemVariants}
                         className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed"
                     >
-                        The page you're looking for seems to have wandered off
-                        into the digital void. Don't worry though, let's get you
+                        The page you&apos;re looking for seems to have wandered off
+                        into the digital void. Don&apos;t worry though, let&apos;s get you
                         back on track!
                     </motion.p>
 
@@ -209,7 +209,7 @@ export default function NotFound() {
                             <Mail className="h-8 w-8 text-primary mx-auto mb-3" />
                             <h3 className="font-semibold mb-2">Get in Touch</h3>
                             <p className="text-sm text-muted-foreground mb-3">
-                                Have questions? Let's connect!
+                                Have questions? Let&apos;s connect!
                             </p>
                             <Link href="/about">
                                 <Button

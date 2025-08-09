@@ -71,7 +71,7 @@ const HeroSection = () => {
                                 transition={{ delay: 0.3, duration: 0.8 }}
                                 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight"
                             >
-                                <span className="block">Hi, I'm</span>
+                                <span className="block">Hi, I&apos;m</span>
                                 <motion.span
                                     className="block bg-gradient-to-r from-primary via-primary/80 to-secondary bg-clip-text text-transparent"
                                     initial={{ opacity: 0, scale: 0.8 }}

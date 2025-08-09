@@ -5,7 +5,6 @@
 import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Metadata } from "next";
 
 // --- UI components (shadcn/ui + custom) ---
 import {
@@ -78,11 +77,7 @@ const posts: BlogPost[] = [
 ];
 
 // --- Page metadata ---
-const metadata: Metadata = {
-    title: "Blog – Ahmad Graham",
-    description:
-        "Articles on full‑stack dev, UX, AI, and life as a software engineer.",
-};
+// Removed unused page metadata constant (was not exported or used)
 
 // --- Components ---
 const FeaturedCarousel: React.FC<{ featured: BlogPost[] }> = ({ featured }) => (
