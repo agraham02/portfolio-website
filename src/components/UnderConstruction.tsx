@@ -14,8 +14,7 @@ export default function UnderConstruction() {
     const [progress, setProgress] = useState(0); 
 
     useEffect(() => {
-        const targetDate = new Date();
-        targetDate.setDate(targetDate.getDate() + 20); // 20 days from now
+        const targetDate = new Date("September 1, 2025");
 
         const timer = setInterval(() => {
             const now = new Date().getTime();
