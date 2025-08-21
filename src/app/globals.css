@@ -76,6 +76,24 @@
 
 /* --- End Infinite Scroll Animation --- */
 
+/* --- Aurora Background --- */
+@theme inline {
+  --animate-aurora: aurora 60s linear infinite;
+  @keyframes aurora {
+    from {
+      background-position:
+        50% 50%,
+        50% 50%;
+    }
+    to {
+      background-position:
+        350% 50%,
+        350% 50%;
+    }
+  }
+}
+/* --- End Aurora Background --- */
+
 :root {
     --radius: 0.625rem;
     --background: oklch(1 0 0);
