@@ -5,39 +5,13 @@ import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { Heart, Code, Coffee, Zap } from "lucide-react";
+import { navItems, SOCIALS } from "@/lib/const";
 
 export default function Footer({ version }: { version?: string }) {
-    const footerLinks = [
-        { href: "/home", label: "Home" },
-        { href: "/about", label: "About" },
-        { href: "/projects", label: "Projects" },
-        { href: "/blog", label: "Blog" },
-        { href: "/contact", label: "Contact" },
-    ];
-
-    const socialLinks = [
-        {
-            href: "https://github.com/agraham02",
-            icon: FaGithub,
-            label: "GitHub",
-            color: "hover:text-gray-300",
-        },
-        {
-            href: "https://www.linkedin.com/in/ahmad-graham",
-            icon: FaLinkedin,
-            label: "LinkedIn",
-            color: "hover:text-blue-400",
-        },
-        {
-            href: "mailto:ahmadgrahamdev@gmail.com",
-            icon: HiOutlineMail,
-            label: "Email",
-            color: "hover:text-red-400",
-        },
-    ];
+    const footerLinks = [{ href: "/", label: "Home" }, ...navItems];
 
     return (
-        <footer className="relative bg-white/95 dark:bg-slate-900/95 text-gray-700 dark:text-gray-300 overflow-hidden transition-colors duration-300">
+        <footer className="relative bg-slate-100/80 dark:bg-slate-900/95 text-gray-700 dark:text-gray-300 overflow-hidden transition-colors duration-300">
             {/* Animated Background Elements */}
             <div className="absolute inset-0">
                 <div className="absolute top-10 left-10 w-32 h-32 rounded-full blur-xl animate-pulse bg-blue-600/10 dark:bg-blue-500/10"></div>
@@ -140,7 +114,7 @@ export default function Footer({ version }: { version?: string }) {
                                     Let&apos;s Connect
                                 </h3>
                                 <div className="grid grid-cols-2 gap-4">
-                                    {socialLinks.map((social, index) => {
+                                    {SOCIALS.map((social, index) => {
                                         const IconComponent = social.icon;
                                         return (
                                             <motion.div
@@ -203,7 +177,8 @@ export default function Footer({ version }: { version?: string }) {
                     >
                         <div className="flex items-center gap-2 mb-4 md:mb-0">
                             <span>
-                                © 2025 Ahmad Graham. All rights reserved.
+                                © {new Date().getFullYear()} Ahmad Graham. All
+                                rights reserved.
                             </span>
                             <span className="hidden md:inline">•</span>
                             <span className="hidden md:inline">
