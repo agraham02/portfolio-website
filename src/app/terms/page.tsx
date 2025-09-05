@@ -32,7 +32,7 @@ export default function TermsPage() {
                         Terms of Service
                     </h1>
                     <p className="text-xl text-muted-foreground">
-                        The most reasonable terms you'll ever agree to
+                        The most reasonable terms you&apos;ll ever agree to
                         (probably)
                     </p>
                 </motion.div>
@@ -54,9 +54,9 @@ export default function TermsPage() {
                                 </h2>
                             </div>
                             <p className="text-lg">
-                                Be cool, don't be a jerk, and we'll get along
-                                just fine. This is just a portfolio website, not
-                                a nuclear reactor. ☮️
+                                Be cool, don&apos;t be a jerk, and we&apos;ll
+                                get along just fine. This is just a portfolio
+                                website, not a nuclear reactor.
                             </p>
                         </div>
 
@@ -81,14 +81,12 @@ export default function TermsPage() {
                                         1. What This Website Is
                                     </h3>
                                     <p className="text-muted-foreground">
-                                        This is Ahmad Graham's portfolio
+                                        This is Ahmad Graham&apos;s portfolio
                                         website. It showcases my work, tells you
                                         a bit about me, and hopefully convinces
-                                        you that I'm not a robot (though I do
-                                        drink a lot of coffee, which is
-                                        suspicious). It also collects some
-                                        basic, anonymous analytics so I can
-                                        pretend people actually visit.
+                                        you that I&apos;m not a robot. It also
+                                        collects some basic, anonymous analytics
+                                        so I can pretend people actually visit.
                                     </p>
                                 </motion.div>
 
@@ -100,27 +98,30 @@ export default function TermsPage() {
                                 >
                                     <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
                                         <span className="text-2xl">🚫</span>
-                                        2. What You Can't Do
+                                        2. What You Can&apos;t Do
                                     </h3>
                                     <ul className="text-muted-foreground space-y-2">
                                         <li>
-                                            • Don't try to hack this website
-                                            (there's literally nothing to steal)
+                                            • Don&apos;t try to hack this
+                                            website (there&apos;s literally
+                                            nothing to steal)
                                         </li>
                                         <li>
-                                            • Don't pretend to be me (trust me,
-                                            it's not that fun)
+                                            • Don&apos;t pretend to be me (trust
+                                            me, it&apos;s not that fun)
                                         </li>
                                         <li>
-                                            • Don't use my content to train your
-                                            evil AI overlord
+                                            • Don&apos;t use my content to train
+                                            your AI (Idk how to enforce that, so
+                                            just pinky promise ok?)
                                         </li>
                                         <li>
-                                            • Don't spam my contact form with
-                                            "GET RICH QUICK" schemes
+                                            • Don&apos;t spam my contact form
+                                            with &quot;GET RICH QUICK&quot;
+                                            schemes
                                         </li>
                                         <li>
-                                            • Don't try to sell me
+                                            • Don&apos;t try to sell me
                                             cryptocurrency (I already have
                                             0.0001 Bitcoin)
                                         </li>
@@ -161,7 +162,7 @@ export default function TermsPage() {
                                         </li>
                                         <li>
                                             • Be part of my anonymous analytics
-                                            (you're helping my self-esteem)
+                                            (you&apos;re helping my self-esteem)
                                         </li>
                                     </ul>
                                 </motion.div>
@@ -177,12 +178,12 @@ export default function TermsPage() {
                                         4. Disclaimer (The Lawyer-y Bit)
                                     </h3>
                                     <p className="text-muted-foreground">
-                                        This website is provided "as is" - like
-                                        that friend who's always late but you
-                                        still love them. I try my best to keep
-                                        everything working, but if something
-                                        breaks, I'll fix it when I finish my
-                                        coffee. ☕
+                                        This website is provided &quot;as
+                                        is&quot; - like that friend who&apos;s
+                                        always late but you still love them. I
+                                        try my best to keep everything working,
+                                        but if something breaks, I&apos;ll fix
+                                        it (eventually, maybe...).
                                     </p>
                                 </motion.div>
 
@@ -201,7 +202,7 @@ export default function TermsPage() {
                                         but I promise to keep them just as
                                         silly. Major changes will be announced
                                         with the same enthusiasm I announce new
-                                        coffee flavors I've tried.
+                                        coffee flavors I&apos;ve tried.
                                     </p>
                                 </motion.div>
 
@@ -216,8 +217,9 @@ export default function TermsPage() {
                                         6. Contact & Disputes
                                     </h3>
                                     <p className="text-muted-foreground mb-3">
-                                        Got a problem? Let's talk it out like
-                                        civilized humans over virtual coffee:
+                                        Got a problem? Let&apos;s talk it out
+                                        like civilized humans over virtual
+                                        coffee:
                                     </p>
                                     <div className="flex items-center gap-3 p-3 bg-secondary/50 rounded-lg">
                                         <Coffee className="w-5 h-5 text-amber-500" />
@@ -238,10 +240,10 @@ export default function TermsPage() {
                                 🎉 Fun Fact
                             </h3>
                             <p className="text-sm text-muted-foreground">
-                                You just read a terms of service that's actually
-                                readable! You're probably in the 0.01% of
-                                internet users who do this. You deserve a
-                                cookie. 🍪
+                                You just read a terms of service that&apos;s
+                                actually readable! You&apos;re probably in the
+                                0.01% of internet users who do this. You deserve
+                                a cookie. 🍪
                             </p>
                         </div>
 
@@ -250,11 +252,10 @@ export default function TermsPage() {
                             <p className="text-muted-foreground mb-4">
                                 By using this website, you agree to these terms
                                 and also agree that pineapple on pizza is...
-                                well, let's not get into that debate.
+                                well, let&apos;s not get into that debate.
                             </p>
                             <p className="text-sm font-semibold">
-                                Last updated: August 21, 2025 (while drinking my
-                                third cup of coffee)
+                                Last updated: September 9, 2025
                             </p>
                         </div>
                     </div>

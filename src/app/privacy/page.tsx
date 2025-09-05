@@ -25,8 +25,8 @@ export default function PrivacyPage() {
                         Privacy Policy
                     </h1>
                     <p className="text-xl text-muted-foreground">
-                        The most boring (and shortest) privacy policy you'll
-                        ever read
+                        The most boring (and shortest) privacy policy
+                        you&apos;ll ever read
                     </p>
                 </motion.div>
 
@@ -43,15 +43,15 @@ export default function PrivacyPage() {
                             <div className="flex items-center gap-3 mb-4">
                                 <Smile className="w-6 h-6 text-blue-500" />
                                 <h2 className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                                    TL;DR (Too Long; Didn't Read)
+                                    TL;DR (Too Long; Didn&apos;t Read)
                                 </h2>
                             </div>
                             <p className="text-lg">
                                 I collect minimal, anonymous analytics to see if
                                 anyone actually visits this site (and to fuel my
                                 imposter syndrome). No personal data, no creepy
-                                tracking, just basic "someone clicked a button"
-                                stats. 📊
+                                tracking, just basic &quot;someone clicked a
+                                button&quot; stats. 📊
                             </p>
                         </div>
 
@@ -61,7 +61,7 @@ export default function PrivacyPage() {
                                 <Database className="w-6 h-6" />
                                 <X className="w-4 h-4 text-red-500" />
                                 <h2 className="text-2xl font-bold">
-                                    What We DON'T Do
+                                    What We DON&apos;T Do
                                 </h2>
                             </div>
                             <div className="grid md:grid-cols-2 gap-4">
@@ -104,10 +104,10 @@ export default function PrivacyPage() {
                                         ✅ Show you my work
                                     </h3>
                                     <p className="text-muted-foreground">
-                                        That's literally it. This is a portfolio
-                                        website. You look at my projects, maybe
-                                        think "neat", and move on with your
-                                        life.
+                                        That&apos;s literally it. This is a
+                                        portfolio website. You look at my
+                                        projects, maybe think &quot;neat&quot;,
+                                        and move on with your life.
                                     </p>
                                 </div>
                                 <div className="p-4 bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg">
@@ -115,7 +115,7 @@ export default function PrivacyPage() {
                                         ✅ Remember your theme preference
                                     </h3>
                                     <p className="text-muted-foreground">
-                                        If you switch to dark mode, we'll
+                                        If you switch to dark mode, we&apos;ll
                                         remember that locally in your browser.
                                         It never leaves your device. Promise.
                                     </p>
@@ -127,9 +127,9 @@ export default function PrivacyPage() {
                                     <p className="text-muted-foreground">
                                         Using Vercel Analytics and possibly
                                         Google Analytics to see basic stats like
-                                        "someone visited the projects page." No
-                                        personal info, just numbers that make me
-                                        feel less alone.
+                                        &quot;someone visited the projects
+                                        page.&quot; No personal info, just
+                                        numbers that make me feel less alone.
                                     </p>
                                 </div>
                                 <div className="p-4 bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg">
@@ -155,28 +155,30 @@ export default function PrivacyPage() {
                             </div>
                             <div className="p-6 bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg">
                                 <h3 className="font-semibold text-amber-700 dark:text-amber-400 mb-3">
-                                    What I Actually Track (Spoiler: It's Boring)
+                                    What I Actually Track (Spoiler: It&apos;s
+                                    Boring)
                                 </h3>
                                 <ul className="text-muted-foreground space-y-2 mb-4">
                                     <li>
-                                        • <strong>Page visits:</strong> "Someone
-                                        looked at my projects page" (no idea who
-                                        though)
+                                        • <strong>Page visits:</strong>{" "}
+                                        &quot;Someone looked at my projects
+                                        page&quot; (no idea who though)
                                     </li>
                                     <li>
                                         • <strong>Button clicks:</strong>{" "}
-                                        "Someone downloaded my resume" (please
-                                        hire me)
+                                        &quot;Someone downloaded my resume&quot;
+                                        (please hire me)
                                     </li>
                                     <li>
                                         • <strong>General location:</strong>{" "}
-                                        "Visitor from Earth" (city level,
-                                        nothing creepy)
+                                        &quot;Visitor from Earth&quot; (city
+                                        level, nothing creepy)
                                     </li>
                                     <li>
-                                        • <strong>Device type:</strong> "Mobile
-                                        user" or "Desktop user" (helps me fix
-                                        responsive design)
+                                        • <strong>Device type:</strong>{" "}
+                                        &quot;Mobile user&quot; or &quot;Desktop
+                                        user&quot; (helps me fix responsive
+                                        design)
                                     </li>
                                     <li>
                                         • <strong>Popular pages:</strong> So I
@@ -184,7 +186,7 @@ export default function PrivacyPage() {
                                     </li>
                                 </ul>
                                 <p className="text-sm text-muted-foreground">
-                                    <strong>What I DON'T see:</strong> Your
+                                    <strong>What I DON&apos;T see:</strong> Your
                                     name, email, personal info, browsing
                                     history, what you had for breakfast, or
                                     anything that could identify you personally.
@@ -216,10 +218,10 @@ export default function PrivacyPage() {
                         {/* Footer Note */}
                         <div className="text-center p-6 bg-muted/50 rounded-lg">
                             <p className="text-sm text-muted-foreground italic">
-                                "I collect just enough data to know if this
+                                &quot;I collect just enough data to know if this
                                 website is a complete failure, but not enough to
-                                know what you had for lunch." - Ahmad Graham,
-                                2025
+                                know what you had for lunch.&quot; - Ahmad
+                                Graham, 2025
                             </p>
                         </div>
                     </div>
