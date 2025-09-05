@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { AuroraBackground } from "../ui/aurora-background";
 import { ContainerTextFlip } from "../ui/container-text-flip";
+import { RESUME_URL } from "@/lib/const";
 
 function Content() {
     return (
@@ -102,7 +103,7 @@ function Content() {
                     </Link>
 
                     <Link
-                        href="/Ahmad%20Graham%20-%20Software%20Engineer%20Resume.pdf"
+                        href={RESUME_URL}
                         target="_blank"
                         rel="noopener noreferrer"
                     >

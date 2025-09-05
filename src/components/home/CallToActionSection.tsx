@@ -7,38 +7,7 @@ import Link from "next/link";
 
 const CallToActionSection = () => {
     return (
-        <section className="py-20 px-4 relative overflow-hidden">
-            {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary/5 to-background" />
-
-            {/* Animated background elements */}
-            <div className="absolute inset-0 overflow-hidden">
-                <motion.div
-                    className="absolute top-10 left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl"
-                    animate={{
-                        x: [0, 100, 0],
-                        y: [0, -50, 0],
-                    }}
-                    transition={{
-                        duration: 20,
-                        repeat: Infinity,
-                        ease: "linear",
-                    }}
-                />
-                <motion.div
-                    className="absolute bottom-10 right-10 w-80 h-80 bg-secondary/10 rounded-full blur-3xl"
-                    animate={{
-                        x: [0, -80, 0],
-                        y: [0, 60, 0],
-                    }}
-                    transition={{
-                        duration: 25,
-                        repeat: Infinity,
-                        ease: "linear",
-                    }}
-                />
-            </div>
-
+        <section className="py-20 px-4 relative overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10">
             <div className="container mx-auto max-w-4xl relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}

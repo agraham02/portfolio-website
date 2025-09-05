@@ -112,8 +112,7 @@ const FeaturesSection = () => {
                     className="text-center mb-16"
                 >
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                        What I <span className="text-primary">Bring</span> to
-                        the Table
+                        What I Bring to the Table
                     </h2>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                         A comprehensive skill set covering the entire software

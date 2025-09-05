@@ -13,7 +13,7 @@ interface TechStackSectionProps {
 
 const TechStackSection = ({ techIcons }: TechStackSectionProps) => {
     return (
-        <section className="py-20 px-4 bg-gradient-to-b from-secondary/5 to-background">
+        <section className="py-20 px-12 bg-gradient-to-b from-secondary/5 to-background">
             <div className="container mx-auto max-w-7xl">
                 {/* Section header */}
                 <motion.div

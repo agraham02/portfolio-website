@@ -43,7 +43,7 @@ const BentoGrid = () => {
     };
 
     return (
-        <section className="py-5 px-4">
+        <section className="py-5 px-12">
             <div className="container mx-auto max-w-7xl">
                 {/* Section header */}
                 <motion.div
