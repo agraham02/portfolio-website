@@ -381,8 +381,8 @@ const BentoGrid = () => {
                                             <Image
                                                 src="/images/FamilyGameRoom.png"
                                                 alt="Online Game Platform Screenshot"
-                                                width={400}
-                                                height={225}
+                                                width={600}
+                                                height={400}
                                             />
                                         </div>
                                     </div>
