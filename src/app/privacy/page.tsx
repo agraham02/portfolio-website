@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Shield, Coffee, Smile, Heart, Database, X } from "lucide-react";
+import { EMAIL } from "@/lib/const";
 
 export default function PrivacyPage() {
     return (
@@ -207,10 +208,10 @@ export default function PrivacyPage() {
                             <div className="flex items-center gap-3 p-4 bg-secondary/50 rounded-lg">
                                 <span>📧</span>
                                 <Link
-                                    href="mailto:ahmadgrahamdev@gmail.com"
+                                    href={`mailto:${EMAIL}`}
                                     className="text-blue-600 dark:text-blue-400 hover:underline"
                                 >
-                                    ahmadgrahamdev@gmail.com
+                                    {EMAIL}
                                 </Link>
                             </div>
                         </div>
