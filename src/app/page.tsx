@@ -100,12 +100,12 @@ export default function Home() {
                 </section>
 
                 {/* Features/Skills Section */}
-                <section id="features" className="mx-5">
+                <section id="features">
                     <FeaturesSection />
                 </section>
 
                 {/* Call to Action */}
-                <section id="contact" className="mx-5">
+                <section id="contact">
                     <CallToActionSection />
                 </section>
             </main>

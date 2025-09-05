@@ -4,25 +4,9 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
-import { ArrowUp, Heart, Code, Coffee, Zap } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Heart, Code, Coffee, Zap } from "lucide-react";
 
 export default function Footer({ version }: { version?: string }) {
-    const [showScrollTop, setShowScrollTop] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowScrollTop(window.scrollY > 400);
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    };
-
     const footerLinks = [
         { href: "/about", label: "About" },
         { href: "/projects", label: "Projects" },
@@ -240,26 +224,6 @@ export default function Footer({ version }: { version?: string }) {
                     </motion.div>
                 </div>
             </div>
-
-            {/* Scroll to Top Button */}
-            <motion.button
-                onClick={scrollToTop}
-                className={`fixed bottom-8 right-8 p-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 ${
-                    showScrollTop
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-10 pointer-events-none"
-                }`}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0 }}
-                animate={{
-                    opacity: showScrollTop ? 1 : 0,
-                    y: showScrollTop ? 0 : 40,
-                }}
-                transition={{ duration: 0.3 }}
-            >
-                <ArrowUp size={20} />
-            </motion.button>
         </footer>
     );
 }

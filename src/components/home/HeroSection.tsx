@@ -42,7 +42,7 @@ function Content() {
                     >
                         <span className="block">Hi, I&apos;m</span>
                         <motion.span
-                            className="block bg-gradient-to-r from-primary via-primary/80 to-secondary bg-clip-text text-transparent"
+                            className="block bg-gradient-to-r from-primary via-primary/80 to-secondary bg-clip-text"
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.6, duration: 0.8 }}
