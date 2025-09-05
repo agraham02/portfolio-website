@@ -90,12 +90,12 @@ export default function Home() {
                 </section>
 
                 {/* Technology Stack */}
-                <section id="tech" className="mx-5">
+                <section id="tech">
                     <TechStackSection techIcons={techIcons} />
                 </section>
 
                 {/* About Me - Bento Grid */}
-                <section id="about" className="mx-5">
+                <section id="about">
                     <BentoGrid />
                 </section>
 
