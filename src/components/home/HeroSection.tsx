@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { MoveRight, Download, Mail } from "lucide-react";
+import { MoveRight, Download, Mail, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { AuroraBackground } from "../ui/aurora-background";
@@ -101,14 +101,20 @@ function Content() {
                         </Button>
                     </Link>
 
-                    <Button
-                        variant="outline"
-                        size="lg"
-                        className="text-lg px-8 py-6"
+                    <Link
+                        href="/Ahmad%20Graham%20-%20Software%20Engineer%20Resume.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
                     >
-                        <Download className="mr-2 h-5 w-5" />
-                        Download Resume
-                    </Button>
+                        <Button
+                            variant="outline"
+                            size="lg"
+                            className="text-lg px-8 py-6"
+                        >
+                            View Resume
+                            <ExternalLink className="h-5 w-5" />
+                        </Button>
+                    </Link>
 
                     <Link href="mailto:your.email@example.com">
                         <Button
@@ -116,8 +122,8 @@ function Content() {
                             size="lg"
                             className="text-lg px-8 py-6"
                         >
-                            <Mail className="mr-2 h-5 w-5" />
                             Get in Touch
+                            <Mail className="h-5 w-5" />
                         </Button>
                     </Link>
                 </motion.div>
@@ -170,7 +176,7 @@ function Temp() {
                     duration: 0.8,
                     ease: "easeInOut",
                 }}
-                className=""
+                className="mx-10 my-2"
             >
                 <Content />
             </motion.div>

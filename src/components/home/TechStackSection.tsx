@@ -64,26 +64,7 @@ const TechStackSection = ({ techIcons }: TechStackSectionProps) => {
                     <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-20 pointer-events-none" />
                 </motion.div>
 
-                {/* Additional info */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
-                    className="text-center mt-12"
-                >
-                    <div className="inline-flex items-center gap-2 px-6 py-3 bg-card/50 backdrop-blur-sm border border-border/50 rounded-full">
-                        <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                        </span>
-                        <span className="text-sm font-medium">
-                            Constantly expanding my technology stack
-                        </span>
-                    </div>
-                </motion.div>
-
-                {/* Categories */}
+                {/* Categories
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -124,6 +105,25 @@ const TechStackSection = ({ techIcons }: TechStackSectionProps) => {
                         </div>
                     </div>
                 </motion.div>
+
+                {/* Additional info */}
+                {/* <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                    className="text-center mt-12"
+                >
+                    <div className="inline-flex items-center gap-2 px-6 py-3 bg-card/50 backdrop-blur-sm border border-border/50 rounded-full">
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                        </span>
+                        <span className="text-sm font-medium">
+                            I'm constantly expanding my technology stack
+                        </span>
+                    </div>
+                </motion.div> */}
             </div>
         </section>
     );

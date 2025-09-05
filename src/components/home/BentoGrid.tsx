@@ -8,14 +8,17 @@ import {
     Code2,
     Globe,
     Sparkles,
-    Users,
-    Trophy,
     MessageSquare,
     Calendar,
     MapPin,
     ExternalLink,
+    Heart,
+    Music,
+    Dumbbell,
+    Zap,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 // Removed unused Image import
 
 const BentoGrid = () => {
@@ -40,7 +43,7 @@ const BentoGrid = () => {
     };
 
     return (
-        <section className="py-20 px-4">
+        <section className="py-5 px-4">
             <div className="container mx-auto max-w-7xl">
                 {/* Section header */}
                 <motion.div
@@ -88,10 +91,10 @@ const BentoGrid = () => {
                                         </h3>
                                     </div>
                                     <p className="text-muted-foreground leading-relaxed mb-6">
-                                        I&apos;m a passionate software engineer with
-                                        expertise in full-stack development,
-                                        cloud computing, and modern web
-                                        technologies. I love solving complex
+                                        I&apos;m a passionate software engineer
+                                        with expertise in full-stack
+                                        development, cloud computing, and modern
+                                        web technologies. I love solving complex
                                         problems and creating elegant solutions
                                         that make a real impact.
                                     </p>
@@ -133,7 +136,7 @@ const BentoGrid = () => {
                                 </div>
                                 <h4 className="font-semibold mb-2">Based in</h4>
                                 <p className="text-sm text-muted-foreground">
-                                    New York, USA
+                                    Washington, D.C., USA
                                 </p>
                                 <div className="mt-3 text-xs text-green-600 dark:text-green-400">
                                     Available globally
@@ -213,7 +216,7 @@ const BentoGrid = () => {
                     </motion.div>
 
                     {/* Achievements */}
-                    <motion.div variants={itemVariants}>
+                    {/* <motion.div variants={itemVariants}>
                         <Card className="p-6 h-full bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-950/20 dark:to-orange-950/20 border-yellow-200 dark:border-yellow-800 hover:border-yellow-300 dark:hover:border-yellow-700 transition-all duration-300">
                             <motion.div
                                 className="text-center"
@@ -232,10 +235,10 @@ const BentoGrid = () => {
                                 </p>
                             </motion.div>
                         </Card>
-                    </motion.div>
+                    </motion.div> */}
 
                     {/* Collaboration */}
-                    <motion.div variants={itemVariants}>
+                    {/* <motion.div variants={itemVariants}>
                         <Card className="p-6 h-full bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-950/20 dark:to-blue-950/20 border-indigo-200 dark:border-indigo-800 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all duration-300">
                             <motion.div
                                 className="text-center"
@@ -254,6 +257,101 @@ const BentoGrid = () => {
                                 <p className="text-sm text-muted-foreground">
                                     Collaborators
                                 </p>
+                            </motion.div>
+                        </Card>
+                    </motion.div> */}
+
+                    {/* Interests */}
+                    <motion.div variants={itemVariants}>
+                        <Card className="p-6 h-full bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-950/20 dark:to-pink-950/20 border-rose-200 dark:border-rose-800 hover:border-rose-300 dark:hover:border-rose-700 transition-all duration-300">
+                            <motion.div
+                                className="h-full"
+                                whileHover={{ scale: 1.02 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="p-3 bg-rose-100 dark:bg-rose-900/30 rounded-lg">
+                                        <Heart className="h-6 w-6 text-rose-600 dark:text-rose-400" />
+                                    </div>
+                                    <h4 className="text-lg font-semibold">
+                                        Interests
+                                    </h4>
+                                </div>
+                                <div className="space-y-3">
+                                    {[
+                                        {
+                                            icon: Zap,
+                                            text: "AI & Machine Learning",
+                                            delay: 0,
+                                        },
+                                        {
+                                            icon: "🎾",
+                                            text: "Tennis",
+                                            delay: 0.1,
+                                        },
+                                        {
+                                            icon: Dumbbell,
+                                            text: "Working Out",
+                                            delay: 0.2,
+                                        },
+                                        {
+                                            icon: "👔",
+                                            text: "Fashion",
+                                            delay: 0.3,
+                                        },
+                                        {
+                                            icon: Music,
+                                            text: "Music",
+                                            delay: 0.4,
+                                        },
+                                        {
+                                            icon: "🏙️",
+                                            text: "Exploring Cities",
+                                            delay: 0.5,
+                                        },
+                                    ].map((interest, index) => (
+                                        <motion.div
+                                            key={index}
+                                            initial={{ opacity: 0, x: -20 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            viewport={{ once: true }}
+                                            transition={{
+                                                delay: interest.delay,
+                                                duration: 0.3,
+                                            }}
+                                            className="flex items-center gap-2 text-sm"
+                                        >
+                                            {typeof interest.icon ===
+                                            "string" ? (
+                                                <span className="text-lg">
+                                                    {interest.icon}
+                                                </span>
+                                            ) : (
+                                                <interest.icon className="h-4 w-4 text-rose-600 dark:text-rose-400" />
+                                            )}
+                                            <span className="text-muted-foreground">
+                                                {interest.text}
+                                            </span>
+                                        </motion.div>
+                                    ))}
+                                    <motion.div
+                                        initial={{ opacity: 0, x: -20 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{
+                                            delay: 0.6,
+                                            duration: 0.3,
+                                        }}
+                                        className="pt-2"
+                                    >
+                                        <Badge
+                                            variant="outline"
+                                            className="border-rose-300 text-rose-700 dark:border-rose-700 dark:text-rose-300"
+                                        >
+                                            Always Learning
+                                        </Badge>
+                                    </motion.div>
+                                </div>
                             </motion.div>
                         </Card>
                     </motion.div>
@@ -278,32 +376,37 @@ const BentoGrid = () => {
                                     </h4>
                                 </div>
                                 <div className="space-y-4">
-                                    <div className="aspect-video bg-gradient-to-br from-primary/5 to-secondary/5 rounded-lg border-2 border-dashed border-primary/20 flex items-center justify-center">
+                                    <div className="aspect-video bg-gradient-to-br from-primary/5 to-secondary/5 rounded-lg flex items-center justify-center">
                                         <div className="text-center">
-                                            <Globe className="h-12 w-12 text-primary/40 mx-auto mb-2" />
-                                            <p className="text-sm text-muted-foreground">
-                                                Project Screenshot
-                                            </p>
+                                            <Image
+                                                src="/images/FamilyGameRoom.png"
+                                                alt="Online Game Platform Screenshot"
+                                                width={400}
+                                                height={225}
+                                            />
                                         </div>
                                     </div>
                                     <div>
                                         <h5 className="font-semibold mb-2">
-                                            E-Commerce Platform
+                                            Online Game Platform
                                         </h5>
                                         <p className="text-sm text-muted-foreground mb-3">
-                                            A full-stack e-commerce solution
-                                            built with Next.js, Node.js, and
-                                            PostgreSQL
+                                            A full-stack online game platform
+                                            built with Next.js, Express.js, and
+                                            WebSockets, that allows users to
+                                            play multiplayer games in real-time
+                                            with friends and family, such as
+                                            Spades and Dominoes.
                                         </p>
                                         <div className="flex gap-2">
                                             <Badge variant="secondary">
                                                 React
                                             </Badge>
                                             <Badge variant="secondary">
-                                                Node.js
+                                                Express.js
                                             </Badge>
                                             <Badge variant="secondary">
-                                                PostgreSQL
+                                                WebSockets
                                             </Badge>
                                         </div>
                                     </div>
@@ -326,12 +429,14 @@ const BentoGrid = () => {
                                 <h4 className="font-semibold mb-3">
                                     Let&apos;s Connect
                                 </h4>
-                                <Button
-                                    size="sm"
-                                    className="w-full group-hover:scale-105 transition-transform"
-                                >
-                                    Say Hello
-                                </Button>
+                                <Link href="/contact">
+                                    <Button
+                                        size="sm"
+                                        className="w-full group-hover:scale-105 transition-transform"
+                                    >
+                                        Say Hello
+                                    </Button>
+                                </Link>
                             </motion.div>
                         </Card>
                     </motion.div>

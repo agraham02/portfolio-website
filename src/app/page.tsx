@@ -90,29 +90,26 @@ export default function Home() {
                     <HeroSection />
                 </section>
 
+                {/* Technology Stack */}
+                <section id="tech" className="mx-5">
+                    <TechStackSection techIcons={techIcons} />
+                </section>
+
                 {/* About Me - Bento Grid */}
-                <section id="about">
+                <section id="about" className="mx-5">
                     <BentoGrid />
                 </section>
 
                 {/* Features/Skills Section */}
-                <section id="features">
+                <section id="features" className="mx-5">
                     <FeaturesSection />
                 </section>
 
-                {/* Technology Stack */}
-                <section id="tech">
-                    <TechStackSection techIcons={techIcons} />
-                </section>
-
                 {/* Call to Action */}
-                <section id="contact">
+                <section id="contact" className="mx-5">
                     <CallToActionSection />
                 </section>
             </main>
-
-            {/* Floating Navigation */}
-            <FloatingNavigation />
 
             {/* Scroll to Top */}
             <ScrollToTop />
