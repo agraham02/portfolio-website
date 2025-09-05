@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Mail, MessageSquare, Calendar } from "lucide-react";
+import { ArrowRight, Mail, MessageSquare } from "lucide-react";
 import Link from "next/link";
 
 const CallToActionSection = () => {

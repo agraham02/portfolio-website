@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { MoveRight, Download, Mail, ExternalLink } from "lucide-react";
+import { MoveRight, Mail, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { AuroraBackground } from "../ui/aurora-background";

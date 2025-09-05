@@ -3,7 +3,6 @@ import BentoGrid from "@/components/home/BentoGrid";
 import FeaturesSection from "@/components/home/FeaturesSection";
 import TechStackSection from "@/components/home/TechStackSection";
 import CallToActionSection from "@/components/home/CallToActionSection";
-import FloatingNavigation from "@/components/FloatingNavigation";
 import ScrollToTop from "@/components/ScrollToTop";
 import {
     FaReact,
