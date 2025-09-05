@@ -11,7 +11,7 @@ export default function Footer({ version }: { version?: string }) {
     const footerLinks = [{ href: "/", label: "Home" }, ...navItems];
 
     return (
-        <footer className="relative bg-slate-100/80 dark:bg-slate-900/95 text-gray-700 dark:text-gray-300 overflow-hidden transition-colors duration-300">
+        <footer className="relative bg-slate-200/60 dark:bg-slate-900/95 text-gray-700 dark:text-gray-300 overflow-hidden transition-colors duration-300">
             {/* Animated Background Elements */}
             <div className="absolute inset-0">
                 <div className="absolute top-10 left-10 w-32 h-32 rounded-full blur-xl animate-pulse bg-blue-600/10 dark:bg-blue-500/10"></div>

@@ -18,7 +18,7 @@ export const SOCIALS = [
         color: "hover:text-blue-400",
     },
     {
-        href: `"mailto:${EMAIL}"`,
+        href: `mailto:${EMAIL}`,
         icon: HiOutlineMail,
         label: "Email",
         color: "hover:text-red-400",
