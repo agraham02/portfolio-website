@@ -7,7 +7,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import { ArrowUp, Heart, Code, Coffee, Zap } from "lucide-react";
 import { useEffect, useState } from "react";
 
-export default function Footer() {
+export default function Footer({ version }: { version?: string }) {
     const [showScrollTop, setShowScrollTop] = useState(false);
 
     useEffect(() => {
@@ -42,12 +42,6 @@ export default function Footer() {
             icon: FaLinkedin,
             label: "LinkedIn",
             color: "hover:text-blue-400",
-        },
-        {
-            href: "https://twitter.com/",
-            icon: FaTwitter,
-            label: "Twitter",
-            color: "hover:text-sky-400",
         },
         {
             href: "mailto:ahmadgrahamdev@gmail.com",
@@ -240,7 +234,7 @@ export default function Footer() {
                                 Terms
                             </Link>
                             <div className="text-xs bg-gray-800/50 px-3 py-1 rounded-full border border-gray-700/50">
-                                v1.0.0
+                                {version ? `v${version}` : "v1.0.0"}
                             </div>
                         </div>
                     </motion.div>
