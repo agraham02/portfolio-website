@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { HiOutlineMail } from "react-icons/hi";
 import { Heart, Code, Coffee, Zap } from "lucide-react";
 import { navItems, SOCIALS } from "@/lib/const";
 
