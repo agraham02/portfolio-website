@@ -3,20 +3,39 @@
 import Link from "next/link";
 import { Switch } from "@/components/ui/switch";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { Sun, Moon, Download } from "lucide-react";
 
 export default function Navbar() {
     // Theme state: 'light' | 'dark'
     const [theme, setTheme] = useState<string>("light");
+    const [isScrolled, setIsScrolled] = useState(false);
+
     useEffect(() => {
         // On mount, set theme from localStorage or system
-        const stored = typeof window !== "undefined" ? localStorage.getItem("theme") : null;
-        if (stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        const stored =
+            typeof window !== "undefined"
+                ? localStorage.getItem("theme")
+                : null;
+        if (
+            stored === "dark" ||
+            (!stored &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
             setTheme("dark");
             document.documentElement.classList.add("dark");
         } else {
             setTheme("light");
             document.documentElement.classList.remove("dark");
         }
+
+        // Handle scroll effect
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
     const toggleTheme = (checked: boolean) => {
         const newTheme = checked ? "dark" : "light";
@@ -30,64 +49,116 @@ export default function Navbar() {
             localStorage.setItem("theme", newTheme);
         }
     };
-    return (
-        <header className="fixed top-0 left-0 w-full z-50 bg-white/70 dark:bg-neutral-950/80 backdrop-blur-md shadow-sm">
-            <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                {/* Logo */}
-                <Link href="/">
-                    <span className="text-2xl font-bold text-gray-900 dark:text-white">
-                        &lt;<span className="text-blue-600 dark:text-cyan-400">Portfolio</span>
-                        /&gt;
-                    </span>
-                </Link>
 
-                {/* Nav links */}
-                <nav className="flex items-center space-x-8 text-gray-700 dark:text-gray-200 font-medium">
-                    <Link
-                        href="/projects"
-                        className="hover:text-blue-600 dark:hover:text-cyan-400 transition"
-                    >
-                        Projects
+    const navItems = [
+        { href: "/projects", label: "Projects" },
+        { href: "/blog", label: "Blog" },
+        { href: "/about", label: "About" },
+        { href: "/contact", label: "Contact" },
+    ];
+
+    return null;
+
+    return (
+        <motion.header
+            className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 hidden md:block ${
+                isScrolled
+                    ? "bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-gray-200/20 dark:border-gray-700/20"
+                    : "bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm"
+            }`}
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+            <div className="max-w-7xl mx-auto px-6 py-4">
+                <div className="flex justify-between items-center">
+                    {/* Logo */}
+                    <Link href="/">
+                        <motion.span
+                            className="text-2xl font-bold text-gray-900 dark:text-white"
+                            whileHover={{ scale: 1.05 }}
+                            transition={{
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 10,
+                            }}
+                        >
+                            &lt;
+                            <span className="text-blue-600 dark:text-cyan-400">
+                                Portfolio
+                            </span>
+                            /&gt;
+                        </motion.span>
                     </Link>
-                    <Link
-                        href="/blog"
-                        className="hover:text-blue-600 dark:hover:text-cyan-400 transition"
-                    >
-                        Blog
-                    </Link>
-                    <Link
-                        href="/about"
-                        className="hover:text-blue-600 dark:hover:text-cyan-400 transition"
-                    >
-                        About
-                    </Link>
-                    <Link
-                        href="/contact"
-                        className="hover:text-blue-600 dark:hover:text-cyan-400 transition"
-                    >
-                        Contact
-                    </Link>
-                    <Link
-                        href="/resume.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-blue-600 dark:bg-cyan-400 text-white dark:text-neutral-900 px-4 py-2 rounded-md hover:bg-blue-700 dark:hover:bg-cyan-500 transition"
-                    >
-                        Resume
-                    </Link>
-                    {/* Dark mode toggle */}
-                    <div className="ml-4 flex items-center gap-2">
-                        <Switch
-                            checked={theme === "dark"}
-                            onCheckedChange={toggleTheme}
-                            id="theme-toggle"
-                        />
-                        <label htmlFor="theme-toggle" className="text-xs text-gray-500 dark:text-gray-400 select-none">
-                            {theme === "dark" ? "Dark" : "Light"}
-                        </label>
-                    </div>
-                </nav>
+
+                    {/* Desktop Navigation */}
+                    <nav className="flex items-center space-x-8">
+                        {navItems.map((item, index) => (
+                            <motion.div
+                                key={item.href}
+                                initial={{ opacity: 0, y: -20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.1 + 0.2 }}
+                            >
+                                <Link
+                                    href={item.href}
+                                    className="relative text-gray-700 dark:text-gray-300 font-medium hover:text-blue-600 dark:hover:text-cyan-400 transition-colors duration-200 group"
+                                >
+                                    {item.label}
+                                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 dark:bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                                </Link>
+                            </motion.div>
+                        ))}
+
+                        {/* Theme Toggle */}
+                        <motion.div
+                            className="flex items-center gap-2"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.8 }}
+                        >
+                            <Sun
+                                size={16}
+                                className={`transition-colors ${
+                                    theme === "light"
+                                        ? "text-amber-500"
+                                        : "text-gray-400"
+                                }`}
+                            />
+                            <Switch
+                                checked={theme === "dark"}
+                                onCheckedChange={toggleTheme}
+                                id="theme-toggle"
+                            />
+                            <Moon
+                                size={16}
+                                className={`transition-colors ${
+                                    theme === "dark"
+                                        ? "text-cyan-400"
+                                        : "text-gray-400"
+                                }`}
+                            />
+                        </motion.div>
+
+                        {/* Resume Button */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.6 }}
+                        >
+                            <Link
+                                href="/Ahmad Graham - Software Engineer Resume.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 dark:bg-cyan-500 dark:hover:bg-cyan-600 text-white px-5 py-2.5 rounded-lg font-medium transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md"
+                            >
+                                <Download size={16} />
+                                Resume
+                            </Link>
+                        </motion.div>
+                    </nav>
+                </div>
             </div>
-        </header>
+        </motion.header>
     );
 }
