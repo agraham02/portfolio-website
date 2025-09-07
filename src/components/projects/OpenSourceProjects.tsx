@@ -1,3 +1,5 @@
+"use client";
+
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useState } from "react";
 import { Input } from "../ui/input";
