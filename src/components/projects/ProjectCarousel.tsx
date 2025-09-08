@@ -26,6 +26,14 @@ export default function ProjectCarousel({
     const [api, setApi] = useState<CarouselApi>();
     const [current, setCurrent] = useState(0);
     const [count, setCount] = useState(0);
+    const getItemsPerRow = () => {
+        if (typeof window === "undefined") return 3; // assume desktop on SSR
+        const w = window.innerWidth;
+        if (w >= 1024) return 3; // lg
+        if (w >= 768) return 2; // md
+        return 1; // base
+    };
+    const [itemsPerRow, setItemsPerRow] = useState<number>(getItemsPerRow());
 
     React.useEffect(() => {
         if (!api) return;
@@ -33,6 +41,15 @@ export default function ProjectCarousel({
         setCurrent(api.selectedScrollSnap());
         api.on("select", () => setCurrent(api.selectedScrollSnap()));
     }, [api]);
+
+    React.useEffect(() => {
+        const onResize = () => setItemsPerRow(getItemsPerRow());
+        window.addEventListener("resize", onResize);
+        return () => window.removeEventListener("resize", onResize);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const shouldUseCarousel = projects.length > itemsPerRow;
 
     return (
         <section className="py-16">
@@ -46,7 +63,7 @@ export default function ProjectCarousel({
                     <p className="text-center text-muted-foreground">
                         No projects to show here yet.
                     </p>
-                ) : (
+                ) : shouldUseCarousel ? (
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -57,7 +74,7 @@ export default function ProjectCarousel({
                             opts={{
                                 align: "start",
                                 dragFree: true,
-                                loop: true,
+                                loop: false,
                                 skipSnaps: false,
                                 containScroll: "trimSnaps",
                             }}
@@ -100,6 +117,16 @@ export default function ProjectCarousel({
                             ))}
                         </div>
                     </motion.div>
+                ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {projects.map((p) => (
+                            <ProjectCard
+                                key={p.id}
+                                project={p}
+                                isActive={true}
+                            />
+                        ))}
+                    </div>
                 )}
             </div>
         </section>
