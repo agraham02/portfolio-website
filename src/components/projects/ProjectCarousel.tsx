@@ -46,7 +46,6 @@ export default function ProjectCarousel({
         const onResize = () => setItemsPerRow(getItemsPerRow());
         window.addEventListener("resize", onResize);
         return () => window.removeEventListener("resize", onResize);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const shouldUseCarousel = projects.length > itemsPerRow;
@@ -82,7 +81,7 @@ export default function ProjectCarousel({
                             className="w-full"
                         >
                             <CarouselContent className="-ml-2 md:-ml-4">
-                                {projects.map((project, index) => (
+                                {projects.map((project) => (
                                     <CarouselItem
                                         key={project.id}
                                         className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3"

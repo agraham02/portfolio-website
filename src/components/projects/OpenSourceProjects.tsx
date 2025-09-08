@@ -50,6 +50,9 @@ interface Repo {
     fork?: boolean;
 }
 
+// Minimal shape from GitHub API we rely on during normalization
+type RepoJson = Omit<Repo, "topics"> & { topics?: unknown };
+
 const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -117,11 +120,16 @@ export default function OpenSourceProjects() {
                     );
                 }
 
-                const pageData: any[] = await response.json();
-                const normalized: Repo[] = pageData.map((r: any) => ({
-                    ...r,
-                    topics: Array.isArray(r.topics) ? r.topics : [],
-                }));
+                const pageData = (await response.json()) as unknown[];
+                const normalized: Repo[] = pageData.map((r) => {
+                    const obj = r as RepoJson;
+                    return {
+                        ...(obj as Omit<Repo, "topics">),
+                        topics: Array.isArray(obj.topics)
+                            ? (obj.topics as string[])
+                            : [],
+                    };
+                });
 
                 setRepos(normalized);
                 setGhPage(1);
@@ -170,11 +178,16 @@ export default function OpenSourceProjects() {
                     `Failed to load more repositories (status ${response.status}).`
                 );
             }
-            const pageData: any[] = await response.json();
-            const normalized: Repo[] = pageData.map((r: any) => ({
-                ...r,
-                topics: Array.isArray(r.topics) ? r.topics : [],
-            }));
+            const pageData = (await response.json()) as unknown[];
+            const normalized: Repo[] = pageData.map((r) => {
+                const obj = r as RepoJson;
+                return {
+                    ...(obj as Omit<Repo, "topics">),
+                    topics: Array.isArray(obj.topics)
+                        ? (obj.topics as string[])
+                        : [],
+                };
+            });
             setRepos((prev) => [...prev, ...normalized]);
             setGhPage(nextPage);
             const link = response.headers.get("link") || "";
@@ -369,7 +382,11 @@ export default function OpenSourceProjects() {
                                 <ArrowUpDown className="h-4 w-4 text-muted-foreground" />
                                 <Select
                                     value={sortBy}
-                                    onValueChange={(v) => setSortBy(v as any)}
+                                    onValueChange={(v: string) =>
+                                        setSortBy(
+                                            v as "updated" | "stars" | "name"
+                                        )
+                                    }
                                 >
                                     <SelectTrigger className="min-w-[160px]">
                                         <SelectValue placeholder="Sort by" />

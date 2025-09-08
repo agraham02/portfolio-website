@@ -148,7 +148,7 @@ export default function ProjectCard({
 
                     {/* Technologies */}
                     <div className="flex flex-wrap gap-1.5">
-                        {project.technologies.slice(0, 4).map((tech, index) => (
+                        {project.technologies.slice(0, 4).map((tech) => (
                             <Badge
                                 key={tech}
                                 variant="secondary"
