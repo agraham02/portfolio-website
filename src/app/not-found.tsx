@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { Home, ArrowLeft, Search, Mail } from "lucide-react";
 import Link from "next/link";
@@ -120,9 +120,9 @@ export default function NotFound() {
                         variants={itemVariants}
                         className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed"
                     >
-                        The page you&apos;re looking for seems to have wandered off
-                        into the digital void. Don&apos;t worry though, let&apos;s get you
-                        back on track!
+                        The page you&apos;re looking for seems to have wandered
+                        off into the digital void. Don&apos;t worry though,
+                        let&apos;s get you back on track!
                     </motion.p>
 
                     {/* Navigation buttons */}

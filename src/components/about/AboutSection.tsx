@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Badge } from "@/components/ui/badge";
 
 export default function AboutSection() {
@@ -45,17 +45,31 @@ export default function AboutSection() {
                 <motion.div
                     className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full blur-xl"
                     animate={{ y: [0, -10, 0] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                    }}
                 />
                 <motion.div
                     className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-r from-pink-400/10 to-orange-400/10 rounded-full blur-xl"
                     animate={{ y: [0, -10, 0] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                    transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: 1,
+                    }}
                 />
                 <motion.div
                     className="absolute bottom-20 left-1/3 w-40 h-40 bg-gradient-to-r from-green-400/10 to-teal-400/10 rounded-full blur-xl"
                     animate={{ y: [0, -10, 0] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                    transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: 2,
+                    }}
                 />
             </div>
 
@@ -241,20 +255,22 @@ export default function AboutSection() {
                         >
                             <div className="absolute top-4 left-4 w-1 h-12 bg-gradient-to-b from-purple-400 to-pink-500 rounded-full" />
                             <p className="text-slate-600 dark:text-slate-300 text-base md:text-lg leading-relaxed pl-6">
-                                When I&apos;m not coding, you&apos;ll find me at the gym,
-                                discovering new music, or spending quality time
-                                with friends. I believe in building things that
-                                make life better! 🚀
+                                When I&apos;m not coding, you&apos;ll find me at
+                                the gym, discovering new music, or spending
+                                quality time with friends. I believe in building
+                                things that make life better! 🚀
                             </p>
                         </motion.div>
                     </div>
 
                     {/* Enhanced Tech Stack */}
-                    <motion.div className="space-y-4"
+                    <motion.div
+                        className="space-y-4"
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ ...fadeIn, delay: 0.55 }}
-                        viewport={{ once: true }}>
+                        viewport={{ once: true }}
+                    >
                         <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2">
                             <span className="text-2xl">🛠️</span>
                             Tech Stack & Tools

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -43,7 +43,7 @@ const BentoGrid = () => {
     };
 
     return (
-        <section className="py-5 px-4">
+        <section className="py-5 px-12">
             <div className="container mx-auto max-w-7xl">
                 {/* Section header */}
                 <motion.div
@@ -75,7 +75,7 @@ const BentoGrid = () => {
                         variants={itemVariants}
                         className="lg:col-span-2 lg:row-span-2"
                     >
-                        <Card className="p-8 h-full bg-gradient-to-br from-card to-secondary/5 border-2 hover:border-primary/20 transition-all duration-300 group">
+                        <Card className="p-8 h-full bg-gradient-to-br from-card to-secondary/5 border-2 hover:border-primary/20 transition-all duration-300">
                             <motion.div
                                 className="h-full flex flex-col justify-between"
                                 whileHover={{ scale: 1.02 }}

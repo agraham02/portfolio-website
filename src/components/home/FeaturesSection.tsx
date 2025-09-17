@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Card } from "@/components/ui/card";
 import {
     Code2,
@@ -101,7 +101,7 @@ const FeaturesSection = () => {
     };
 
     return (
-        <section className="py-20 px-4 bg-gradient-to-b from-background to-secondary/10">
+        <section className="py-20 px-12 bg-gradient-to-b from-background to-secondary/10">
             <div className="container mx-auto max-w-7xl">
                 {/* Section header */}
                 <motion.div
@@ -112,8 +112,7 @@ const FeaturesSection = () => {
                     className="text-center mb-16"
                 >
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                        What I <span className="text-primary">Bring</span> to
-                        the Table
+                        What I Bring to the Table
                     </h2>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                         A comprehensive skill set covering the entire software

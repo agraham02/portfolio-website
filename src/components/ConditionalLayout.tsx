@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import MobileNavigation from "@/components/MobileNavigation";
 import Footer from "@/components/Footer";
+import ScrollToTop from "./ScrollToTop";
 
 export default function ConditionalLayout({
     children,
@@ -21,6 +22,7 @@ export default function ConditionalLayout({
             {!isConstructionPage && <MobileNavigation />}
             {children}
             {!isConstructionPage && <Footer version={version} />}
+            {!isConstructionPage && <ScrollToTop />}
         </>
     );
 }

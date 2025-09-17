@@ -1,63 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { HiOutlineMail } from "react-icons/hi";
-import { ArrowUp, Heart, Code, Coffee, Zap } from "lucide-react";
-import { useEffect, useState } from "react";
+import { motion } from "motion/react";
+import { Heart, Code, Coffee, Zap } from "lucide-react";
+import { navItems, SOCIALS } from "@/lib/const";
 
 export default function Footer({ version }: { version?: string }) {
-    const [showScrollTop, setShowScrollTop] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowScrollTop(window.scrollY > 400);
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    };
-
-    const footerLinks = [
-        { href: "/about", label: "About" },
-        { href: "/projects", label: "Projects" },
-        { href: "/blog", label: "Blog" },
-        { href: "/contact", label: "Contact" },
-    ];
-
-    const socialLinks = [
-        {
-            href: "https://github.com/agraham02",
-            icon: FaGithub,
-            label: "GitHub",
-            color: "hover:text-gray-300",
-        },
-        {
-            href: "https://www.linkedin.com/in/ahmad-graham",
-            icon: FaLinkedin,
-            label: "LinkedIn",
-            color: "hover:text-blue-400",
-        },
-        {
-            href: "mailto:ahmadgrahamdev@gmail.com",
-            icon: HiOutlineMail,
-            label: "Email",
-            color: "hover:text-red-400",
-        },
-    ];
+    const footerLinks = [{ href: "/", label: "Home" }, ...navItems];
 
     return (
-        <footer className="relative bg-gradient-to-br from-slate-900 via-gray-900 to-neutral-900 text-gray-300 overflow-hidden">
+        <footer className="relative bg-slate-200/60 dark:bg-slate-900/95 text-gray-700 dark:text-gray-300 overflow-hidden transition-colors duration-300">
             {/* Animated Background Elements */}
             <div className="absolute inset-0">
-                <div className="absolute top-10 left-10 w-32 h-32 bg-blue-500/10 rounded-full blur-xl animate-pulse"></div>
-                <div className="absolute bottom-20 right-20 w-40 h-40 bg-cyan-500/10 rounded-full blur-xl animate-pulse delay-1000"></div>
-                <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-purple-500/10 rounded-full blur-xl animate-pulse delay-2000"></div>
+                <div className="absolute top-10 left-10 w-32 h-32 rounded-full blur-xl animate-pulse bg-blue-600/10 dark:bg-blue-500/10"></div>
+                <div className="absolute bottom-20 right-20 w-40 h-40 rounded-full blur-xl animate-pulse delay-1000 bg-cyan-600/8 dark:bg-cyan-500/10"></div>
+                <div className="absolute top-1/2 left-1/3 w-24 h-24 rounded-full blur-xl animate-pulse delay-2000 bg-purple-600/8 dark:bg-purple-500/10"></div>
             </div>
 
             {/* Main Footer Content */}
@@ -73,27 +30,27 @@ export default function Footer({ version }: { version?: string }) {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6 }}
                             >
-                                <h1 className="text-3xl font-bold mb-4">
+                                <h1 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
                                     &lt;
-                                    <span className="text-blue-400">
+                                    <span className="text-blue-600 dark:text-blue-400">
                                         Ahmad Graham
                                     </span>{" "}
                                     /&gt;
                                 </h1>
-                                <p className="text-lg text-gray-400 mb-6 max-w-md">
+                                <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 max-w-md">
                                     Building digital experiences with clean code
                                     and innovative solutions.
                                 </p>
-                                <div className="flex items-center gap-2 text-sm text-gray-500">
+                                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                                     <span>Made with</span>
                                     <Heart
                                         size={16}
-                                        className="text-red-400 animate-pulse"
+                                        className="text-red-500 dark:text-red-400 animate-pulse"
                                     />
                                     <span>and</span>
                                     <Coffee
                                         size={16}
-                                        className="text-amber-400"
+                                        className="text-amber-500 dark:text-amber-400"
                                     />
                                     <span>by a passionate developer</span>
                                 </div>
@@ -108,8 +65,11 @@ export default function Footer({ version }: { version?: string }) {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: 0.2 }}
                             >
-                                <h3 className="text-white font-semibold mb-6 flex items-center gap-2">
-                                    <Code size={18} className="text-blue-400" />
+                                <h3 className="text-gray-900 dark:text-white font-semibold mb-6 flex items-center gap-2">
+                                    <Code
+                                        size={18}
+                                        className="text-blue-600 dark:text-blue-400"
+                                    />
                                     Quick Links
                                 </h3>
                                 <nav className="space-y-3">
@@ -126,7 +86,7 @@ export default function Footer({ version }: { version?: string }) {
                                         >
                                             <Link
                                                 href={link.href}
-                                                className="block text-gray-400 hover:text-white transition-colors duration-200 hover:translate-x-1 transform"
+                                                className="block text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 hover:translate-x-1 transform"
                                             >
                                                 {link.label}
                                             </Link>
@@ -144,12 +104,15 @@ export default function Footer({ version }: { version?: string }) {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: 0.4 }}
                             >
-                                <h3 className="text-white font-semibold mb-6 flex items-center gap-2">
-                                    <Zap size={18} className="text-cyan-400" />
+                                <h3 className="text-gray-900 dark:text-white font-semibold mb-6 flex items-center gap-2">
+                                    <Zap
+                                        size={18}
+                                        className="text-cyan-600 dark:text-cyan-400"
+                                    />
                                     Let&apos;s Connect
                                 </h3>
                                 <div className="grid grid-cols-2 gap-4">
-                                    {socialLinks.map((social, index) => {
+                                    {SOCIALS.map((social, index) => {
                                         const IconComponent = social.icon;
                                         return (
                                             <motion.div
@@ -178,10 +141,10 @@ export default function Footer({ version }: { version?: string }) {
                                                             : "_blank"
                                                     }
                                                     aria-label={social.label}
-                                                    className={`group flex items-center gap-3 p-3 rounded-lg bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 ${social.color} transition-all duration-300 hover:bg-gray-700/50 hover:border-gray-600/50 hover:scale-105`}
+                                                    className={`group flex items-center gap-3 p-3 rounded-lg bg-gray-100/60 dark:bg-gray-800/50 border border-gray-200/60 dark:border-gray-700/50 ${social.color} transition-all duration-300 hover:bg-gray-200/60 dark:hover:bg-gray-700/50 hover:scale-105`}
                                                 >
                                                     <IconComponent className="text-xl group-hover:scale-110 transition-transform duration-200" />
-                                                    <span className="text-sm font-medium opacity-80 group-hover:opacity-100">
+                                                    <span className="text-sm font-medium opacity-80 group-hover:opacity-100 text-gray-700 dark:text-gray-200">
                                                         {social.label}
                                                     </span>
                                                 </Link>
@@ -199,7 +162,7 @@ export default function Footer({ version }: { version?: string }) {
                         whileInView={{ opacity: 1, scaleX: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="border-t border-gradient-to-r from-transparent via-gray-700 to-transparent my-8"
+                        className="border-t border-gray-200/50 dark:border-gray-700/50 my-8"
                     />
 
                     {/* Bottom Section */}
@@ -208,11 +171,12 @@ export default function Footer({ version }: { version?: string }) {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.6 }}
-                        className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500"
+                        className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-600 dark:text-gray-500"
                     >
                         <div className="flex items-center gap-2 mb-4 md:mb-0">
                             <span>
-                                © 2025 Ahmad Graham. All rights reserved.
+                                © {new Date().getFullYear()} Ahmad Graham. All
+                                rights reserved.
                             </span>
                             <span className="hidden md:inline">•</span>
                             <span className="hidden md:inline">
@@ -223,43 +187,23 @@ export default function Footer({ version }: { version?: string }) {
                         <div className="flex items-center gap-4">
                             <Link
                                 href="/privacy"
-                                className="hover:text-white transition-colors duration-200"
+                                className="hover:text-black dark:hover:text-white transition-colors duration-200"
                             >
                                 Privacy
                             </Link>
                             <Link
                                 href="/terms"
-                                className="hover:text-white transition-colors duration-200"
+                                className="hover:text-black dark:hover:text-white transition-colors duration-200"
                             >
                                 Terms
                             </Link>
-                            <div className="text-xs bg-gray-800/50 px-3 py-1 rounded-full border border-gray-700/50">
+                            <div className="text-xs bg-gray-100/60 dark:bg-gray-800/50 px-3 py-1 rounded-full border border-gray-200/60 dark:border-gray-700/50 text-gray-700 dark:text-gray-200">
                                 {version ? `v${version}` : "v1.0.0"}
                             </div>
                         </div>
                     </motion.div>
                 </div>
             </div>
-
-            {/* Scroll to Top Button */}
-            <motion.button
-                onClick={scrollToTop}
-                className={`fixed bottom-8 right-8 p-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 ${
-                    showScrollTop
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-10 pointer-events-none"
-                }`}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0 }}
-                animate={{
-                    opacity: showScrollTop ? 1 : 0,
-                    y: showScrollTop ? 0 : 40,
-                }}
-                transition={{ duration: 0.3 }}
-            >
-                <ArrowUp size={20} />
-            </motion.button>
         </footer>
     );
 }
