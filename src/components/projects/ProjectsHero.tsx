@@ -5,6 +5,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Code2, Sparkles, ArrowRight } from "lucide-react";
 import { featuredProjects } from "@/lib/projectsData";
+import EnhancedImage from "../ui/enhanced-image";
+import EnhancedVideo from "../ui/enhanced-video";
 
 function FeaturedProjectsCarousel() {
     const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -53,21 +55,27 @@ function FeaturedProjectsCarousel() {
                                 aria-label={project.title}
                             >
                                 {isVideo ? (
-                                    <video
+                                    <EnhancedVideo
                                         className="w-full h-full object-cover"
                                         src={project.image}
                                         autoPlay
                                         loop
                                         muted
                                         playsInline
+                                        fallbackSize="lg"
+                                        showLoadingSpinner={true}
+                                        loadingClassName="rounded-lg"
                                     />
                                 ) : (
-                                    <Image
+                                    <EnhancedImage
                                         src={project.image}
                                         alt={project.title}
                                         fill
                                         priority
                                         className="object-cover"
+                                        fallbackSize="lg"
+                                        showLoadingSpinner={true}
+                                        loadingClassName="rounded-lg"
                                     />
                                 )}
                                 {/* Overlay content */}

@@ -17,6 +17,8 @@ import {
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { type Project } from "@/lib/projectsData";
+import EnhancedImage from "../ui/enhanced-image";
+import EnhancedVideo from "../ui/enhanced-video";
 
 const categoryIcons = {
     web: <Code2 className="w-4 h-4" />,
@@ -73,21 +75,27 @@ export default function ProjectCard({
                 {/* Project Image/Video */}
                 <div className="relative aspect-video overflow-hidden bg-muted/30">
                     {isVideo ? (
-                        <video
+                        <EnhancedVideo
                             src={project.image}
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                             autoPlay
                             loop
                             muted
                             playsInline
+                            fallbackSize="md"
+                            showLoadingSpinner={true}
+                            loadingClassName="rounded-t-lg"
                         />
                     ) : (
-                        <Image
+                        <EnhancedImage
                             src={project.image}
                             alt={project.title}
                             fill
                             className="object-cover transition-transform duration-500 group-hover:scale-105"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            fallbackSize="md"
+                            showLoadingSpinner={true}
+                            loadingClassName="rounded-t-lg"
                         />
                     )}
 
