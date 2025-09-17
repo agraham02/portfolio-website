@@ -43,6 +43,24 @@
     --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* --- Line Clamp Utilities --- */
+.line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+}
+
+.line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+}
+/* --- End Line Clamp Utilities --- */
+
 /* --- Infinite Scroll Animation --- */
 
 /* 1. Define the keyframes */
@@ -78,19 +96,15 @@
 
 /* --- Aurora Background --- */
 @theme inline {
-  --animate-aurora: aurora 60s linear infinite;
-  @keyframes aurora {
-    from {
-      background-position:
-        50% 50%,
-        50% 50%;
+    --animate-aurora: aurora 60s linear infinite;
+    @keyframes aurora {
+        from {
+            background-position: 50% 50%, 50% 50%;
+        }
+        to {
+            background-position: 350% 50%, 350% 50%;
+        }
     }
-    to {
-      background-position:
-        350% 50%,
-        350% 50%;
-    }
-  }
 }
 /* --- End Aurora Background --- */
 
@@ -176,4 +190,14 @@ html,
 body {
     transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
         color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dot pattern background */
+.bg-dot-pattern {
+    background-image: radial-gradient(
+        circle,
+        rgba(var(--foreground), 0.15) 1px,
+        transparent 1px
+    );
+    background-size: 20px 20px;
 }

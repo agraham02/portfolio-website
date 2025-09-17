@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, Download, Sun, Moon } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 

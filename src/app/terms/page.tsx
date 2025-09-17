@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Link from "next/link";
 import {
     Scale,
@@ -10,6 +10,7 @@ import {
     AlertCircle,
     CheckCircle,
 } from "lucide-react";
+import { EMAIL } from "@/lib/const";
 
 export default function TermsPage() {
     return (
@@ -224,10 +225,10 @@ export default function TermsPage() {
                                     <div className="flex items-center gap-3 p-3 bg-secondary/50 rounded-lg">
                                         <Coffee className="w-5 h-5 text-amber-500" />
                                         <Link
-                                            href="mailto:ahmadgrahamdev@gmail.com"
+                                            href={`mailto:${EMAIL}`}
                                             className="text-blue-600 dark:text-blue-400 hover:underline"
                                         >
-                                            ahmadgrahamdev@gmail.com
+                                            {EMAIL}
                                         </Link>
                                     </div>
                                 </motion.div>
