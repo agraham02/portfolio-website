@@ -56,17 +56,6 @@ export default function StickyStory({
 
     // Subtle transforms while sticky
     // TODO: fix phone animations on scroll
-    // const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.98, 1, 0.98]);
-    // const rotateX = useTransform(scrollYProgress, [0, 0.5, 1], [8, 0, -6]);
-    // const shadow = useTransform(
-    //     scrollYProgress,
-    //     [0, 0.5, 1],
-    //     [
-    //         "0 30px 80px rgba(0,0,0,0.2)",
-    //         "0 30px 80px rgba(0,0,0,0.25)",
-    //         "0 30px 80px rgba(0,0,0,0.15)",
-    //     ]
-    // );
 
     // Screen resolver
     const Screen = useMemo(() => {
