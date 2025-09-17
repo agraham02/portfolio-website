@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { MoveRight, Mail, ExternalLink } from "lucide-react";
 import Link from "next/link";
@@ -43,7 +43,7 @@ function Content() {
                     >
                         <span className="block">Hi, I&apos;m</span>
                         <motion.span
-                            className="block bg-gradient-to-r from-primary via-primary/80 to-secondary bg-clip-text"
+                            className="block bg-gradient-to-r from-primary via-primary/80 to-secondary"
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.6, duration: 0.8 }}

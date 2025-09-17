@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useCallback, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { Loader2 } from "lucide-react";
 import MediaNotAvailable from "../MediaNotAvailable";
 
@@ -9,6 +9,7 @@ interface EnhancedVideoProps
     fallbackSize?: "sm" | "md" | "lg";
     showLoadingSpinner?: boolean;
     loadingClassName?: string;
+    loadingTimeoutMs?: number;
     onLoadComplete?: () => void;
     onError?: () => void;
 }
@@ -19,6 +20,7 @@ export default function EnhancedVideo({
     fallbackSize = "md",
     showLoadingSpinner = true,
     loadingClassName = "",
+    loadingTimeoutMs = 1500,
     onLoadComplete,
     onError,
     ...props
@@ -37,14 +39,14 @@ export default function EnhancedVideo({
         onError?.();
     }, [onError]);
 
-    // Auto-hide loading after a short timeout - videos load quickly
+    // Auto-hide loading after a configurable timeout - videos load quickly
     useEffect(() => {
         const timeout = setTimeout(() => {
             setIsLoading(false);
-        }, 1500); // 1.5 second max loading time
+        }, loadingTimeoutMs);
 
         return () => clearTimeout(timeout);
-    }, [src]);
+    }, [src, loadingTimeoutMs]);
 
     // If there's an error or no src, show fallback
     if (hasError || !src) {

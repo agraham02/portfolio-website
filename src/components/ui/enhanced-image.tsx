@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useCallback } from "react";
 import Image, { ImageProps } from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { Loader2 } from "lucide-react";
 import MediaNotAvailable from "../MediaNotAvailable";
 

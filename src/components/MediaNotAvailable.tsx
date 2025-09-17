@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ImageOff, AlertCircle, VideoOff } from "lucide-react";
 
 interface MediaNotAvailableProps {
@@ -10,29 +10,30 @@ interface MediaNotAvailableProps {
     type?: "image" | "video";
 }
 
-export default function MediaNotAvailable({ 
-    className = "", 
+export default function MediaNotAvailable({
+    className = "",
     showText = true,
     size = "md",
-    type = "image"
+    type = "image",
 }: MediaNotAvailableProps) {
     const sizeClasses = {
         sm: "w-8 h-8",
         md: "w-12 h-12",
-        lg: "w-16 h-16"
+        lg: "w-16 h-16",
     };
 
     const textSizes = {
         sm: "text-xs",
         md: "text-sm",
-        lg: "text-base"
+        lg: "text-base",
     };
 
     const IconComponent = type === "video" ? VideoOff : ImageOff;
-    const fallbackText = type === "video" ? "Video not available" : "Image not available";
+    const fallbackText =
+        type === "video" ? "Video not available" : "Image not available";
 
     return (
-        <motion.div 
+        <motion.div
             className={`flex flex-col items-center justify-center w-full h-full bg-muted/20 border-2 border-dashed border-muted-foreground/20 rounded-lg p-4 ${className}`}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -45,21 +46,25 @@ export default function MediaNotAvailable({
                 className="flex flex-col items-center gap-2"
             >
                 <div className="relative">
-                    <IconComponent 
+                    <IconComponent
                         className={`${sizeClasses[size]} text-muted-foreground/60`}
                     />
                     <motion.div
                         className="absolute -top-1 -right-1"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        transition={{ delay: 0.2, type: "spring", stiffness: 300 }}
+                        transition={{
+                            delay: 0.2,
+                            type: "spring",
+                            stiffness: 300,
+                        }}
                     >
                         <AlertCircle className="w-4 h-4 text-destructive/70" />
                     </motion.div>
                 </div>
-                
+
                 {showText && (
-                    <motion.p 
+                    <motion.p
                         className={`${textSizes[size]} text-foreground text-center font-medium`}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}

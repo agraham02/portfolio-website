@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { Shield, Coffee, Smile, Heart, Database, X } from "lucide-react";
 import { EMAIL } from "@/lib/const";

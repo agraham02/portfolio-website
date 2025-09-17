@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
@@ -17,7 +17,12 @@ interface ImageGridProps {
 export default function ImageGrid({ images, className }: ImageGridProps) {
     // Simple inline animation helpers
     const itemInitial = { opacity: 0, y: 20, scale: 0.95 };
-    const itemAnimate = { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5 } };
+    const itemAnimate = {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        transition: { duration: 0.5 },
+    };
 
     // Generate grid layout based on number of images
     const getGridLayout = (count: number) => {
