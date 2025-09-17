@@ -1,7 +1,7 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Code2, Sparkles, ArrowRight } from "lucide-react";
 import { featuredProjects } from "@/lib/projectsData";
 import EnhancedImage from "../ui/enhanced-image";
