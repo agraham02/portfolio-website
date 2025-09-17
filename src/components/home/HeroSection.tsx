@@ -4,7 +4,6 @@ import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { MoveRight, Mail, ExternalLink } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import { AuroraBackground } from "../ui/aurora-background";
 import { ContainerTextFlip } from "../ui/container-text-flip";
 import { EMAIL, RESUME_URL } from "@/lib/const";
