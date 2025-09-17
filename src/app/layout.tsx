@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import ConditionalLayout from "@/components/ConditionalLayout";
 import packageJson from "../../package.json";
 import { Analytics } from "@vercel/analytics/next";
+import Navbar from "@/components/Navbar";
+import MobileNavigation from "@/components/MobileNavigation";
+import ScrollToTop from "@/components/ScrollToTop";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -32,10 +35,12 @@ export default function RootLayout({
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
-                <ConditionalLayout version={version}>
-                    {children}
-                    <Analytics />
-                </ConditionalLayout>
+                <Navbar />
+                <MobileNavigation />
+                {children}
+                <Footer version={version} />
+                <ScrollToTop />
+                <Analytics />
             </body>
         </html>
     );
