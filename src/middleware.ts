@@ -1,25 +1,45 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { UNDER_CONSTRUCTION } from "@/lib/construction";
 
-export function middleware(request: NextRequest) {
-    // Skip middleware for static files and API routes
-    if (
-        request.nextUrl.pathname.startsWith("/_next") ||
-        request.nextUrl.pathname.startsWith("/api") ||
-        request.nextUrl.pathname.includes(".")
-    ) {
-        return NextResponse.next();
-    }
+// Allowlist of routes that should remain publicly accessible
+const ALLOWED_PATHS = new Set<string>([
+  "/",
+  "/projects",
+  "/coming-soon",
+  "/favicon.ico",
+  "/sitemap.xml",
+  "/robots.txt",
+]);
 
-    // If under construction, redirect all routes to construction page
-    if (UNDER_CONSTRUCTION && request.nextUrl.pathname !== "/construction") {
-        return NextResponse.redirect(new URL("/construction", request.url));
-    }
+const normalizePath = (pathname: string): string =>
+  pathname.endsWith("/") && pathname !== "/" ? pathname.slice(0, -1) : pathname;
 
+export function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl;
+
+  // Normalize path (treat "/about" and "/about/" the same)
+  const path = normalizePath(pathname);
+
+  // Allow exact matches on the allowlist
+  if (ALLOWED_PATHS.has(path)) {
     return NextResponse.next();
+  }
+
+  // Allow subpaths under explicitly allowed roots (e.g., /projects/*)
+  if (path.startsWith("/projects/")) {
+    return NextResponse.next();
+  }
+
+  // Otherwise, rewrite to the Coming Soon page
+  const url = req.nextUrl.clone();
+  url.pathname = "/coming-soon";
+  return NextResponse.rewrite(url);
 }
 
+// Match all paths except Next.js internals and any file with an extension (e.g., assets)
+// Pattern recommended by Next.js examples
 export const config = {
-    matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|.*\\..*).*)",
+  ],
 };

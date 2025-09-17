@@ -4,10 +4,9 @@ import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { MoveRight, Mail, ExternalLink } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import { AuroraBackground } from "../ui/aurora-background";
 import { ContainerTextFlip } from "../ui/container-text-flip";
-import { RESUME_URL } from "@/lib/const";
+import { EMAIL, RESUME_URL } from "@/lib/const";
 
 function Content() {
     return (
@@ -43,10 +42,10 @@ function Content() {
                     >
                         <span className="block">Hi, I&apos;m</span>
                         <motion.span
-                            className="block bg-gradient-to-r from-primary via-primary/80 to-secondary"
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.6, duration: 0.8 }}
+                            className="text-primary"
                         >
                             Ahmad Graham
                         </motion.span>
@@ -116,8 +115,7 @@ function Content() {
                             <ExternalLink className="h-5 w-5" />
                         </Button>
                     </Link>
-
-                    <Link href="mailto:your.email@example.com">
+                    <Link href={`mailto:${EMAIL}`}>
                         <Button
                             variant="ghost"
                             size="lg"
@@ -166,7 +164,7 @@ function Content() {
     );
 }
 
-function Temp() {
+const HeroSection = () => {
     return (
         <AuroraBackground>
             <motion.div
@@ -210,129 +208,6 @@ function Temp() {
                 </motion.div>
             </motion.div>
         </AuroraBackground>
-    );
-}
-
-const HeroSection = () => {
-    return <Temp />;
-
-    return (
-        <section className="min-h-screen flex items-center justify-center px-4 py-20 relative overflow-hidden">
-            {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" />
-
-            {/* Animated background elements */}
-            <div className="absolute inset-0 overflow-hidden">
-                <motion.div
-                    className="absolute top-20 left-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl"
-                    animate={{
-                        x: [0, 100, 0],
-                        y: [0, -50, 0],
-                    }}
-                    transition={{
-                        duration: 20,
-                        repeat: Infinity,
-                        ease: "linear",
-                    }}
-                />
-                <motion.div
-                    className="absolute bottom-20 right-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl"
-                    animate={{
-                        x: [0, -80, 0],
-                        y: [0, 60, 0],
-                    }}
-                    transition={{
-                        duration: 25,
-                        repeat: Infinity,
-                        ease: "linear",
-                    }}
-                />
-            </div>
-
-            <div className="container mx-auto max-w-7xl relative z-10">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    {/* Right side - Profile image with floating elements */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{
-                            duration: 0.8,
-                            delay: 0.4,
-                            ease: "easeOut",
-                        }}
-                        className="relative flex justify-center lg:justify-end"
-                    >
-                        <div className="relative">
-                            {/* Main profile image */}
-                            <motion.div
-                                className="relative w-80 h-80 lg:w-96 lg:h-96"
-                                whileHover={{ scale: 1.05 }}
-                                transition={{ duration: 0.3 }}
-                            >
-                                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-2xl" />
-                                <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-background shadow-2xl">
-                                    <Image
-                                        src="/images/portrait.png" // Replace with your actual image path
-                                        alt="Your Name - Software Engineer"
-                                        fill
-                                        className="object-cover"
-                                        priority
-                                    />
-                                </div>
-                            </motion.div>
-
-                            {/* Floating tech icons */}
-                            <motion.div
-                                className="absolute -top-4 -right-4 w-16 h-16 bg-card border border-border rounded-xl flex items-center justify-center shadow-lg"
-                                animate={{
-                                    y: [0, -10, 0],
-                                    rotate: [0, 5, 0],
-                                }}
-                                transition={{
-                                    duration: 4,
-                                    repeat: Infinity,
-                                    ease: "easeInOut",
-                                }}
-                            >
-                                <span className="text-2xl">⚛️</span>
-                            </motion.div>
-
-                            <motion.div
-                                className="absolute -bottom-6 -left-6 w-20 h-20 bg-card border border-border rounded-xl flex items-center justify-center shadow-lg"
-                                animate={{
-                                    y: [0, 10, 0],
-                                    rotate: [0, -5, 0],
-                                }}
-                                transition={{
-                                    duration: 5,
-                                    repeat: Infinity,
-                                    ease: "easeInOut",
-                                    delay: 1,
-                                }}
-                            >
-                                <span className="text-3xl">🚀</span>
-                            </motion.div>
-
-                            <motion.div
-                                className="absolute top-1/2 -left-8 w-12 h-12 bg-card border border-border rounded-lg flex items-center justify-center shadow-lg"
-                                animate={{
-                                    x: [0, -5, 0],
-                                    rotate: [0, 10, 0],
-                                }}
-                                transition={{
-                                    duration: 3,
-                                    repeat: Infinity,
-                                    ease: "easeInOut",
-                                    delay: 2,
-                                }}
-                            >
-                                <span className="text-xl">💻</span>
-                            </motion.div>
-                        </div>
-                    </motion.div>
-                </div>
-            </div>
-        </section>
     );
 };
 
