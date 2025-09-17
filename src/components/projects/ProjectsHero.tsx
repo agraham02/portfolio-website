@@ -71,7 +71,7 @@ function FeaturedProjectsCarousel() {
                                     />
                                 )}
                                 {/* Overlay content */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-300" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 transition-opacity duration-300" />
                                 <div className="absolute bottom-0 left-0 right-0 p-6 z-10 flex flex-col gap-3 text-white pointer-events-none">
                                     <motion.h3
                                         className="text-2xl lg:text-3xl font-bold drop-shadow-lg text-right"
@@ -82,7 +82,7 @@ function FeaturedProjectsCarousel() {
                                         {project.title}
                                     </motion.h3>
                                     <motion.p
-                                        className="text-sm lg:text-base line-clamp-3 max-w-xl drop-shadow-md text-right leading-relaxed"
+                                        className="text-sm lg:text-base line-clamp-3 max-w-xl drop-shadow-md text-right leading-relaxed self-end"
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.3 }}
