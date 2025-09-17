@@ -1,7 +1,6 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Code2, Sparkles, ArrowRight } from "lucide-react";
 import { featuredProjects } from "@/lib/projectsData";

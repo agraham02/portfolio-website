@@ -15,7 +15,6 @@ import {
     ArrowRight,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import { type Project } from "@/lib/projectsData";
 import EnhancedImage from "../ui/enhanced-image";
 import EnhancedVideo from "../ui/enhanced-video";
