@@ -63,7 +63,7 @@ export default function Navbar() {
             animate={{ y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
         >
-            <div className="max-w-7xl mx-auto px-6 py-4">
+            <div className="mx-auto px-6 py-4">
                 <div className="flex justify-between items-center">
                     {/* Logo */}
                     <Link href="/">
