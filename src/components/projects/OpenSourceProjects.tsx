@@ -34,6 +34,7 @@ import {
 } from "../ui/select";
 import { Switch } from "../ui/switch";
 import { Tooltip, TooltipProvider } from "../ui/tooltip";
+import Link from "next/link";
 
 interface Repo {
     id: number;
@@ -561,19 +562,17 @@ export default function OpenSourceProjects() {
                                                                 <div className="flex items-center gap-1">
                                                                     {repo.homepage && (
                                                                         <Tooltip label="Open homepage">
-                                                                            <Button
-                                                                                size="sm"
-                                                                                variant="ghost"
-                                                                                onClick={() =>
-                                                                                    window.open(
-                                                                                        repo.homepage!,
-                                                                                        "_blank"
-                                                                                    )
+                                                                            <Link
+                                                                                href={
+                                                                                    repo.homepage!
                                                                                 }
+                                                                                target="_blank"
+                                                                                rel="noopener noreferrer"
                                                                                 className="opacity-0 group-hover:opacity-100 transition-opacity"
+                                                                                aria-label={`Open ${repo.name} homepage`}
                                                                             >
                                                                                 <Globe className="h-4 w-4" />
-                                                                            </Button>
+                                                                            </Link>
                                                                         </Tooltip>
                                                                     )}
                                                                     <Tooltip label="Open on GitHub">
