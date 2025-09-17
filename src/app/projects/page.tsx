@@ -2,6 +2,7 @@ import ProjectsHero from "@/components/projects/ProjectsHero";
 import ProjectCarousel from "@/components/projects/ProjectCarousel";
 import OpenSourceProjects from "@/components/projects/OpenSourceProjects";
 import { allProjects, Project } from "@/lib/projectsData";
+import CallToActionSection from "@/components/home/CallToActionSection";
 
 const isArchivedOrScrapped = (p: Project) =>
     p.scope === "scrapped" ||
@@ -34,6 +35,8 @@ const ProjectsPage = () => {
             />
 
             <OpenSourceProjects />
+
+            <CallToActionSection />
         </div>
     );
 };
