@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import packageJson from "../../package.json";
 import { Analytics } from "@vercel/analytics/next";
@@ -29,6 +30,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     const version = packageJson?.version ?? "1.0.0";
+    const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
     return (
         <html lang="en">
@@ -41,6 +43,14 @@ export default function RootLayout({
                 <Footer version={version} />
                 <ScrollToTop />
                 <Analytics />
+
+                {/* Google reCAPTCHA v3 Script */}
+                {recaptchaSiteKey && (
+                    <Script
+                        src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
+                        strategy="lazyOnload"
+                    />
+                )}
             </body>
         </html>
     );
