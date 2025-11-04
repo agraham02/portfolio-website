@@ -3,6 +3,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Scroll padding to account for fixed navbar */
+html {
+    scroll-padding-top: 4rem;
+}
+
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);

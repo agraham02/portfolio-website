@@ -11,8 +11,8 @@ export default function Phone({ className, children }: PhoneProps) {
     return (
         <div
             className={cn(
-                "relative aspect-[9/19.5] w-[180px] rounded-3xl border border-black/5 bg-white/90 shadow-2xl backdrop-blur",
-                "sm:w-[200px] md:w-[260px] lg:w-[300px]",
+                "relative aspect-[9/19.5] w-[260px] rounded-3xl border border-black/5 bg-white/90 shadow-2xl backdrop-blur",
+                "lg:w-[300px]",
                 className
             )}
         >

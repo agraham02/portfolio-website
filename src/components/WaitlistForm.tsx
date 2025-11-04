@@ -77,33 +77,45 @@ export default function WaitlistForm({
      * Wait for the grecaptcha object to be available
      */
     useEffect(() => {
-        // Check if reCAPTCHA is already loaded
-        if (window.grecaptcha) {
-            window.grecaptcha.ready(() => {
-                setIsRecaptchaReady(true);
-            });
-        } else {
-            // Poll for grecaptcha to become available
-            const interval = setInterval(() => {
-                if (window.grecaptcha) {
-                    window.grecaptcha.ready(() => {
+        let isMounted = true;
+        let interval: NodeJS.Timeout | undefined;
+        let timeout: NodeJS.Timeout | undefined;
+
+        const initRecaptcha = () => {
+            // Check if reCAPTCHA is already loaded
+            if (window.grecaptcha) {
+                window.grecaptcha.ready(() => {
+                    if (isMounted) {
                         setIsRecaptchaReady(true);
-                    });
-                    clearInterval(interval);
-                }
-            }, 100);
+                    }
+                });
+            } else {
+                // Poll for grecaptcha to become available
+                interval = setInterval(() => {
+                    if (window.grecaptcha) {
+                        window.grecaptcha.ready(() => {
+                            if (isMounted) {
+                                setIsRecaptchaReady(true);
+                            }
+                        });
+                        if (interval) clearInterval(interval);
+                    }
+                }, 100);
 
-            // Clean up interval after 10 seconds
-            const timeout = setTimeout(() => {
-                clearInterval(interval);
-                console.error("reCAPTCHA failed to load after 10 seconds");
-            }, 10000);
+                // Set timeout but don't log error (reCAPTCHA may load after this)
+                timeout = setTimeout(() => {
+                    if (interval) clearInterval(interval);
+                }, 10000);
+            }
+        };
 
-            return () => {
-                clearInterval(interval);
-                clearTimeout(timeout);
-            };
-        }
+        initRecaptcha();
+
+        return () => {
+            isMounted = false;
+            if (interval) clearInterval(interval);
+            if (timeout) clearTimeout(timeout);
+        };
     }, []);
 
     /**

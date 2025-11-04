@@ -13,6 +13,7 @@ import Screen1 from "./screens/Screen1";
 import Screen2 from "./screens/Screen2";
 import Screen3 from "./screens/Screen3";
 import Screen4 from "./screens/Screen4";
+import { Button } from "@/components/ui/button";
 
 // Content for each sticky screen
 const screenContent = [
@@ -48,11 +49,32 @@ export default function ScrollStoryContainer() {
         offset: ["start start", "end end"],
     });
 
+    // Scroll to where screen 1 starts (sticky phase begins)
+    const handleSeeHowItWorks = () => {
+        if (containerRef.current) {
+            const containerTop =
+                containerRef.current.getBoundingClientRect().top +
+                window.scrollY +
+                60;
+            // Screen 1 starts around 30% of the container scroll
+            const targetScroll = containerTop + window.innerHeight * 1.2;
+            window.scrollTo({ top: targetScroll, behavior: "smooth" });
+        }
+    };
+
+    // Scroll to waitlist section
+    const handleJoinWaitlist = () => {
+        const waitlistSection = document.getElementById("waitlist");
+        if (waitlistSection) {
+            waitlistSection.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     // Check if mobile for responsive transforms
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        const checkMobile = () => setIsMobile(window.innerWidth < 1024);
         checkMobile();
         window.addEventListener("resize", checkMobile);
         return () => window.removeEventListener("resize", checkMobile);
@@ -66,7 +88,7 @@ export default function ScrollStoryContainer() {
         prefersReducedMotion
             ? ["0vh", "0vh", "0vh", "0vh"] // No movement if reduced motion
             : isMobile
-            ? ["20vh", "0vh", "0vh", "0vh"] // Start slightly below on mobile
+            ? ["-22vh", "8vh", "8vh", "8vh"] // Start slightly below on mobile
             : ["0vh", "12vh", "12vh", "12vh"] // Desktop: stay at sticky center throughout
     );
 
@@ -88,7 +110,7 @@ export default function ScrollStoryContainer() {
         prefersReducedMotion
             ? [1, 1, 1, 1, 1] // No scale if reduced motion
             : isMobile
-            ? [0.8, 0.85, 1, 1, 1]
+            ? [0.7, 0.8, 0.8, 0.8, 0.7]
             : [0.95, 0.9, 0.9, 0.9, 0.85]
     );
 
@@ -152,32 +174,29 @@ export default function ScrollStoryContainer() {
             {/* Hero Content Layer - Fades out as scroll progresses */}
             <motion.div
                 style={{ opacity: heroOpacity, y: heroY }}
-                className="sticky top-0 left-0 right-0 h-screen flex items-center pointer-events-none"
+                className="sticky top-0 left-0 right-0 h-screen flex items-end lg:items-center  pointer-events-none"
             >
-                <div className="max-w-6xl mx-auto px-6 w-full">
+                <div className="max-w-6xl mx-auto px-10 w-full">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
                         {/* Text Content */}
-                        <div className="pointer-events-auto">
-                            <h1 className="text-4xl md:text-5xl font-bold leading-tight tracking-tight">
+                        <div className="pointer-events-auto mb-44 lg:mb-0 text-center lg:text-left">
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight">
                                 A smarter way to share and connect
                             </h1>
-                            <p className="mt-4 text-lg text-muted-foreground">
+                            <p className="mt-4 text-md sm:text-lg text-muted-foreground">
                                 Divyo brings your social, contact, and business
                                 profiles together in a single, beautiful card.
                             </p>
-                            <div className="mt-6 flex gap-3">
-                                <a
-                                    href="#story"
-                                    className="rounded-md bg-black px-4 py-2 text-white shadow hover:bg-black/90 transition-colors"
+                            <div className="mt-6 flex gap-3 justify-center lg:justify-start">
+                                <Button
+                                    variant="secondary"
+                                    onClick={handleSeeHowItWorks}
                                 >
                                     See how it works
-                                </a>
-                                <a
-                                    href="#waitlist"
-                                    className="rounded-md border border-black/20 px-4 py-2 hover:bg-black/5 transition-colors"
-                                >
-                                    Get started
-                                </a>
+                                </Button>
+                                <Button onClick={handleJoinWaitlist}>
+                                    Join Waitlist
+                                </Button>
                             </div>
                         </div>
 
@@ -219,7 +238,7 @@ export default function ScrollStoryContainer() {
             {/* Sticky track for the phone: sticks until ~85%, then scrolls naturally without jumping */}
             {/* Absolute positioning at the start to overlap with hero, then sticky behavior kicks in */}
             <div
-                className="absolute top-0 left-0 right-0"
+                className="absolute top-0 left-0 right-0 pointer-events-none"
                 style={{ height: "400vh" }}
             >
                 <div className="sticky top-1/2 -translate-y-1/2 z-20 flex justify-center pointer-events-none">
