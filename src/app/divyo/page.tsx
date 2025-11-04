@@ -1,3 +1,4 @@
+import DivyoFAQ from "./_components/DivyoFAQ";
 import Orchestrator from "./_components/Orchestrator";
 import WaitlistForm from "@/components/WaitlistForm";
 
@@ -18,7 +19,7 @@ export default function DivyoLandingPage() {
             </section>
 
             {/* Waitlist CTA Section */}
-            <section className="mx-auto max-w-5xl px-6 py-24">
+            <section className="mx-auto max-w-5xl px-6 py-12">
                 <div className="flex flex-col items-center text-center space-y-8">
                     <div className="space-y-4">
                         <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
@@ -37,6 +38,10 @@ export default function DivyoLandingPage() {
                         No spam, ever. Unsubscribe anytime.
                     </p>
                 </div>
+            </section>
+
+            <section className="flex justify-center items-center">
+                <DivyoFAQ />
             </section>
         </main>
     );
