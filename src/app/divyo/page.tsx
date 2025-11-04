@@ -1,11 +1,13 @@
 import DivyoFAQ from "./_components/DivyoFAQ";
-import Orchestrator from "./_components/Orchestrator";
+import ScrollStoryContainer from "./_components/ScrollStoryContainer";
 import WaitlistForm from "@/components/WaitlistForm";
 
 export default function DivyoLandingPage() {
     return (
         <main className="flex flex-col">
-            <Orchestrator />
+            <div className="mt-12">
+                <ScrollStoryContainer />
+            </div>
 
             {/* Additional content placeholder */}
             <section className="mx-auto max-w-5xl px-6 pb-24">
@@ -19,7 +21,7 @@ export default function DivyoLandingPage() {
             </section>
 
             {/* Waitlist CTA Section */}
-            <section className="mx-auto max-w-5xl px-6 py-12">
+            <section id="waitlist" className="mx-auto max-w-5xl px-6 py-12">
                 <div className="flex flex-col items-center text-center space-y-8">
                     <div className="space-y-4">
                         <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
