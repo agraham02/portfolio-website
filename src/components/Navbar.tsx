@@ -54,7 +54,7 @@ export default function Navbar() {
 
     return (
         <motion.header
-            className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 hidden md:block ${
+            className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 hidden lg:block ${
                 isScrolled
                     ? "bg-slate-200/60 dark:bg-slate-900/95 backdrop-blur-md border-b border-gray-200/20 dark:border-gray-700/20"
                     : "bg-transparent backdrop-blur-sm"

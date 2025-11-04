@@ -354,7 +354,7 @@ export async function subscribeToWaitlist(
         }
 
         // 4. Check if email already exists
-        const { data: existingSignup, error: checkError } = await supabaseAdmin
+        const { data: existingSignup } = await supabaseAdmin
             .from("waitlist_signups")
             .select("email")
             .eq("email", email)

@@ -3,8 +3,63 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, Download, Sun, Moon } from "lucide-react";
+import { Download, Sun, Moon } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
+import { Button } from "./ui/button";
+
+function HamburgerButton({
+    isOpen,
+    toggle,
+}: {
+    isOpen: boolean;
+    toggle: () => void;
+}) {
+    const transition = { duration: 0.3 };
+
+    return (
+        <button
+            onClick={toggle}
+            className="relative w-12 h-12 flex items-center justify-center cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground rounded-md bg-white/30 dark:bg-black/30 backdrop-blur-md border border-gray-200/20 dark:border-gray-700/20 shadow-lg mt-1"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isOpen}
+        >
+            <div className="w-7 h-6 relative flex flex-col justify-center">
+                {/* Top bar */}
+                <motion.span
+                    className="absolute w-full h-1 bg-foreground rounded-full left-0"
+                    style={{ top: "0%" }}
+                    animate={
+                        isOpen
+                            ? { rotate: 45, top: "50%", translateY: "-50%" }
+                            : { rotate: 0, top: "0%", translateY: "0%" }
+                    }
+                    transition={transition}
+                />
+                {/* Middle bar */}
+                <motion.span
+                    className="absolute w-full h-1 bg-foreground rounded-full left-0 top-1/2 -translate-y-1/2"
+                    animate={
+                        isOpen
+                            ? { opacity: 0, scale: 0.8 }
+                            : { opacity: 1, scale: 1 }
+                    }
+                    transition={transition}
+                />
+                {/* Bottom bar */}
+                <motion.span
+                    className="absolute w-full h-1 bg-foreground rounded-full left-0"
+                    style={{ bottom: "0%" }}
+                    animate={
+                        isOpen
+                            ? { rotate: -45, bottom: "50%", translateY: "50%" }
+                            : { rotate: 0, bottom: "0%", translateY: "0%" }
+                    }
+                    transition={transition}
+                />
+            </div>
+        </button>
+    );
+}
 
 export default function MobileNavigation() {
     const [isOpen, setIsOpen] = useState(false);
@@ -47,51 +102,38 @@ export default function MobileNavigation() {
         { href: "/blog", label: "Blog" },
     ];
 
-    const menuVariants = {
-        closed: {
-            scale: 1,
-            borderRadius: "50%",
-            width: 64,
-            height: 64,
-        },
-        open: {
-            scale: 1,
-            borderRadius: "24px",
-            width: 280,
-            height: "auto",
-        },
-    };
-
-    const contentVariants = {
-        closed: {
-            opacity: 0,
-            y: 20,
-        },
-        open: {
-            opacity: 1,
-            y: 0,
-        },
-    };
-
-    const itemVariants = {
-        closed: { opacity: 0, x: -20 },
-        open: (i: number) => ({
-            opacity: 1,
-            x: 0,
-            transition: {
-                delay: i * 0.1 + 0.2,
-                duration: 0.3,
-            },
-        }),
-    };
-
     const handleLinkClick = () => {
         setIsOpen(false);
     };
 
+    // Container variants for staggered animation
+    const containerVariants = {
+        closed: { opacity: 0, width: 0, height: 0 },
+        open: {
+            opacity: 1,
+            width: "auto",
+            height: "auto",
+            transition: {
+                duration: 0.4,
+            },
+        },
+    };
+
+    // Item variants for staggered fade-in
+    const itemVariants = {
+        closed: { opacity: 0, y: -10 },
+        open: (custom: number) => ({
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.3,
+                delay: 0.15 + custom * 0.08,
+            },
+        }),
+    };
+
     return (
         <>
-            {/* Backdrop */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -104,133 +146,101 @@ export default function MobileNavigation() {
                 )}
             </AnimatePresence>
 
-            {/* Floating Menu */}
-            <motion.div
-                className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 md:hidden"
-                variants={menuVariants}
-                animate={isOpen ? "open" : "closed"}
-                transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 30,
-                    duration: 0.6,
-                }}
-                style={{
-                    transformOrigin: "center bottom",
-                }}
-            >
-                <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-gray-200/20 dark:border-gray-700/20 shadow-xl overflow-hidden">
-                    {/* Hamburger Button */}
-                    <motion.button
-                        onClick={() => setIsOpen(!isOpen)}
-                        className={`w-16 h-16 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors ${
-                            isOpen ? "absolute top-4 right-4 w-8 h-8" : ""
-                        }`}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        <motion.div
-                            animate={{ rotate: isOpen ? 180 : 0 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            {isOpen ? <X size={20} /> : <Menu size={24} />}
-                        </motion.div>
-                    </motion.button>
+            <div className="fixed bottom-6 left-6 z-50 lg:hidden">
+                <motion.div
+                    className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-gray-200/20 dark:border-gray-700/20 shadow-xl rounded-lg overflow-hidden"
+                    initial="closed"
+                    animate={isOpen ? "open" : "closed"}
+                    variants={containerVariants}
+                >
+                    {isOpen && (
+                        <motion.div className="p-6 min-w-[60vw]">
+                            {/* Navigation Links */}
+                            <nav className="flex flex-col space-y-2 mb-4">
+                                {navItems.map((item, index) => (
+                                    <motion.div
+                                        key={item.href}
+                                        custom={index}
+                                        initial="closed"
+                                        animate="open"
+                                        variants={itemVariants}
+                                    >
+                                        <Link
+                                            href={item.href}
+                                            onClick={handleLinkClick}
+                                            className="block text-lg font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors py-2 px-3 rounded-lg hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
+                                        >
+                                            {item.label}
+                                        </Link>
+                                    </motion.div>
+                                ))}
+                            </nav>
 
-                    {/* Menu Content */}
-                    <AnimatePresence>
-                        {isOpen && (
-                            <motion.div
-                                variants={contentVariants}
+                            {/* Divider */}
+                            <motion.hr
+                                className="my-4 border-gray-200/50 dark:border-gray-700/50"
+                                custom={navItems.length}
                                 initial="closed"
                                 animate="open"
-                                exit="closed"
-                                transition={{ duration: 0.3, delay: 0.1 }}
-                                className="p-6 pt-12 min-h-[300px]"
+                                variants={itemVariants}
+                            />
+
+                            {/* Theme Toggle */}
+                            <motion.div
+                                className="flex items-center justify-center gap-3 mb-6"
+                                custom={navItems.length + 1}
+                                initial="closed"
+                                animate="open"
+                                variants={itemVariants}
                             >
-                                {/* Navigation Links */}
-                                <nav className="flex flex-col space-y-4">
-                                    {navItems.map((item, index) => (
-                                        <motion.div
-                                            key={item.href}
-                                            custom={index}
-                                            variants={itemVariants}
-                                            initial="closed"
-                                            animate="open"
-                                        >
-                                            <Link
-                                                href={item.href}
-                                                onClick={handleLinkClick}
-                                                className="block text-lg font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors py-2 px-2 rounded-lg hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
-                                            >
-                                                {item.label}
-                                            </Link>
-                                        </motion.div>
-                                    ))}
-                                </nav>
-
-                                {/* Divider */}
-                                <motion.hr
-                                    className="my-6 border-gray-200/50 dark:border-gray-700/50"
-                                    variants={itemVariants}
-                                    custom={navItems.length}
-                                    initial="closed"
-                                    animate="open"
+                                <Sun
+                                    size={16}
+                                    className={`transition-colors ${
+                                        theme === "light"
+                                            ? "text-amber-500"
+                                            : "text-gray-400"
+                                    }`}
                                 />
-
-                                {/* Theme Toggle */}
-                                <motion.div
-                                    className="flex items-center justify-center gap-3 mb-4"
-                                    variants={itemVariants}
-                                    custom={navItems.length + 1}
-                                    initial="closed"
-                                    animate="open"
-                                >
-                                    <Sun
-                                        size={16}
-                                        className={`transition-colors ${
-                                            theme === "light"
-                                                ? "text-amber-500"
-                                                : "text-gray-400"
-                                        }`}
-                                    />
-                                    <Switch
-                                        checked={theme === "dark"}
-                                        onCheckedChange={toggleTheme}
-                                        id="mobile-floating-theme-toggle"
-                                    />
-                                    <Moon
-                                        size={16}
-                                        className={`transition-colors ${
-                                            theme === "dark"
-                                                ? "text-cyan-400"
-                                                : "text-gray-400"
-                                        }`}
-                                    />
-                                </motion.div>
-
-                                {/* Resume Button */}
-                                <motion.div
-                                    variants={itemVariants}
-                                    custom={navItems.length + 2}
-                                    initial="closed"
-                                    animate="open"
-                                >
-                                    <Link
-                                        href="/Ahmad Graham - Software Engineer Resume.pdf"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        onClick={handleLinkClick}
-                                        className="w-full inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 dark:bg-cyan-500 dark:hover:bg-cyan-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md"
-                                    >
-                                        <Download size={16} />
-                                        Download Resume
-                                    </Link>
-                                </motion.div>
+                                <Switch
+                                    checked={theme === "dark"}
+                                    onCheckedChange={toggleTheme}
+                                    id="mobile-floating-theme-toggle"
+                                />
+                                <Moon
+                                    size={16}
+                                    className={`transition-colors ${
+                                        theme === "dark"
+                                            ? "text-cyan-400"
+                                            : "text-gray-400"
+                                    }`}
+                                />
                             </motion.div>
-                        )}
-                    </AnimatePresence>
-                </div>
-            </motion.div>
+
+                            {/* Resume Button */}
+                            <motion.div
+                                custom={navItems.length + 2}
+                                initial="closed"
+                                animate="open"
+                                variants={itemVariants}
+                            >
+                                <Button
+                                    variant="outline"
+                                    className="w-full"
+                                    onClick={handleLinkClick}
+                                >
+                                    <Download size={16} />
+                                    View Resume
+                                </Button>
+                            </motion.div>
+                        </motion.div>
+                    )}
+                </motion.div>
+
+                <HamburgerButton
+                    isOpen={isOpen}
+                    toggle={() => setIsOpen(!isOpen)}
+                />
+            </div>
         </>
     );
 }

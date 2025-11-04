@@ -23,7 +23,7 @@
 
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
     subscribeToWaitlist,
     type SubscribeResponse,

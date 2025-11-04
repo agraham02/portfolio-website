@@ -26,9 +26,9 @@ export default function DivyoFAQ() {
                             </p>
                             <p className="leading-relaxed">
                                 Apps like Splitwise force you to manually enter
-                                each item. Divyo's advanced OCR instantly reads
-                                your receipt, so you skip the tedious data entry
-                                that wastes time at the table.
+                                each item. Divyo&apos;s advanced OCR instantly
+                                reads your receipt, so you skip the tedious data
+                                entry that wastes time at the table.
                             </p>
                         </div>
 
@@ -39,7 +39,7 @@ export default function DivyoFAQ() {
                             <p className="leading-relaxed">
                                 Most apps just split bills equally or require
                                 guesswork. Divyo automatically prorates tax and
-                                tip based on each person's actual items,
+                                tip based on each person&apos;s actual items,
                                 ensuring everyone pays exactly what they owe—no
                                 arguments.
                             </p>
@@ -82,10 +82,10 @@ export default function DivyoFAQ() {
             content: (
                 <div className="space-y-4">
                     <p className="leading-relaxed">
-                        As a software engineer, I've always wanted to create a
+                        As a software engineer, I&apos;ve always wanted to create a
                         mobile app that solves real-world problems. The idea
                         struck me when I was out with friends and we tried to
-                        manually split a restaurant bill. What should've been
+                        manually split a restaurant bill. What should&apos;ve been
                         simple turned into a tedious process—someone had to
                         calculate tax and tip, figure out who had what, and
                         there were always disagreements about fairness.
@@ -95,7 +95,7 @@ export default function DivyoFAQ() {
                         virtually every group meal or shared expense. I wanted
                         to build something that would eliminate that awkward
                         moment and make bill splitting as effortless as taking a
-                        photo. That's when Divyo was born.
+                        photo. That&apos;s when Divyo was born.
                     </p>
                 </div>
             ),
@@ -142,7 +142,7 @@ export default function DivyoFAQ() {
                         No problem! Divyo lets you manually add, edit, or delete
                         items after scanning. You can also modify quantities,
                         prices, or any other details with just a few taps. The
-                        app's calculations will update automatically.
+                        app&apos;s calculations will update automatically.
                     </p>
                     <p className="leading-relaxed">
                         For special charges like health surcharges or service
@@ -158,9 +158,9 @@ export default function DivyoFAQ() {
             content: (
                 <div className="space-y-4">
                     <p className="leading-relaxed">
-                        Absolutely! Once you've split the bill, you can share
+                        Absolutely! Once you&apos;ve split the bill, you can share
                         the breakdown with your friends via text, email, or
-                        directly through your favorite payment app. They'll see
+                        directly through your favorite payment app. They&apos;ll see
                         exactly how much they owe or are owed, to or from whom.
                     </p>
                     <p className="leading-relaxed">
@@ -266,8 +266,8 @@ export default function DivyoFAQ() {
                         Frequently Asked Questions
                     </h2>
                     <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
-                        Everything you need to know about Divyo. Can't find the
-                        answer you're looking for? Feel free to reach out to our
+                        Everything you need to know about Divyo. Can&apos;t find the
+                        answer you&apos;re looking for? Feel free to reach out to our
                         support team.
                     </p>
                 </div>
