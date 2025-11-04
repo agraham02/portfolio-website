@@ -5,6 +5,8 @@ import type { NextRequest } from "next/server";
 const ALLOWED_PATHS = new Set<string>([
   "/",
   "/projects",
+  "/divyo",
+  "/debug-env",
   "/coming-soon",
   "/favicon.ico",
   "/sitemap.xml",
