@@ -13,7 +13,7 @@ interface TechStackSectionProps {
 
 const TechStackSection = ({ techIcons }: TechStackSectionProps) => {
     return (
-        <section className="py-20 px-12 bg-gradient-to-b from-secondary/5 to-background">
+        <section className="py-20 px-6 lg:px-12 bg-gradient-to-b from-secondary/5 to-background">
             <div className="container mx-auto max-w-7xl">
                 {/* Section header */}
                 <motion.div
@@ -60,8 +60,8 @@ const TechStackSection = ({ techIcons }: TechStackSectionProps) => {
                     </div>
 
                     {/* Gradient overlays for smooth fade */}
-                    <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-20 pointer-events-none" />
-                    <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-20 pointer-events-none" />
+                    <div className="absolute left-0 top-0 bottom-0 lg:w-20 bg-gradient-to-r from-background to-transparent z-20 pointer-events-none" />
+                    <div className="absolute right-0 top-0 bottom-0 lg:w-20 bg-gradient-to-l from-background to-transparent z-20 pointer-events-none" />
                 </motion.div>
 
                 {/* Categories
