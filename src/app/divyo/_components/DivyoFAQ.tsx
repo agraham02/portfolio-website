@@ -278,9 +278,9 @@ export default function DivyoFAQ() {
                         <AccordionItem
                             key={item.value}
                             value={item.value}
-                            className="px-6 py-2 bg-card hover:bg-accent/5 transition-colors duration-200"
+                            className="px-6 py-2 hover:bg-accent/5 transition-colors duration-200"
                         >
-                            <AccordionTrigger className="text-left text-base md:text-lg font-semibold hover:no-underline py-4 flex items-center">
+                            <AccordionTrigger className="text-left text-base md:text-lg font-semibold hover:no-underline py-4 flex items-center cursor-pointer">
                                 {item.trigger}
                             </AccordionTrigger>
                             <AccordionContent className="text-base md:text-lg text-muted-foreground pb-4">

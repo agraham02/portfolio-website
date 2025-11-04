@@ -25,12 +25,11 @@ export default function DivyoLandingPage() {
                 <div className="flex flex-col items-center text-center space-y-8">
                     <div className="space-y-4">
                         <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                            Join the divyo Waitlist
+                            Join the Divyo Waitlist
                         </h2>
                         <p className="text-lg text-muted-foreground max-w-2xl">
-                            Be the first to know when divyo launches. Sign up
-                            now and get exclusive early access to our React
-                            Native mobile app.
+                            Be the first to know when Divyo launches. Sign up
+                            now and get exclusive early access to my mobile app.
                         </p>
                     </div>
 

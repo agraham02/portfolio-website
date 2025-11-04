@@ -353,7 +353,16 @@ export async function subscribeToWaitlist(
             console.error("Failed to hash IP:", error);
         }
 
-        // 4. Insert into database (upsert to handle duplicates)
+        // 4. Check if email already exists
+        const { data: existingSignup, error: checkError } = await supabaseAdmin
+            .from("waitlist_signups")
+            .select("email")
+            .eq("email", email)
+            .single();
+
+        const isExisting = existingSignup !== null;
+
+        // 5. Insert or update in database
         const signupData: WaitlistSignupInsert = {
             email,
             source: source || null,
@@ -365,7 +374,7 @@ export async function subscribeToWaitlist(
             .from("waitlist_signups")
             .upsert(signupData, {
                 onConflict: "email",
-                ignoreDuplicates: true,
+                ignoreDuplicates: false, // Allow update of existing records
             });
 
         if (dbError) {
@@ -376,16 +385,22 @@ export async function subscribeToWaitlist(
             };
         }
 
-        // 5. Send confirmation email (optional, non-blocking)
-        // We don't await this to avoid blocking the response
-        sendConfirmationEmail(email).catch((error) => {
-            console.error("Error in background email send:", error);
-        });
+        // 6. Send confirmation email only for new signups
+        if (!isExisting) {
+            // We don't await this to avoid blocking the response
+            sendConfirmationEmail(email).catch((error) => {
+                console.error("Error in background email send:", error);
+            });
+        }
 
-        // 6. Return success
+        // 7. Return success with appropriate message
+        const message = isExisting
+            ? "You're already on the list! 🙌"
+            : "You're on the list! 🎉";
+
         return {
             ok: true,
-            message: "You're on the list! 🎉",
+            message,
         };
     } catch (error) {
         // Catch-all error handler
