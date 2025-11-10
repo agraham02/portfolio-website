@@ -6,6 +6,13 @@
 /* Scroll padding to account for fixed navbar */
 html {
     scroll-padding-top: 4rem;
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
 }
 
 @theme inline {
