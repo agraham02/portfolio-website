@@ -49,7 +49,7 @@ export default function DivyoLandingPage() {
 export const metadata: Metadata = {
     title: "Divyo — Scan. Split. Settle.",
     description:
-        "Divyo turns any receipt into a shareable bill — snap a photo, assign items, and settle up instantly. The easiest way to split bills with friends.",
+        "Divyo turns any receipt into a shareable bill — snap a photo, assign items, and settle up instantly. The easiest way to split bills with friends. Join the waitlist now for early access.",
     keywords: [
         "bill splitting",
         "receipt scanner",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Divyo — Scan. Split. Settle.",
         description:
-            "Effortless bill splitting for everyone. Join the waitlist for early access.",
+            "Divyo turns any receipt into a shareable bill — snap a photo, assign items, and settle up instantly. The easiest way to split bills with friends. Join the waitlist now for early access.",
         url: "https://ahmadgraham.me/divyo",
         siteName: "Divyo",
         type: "website",
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "Divyo — Scan. Split. Settle.",
         description:
-            "Effortless bill splitting for everyone. Join the waitlist for early access.",
+            "Divyo turns any receipt into a shareable bill — snap a photo, assign items, and settle up instantly. The easiest way to split bills with friends. Join the waitlist now for early access.",
     },
     alternates: {
         canonical: "/divyo",
