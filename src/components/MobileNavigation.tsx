@@ -3,9 +3,10 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
-import { Download, Sun, Moon } from "lucide-react";
+import { Download, Sun, Moon, ChevronDown } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "./ui/button";
+import { navItems, RESUME_URL } from "@/lib/const";
 
 function HamburgerButton({
     isOpen,
@@ -64,6 +65,7 @@ function HamburgerButton({
 export default function MobileNavigation() {
     const [isOpen, setIsOpen] = useState(false);
     const [theme, setTheme] = useState<string>("light");
+    const [expandedItem, setExpandedItem] = useState<string | null>(null);
 
     useEffect(() => {
         // Get theme from localStorage or system preference
@@ -95,15 +97,13 @@ export default function MobileNavigation() {
         }
     };
 
-    const navItems = [
-        { href: "/about", label: "About" },
-        { href: "/projects", label: "Projects" },
-        { href: "/contact", label: "Contact" },
-        { href: "/blog", label: "Blog" },
-    ];
-
     const handleLinkClick = () => {
         setIsOpen(false);
+        setExpandedItem(null);
+    };
+
+    const toggleExpanded = (label: string) => {
+        setExpandedItem(expandedItem === label ? null : label);
     };
 
     // Container variants for staggered animation
@@ -157,21 +157,109 @@ export default function MobileNavigation() {
                         <motion.div className="p-6 min-w-[60vw]">
                             {/* Navigation Links */}
                             <nav className="flex flex-col space-y-2 mb-4">
+                                <Link href="/">
+                                    <motion.span
+                                        className="text-2xl font-bold text-gray-900 dark:text-white"
+                                        whileHover={{ scale: 1.05 }}
+                                        transition={{
+                                            type: "spring",
+                                            stiffness: 400,
+                                            damping: 10,
+                                        }}
+                                    >
+                                        &lt;
+                                        <span className="text-blue-400">
+                                            Ahmad Graham{" "}
+                                        </span>
+                                        /&gt;
+                                    </motion.span>
+                                </Link>
                                 {navItems.map((item, index) => (
                                     <motion.div
-                                        key={item.href}
+                                        key={item.label}
                                         custom={index}
                                         initial="closed"
                                         animate="open"
                                         variants={itemVariants}
                                     >
-                                        <Link
-                                            href={item.href}
-                                            onClick={handleLinkClick}
-                                            className="block text-lg font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors py-2 px-3 rounded-lg hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
-                                        >
-                                            {item.label}
-                                        </Link>
+                                        {"items" in item ? (
+                                            <div>
+                                                <button
+                                                    onClick={() =>
+                                                        toggleExpanded(
+                                                            item.label
+                                                        )
+                                                    }
+                                                    className="w-full flex items-center justify-between text-lg font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors py-2 px-3 rounded-lg hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
+                                                >
+                                                    {item.label}
+                                                    <ChevronDown
+                                                        className={`h-4 w-4 transition-transform ${
+                                                            expandedItem ===
+                                                            item.label
+                                                                ? "rotate-180"
+                                                                : ""
+                                                        }`}
+                                                    />
+                                                </button>
+                                                <AnimatePresence>
+                                                    {expandedItem ===
+                                                        item.label && (
+                                                        <motion.div
+                                                            initial={{
+                                                                height: 0,
+                                                                opacity: 0,
+                                                            }}
+                                                            animate={{
+                                                                height: "auto",
+                                                                opacity: 1,
+                                                            }}
+                                                            exit={{
+                                                                height: 0,
+                                                                opacity: 0,
+                                                            }}
+                                                            transition={{
+                                                                duration: 0.2,
+                                                            }}
+                                                            className="overflow-hidden"
+                                                        >
+                                                            <div className="flex flex-col space-y-1 pl-6 pt-2">
+                                                                {item.items.map(
+                                                                    (
+                                                                        subItem
+                                                                    ) => (
+                                                                        <Link
+                                                                            key={
+                                                                                subItem.href
+                                                                            }
+                                                                            href={
+                                                                                subItem.href
+                                                                            }
+                                                                            onClick={
+                                                                                handleLinkClick
+                                                                            }
+                                                                            className="block text-base font-medium text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors py-2 px-3 rounded-lg hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
+                                                                        >
+                                                                            {
+                                                                                subItem.label
+                                                                            }
+                                                                        </Link>
+                                                                    )
+                                                                )}
+                                                            </div>
+                                                        </motion.div>
+                                                    )}
+                                                </AnimatePresence>
+                                            </div>
+                                        ) : (
+                                            <Link
+                                                href={item.href}
+                                                onClick={handleLinkClick}
+                                                className="block text-lg font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors py-2 px-3 rounded-lg hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
+                                            >
+                                                {item.label}
+                                            </Link>
+                                        )}
                                     </motion.div>
                                 ))}
                             </nav>
@@ -223,14 +311,20 @@ export default function MobileNavigation() {
                                 animate="open"
                                 variants={itemVariants}
                             >
-                                <Button
-                                    variant="outline"
-                                    className="w-full"
-                                    onClick={handleLinkClick}
+                                <Link
+                                    href={RESUME_URL}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                 >
-                                    <Download size={16} />
-                                    View Resume
-                                </Button>
+                                    <Button
+                                        variant="outline"
+                                        className="w-full"
+                                        onClick={handleLinkClick}
+                                    >
+                                        <Download size={16} />
+                                        View Resume
+                                    </Button>
+                                </Link>
                             </motion.div>
                         </motion.div>
                     )}
