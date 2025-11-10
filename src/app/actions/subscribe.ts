@@ -34,6 +34,7 @@
 import { headers } from "next/headers";
 import { z } from "zod";
 import { supabaseAdmin, type WaitlistSignupInsert } from "@/lib/supabaseAdmin";
+import { tokens } from "@/app/divyo/lib/tokens";
 
 /**
  * reCAPTCHA minimum score threshold
@@ -208,28 +209,28 @@ async function sendConfirmationEmail(email: string): Promise<boolean> {
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
           </head>
-          <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; padding: 40px; text-align: center; margin-bottom: 30px;">
-              <h1 style="color: white; margin: 0; font-size: 32px;">Welcome to Divyo! 🎉</h1>
+          <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: ${tokens.light.text}; max-width: 600px; margin: 0 auto; padding: 20px;">
+            <div style="background: ${tokens.light.primary}; border-radius: ${tokens.radius.md}px; padding: 40px; text-align: center; margin-bottom: 30px;">
+              <h1 style="color: #FFFFFF; margin: 0; font-size: 32px; font-weight: ${tokens.typography.weight.bold};">Welcome to Divyo! 🎉</h1>
             </div>
             
-            <div style="background: #f9f9f9; border-radius: 10px; padding: 30px; margin-bottom: 20px;">
-              <h2 style="color: #667eea; margin-top: 0;">You're on the list!</h2>
-              <p style="font-size: 16px; margin-bottom: 20px;">
+            <div style="background: ${tokens.light.surface}; border: 1px solid ${tokens.light.border}; border-radius: ${tokens.radius.md}px; padding: 30px; margin-bottom: 20px;">
+              <h2 style="color: ${tokens.light.primary}; margin-top: 0; font-weight: ${tokens.typography.weight.medium};">You're on the list!</h2>
+              <p style="font-size: ${tokens.typography.body}px; margin-bottom: 20px; color: ${tokens.light.text};">
                 Thank you for joining the Divyo waitlist. We're excited to have you as part of our early community!
               </p>
-              <p style="font-size: 16px; margin-bottom: 20px;">
+              <p style="font-size: ${tokens.typography.body}px; margin-bottom: 20px; color: ${tokens.light.text};">
                 We'll keep you updated on our progress and let you know as soon as we're ready to launch.
               </p>
-              <p style="font-size: 16px; margin-bottom: 0;">
+              <p style="font-size: ${tokens.typography.body}px; margin-bottom: 0; color: ${tokens.light.text};">
                 Stay tuned! 🚀
               </p>
             </div>
             
-            <div style="text-align: center; color: #666; font-size: 14px;">
-              <p>Questions? Email <a href="mailto:ahmadgrahamdev@gmail.com" style="color: #667eea; text-decoration: none;">ahmadgrahamdev@gmail.com</a> and we'll get back to you.</p>
+            <div style="text-align: center; color: ${tokens.light.muted}; font-size: ${tokens.typography.small}px;">
+              <p>Questions? Email <a href="mailto:ahmadgrahamdev@gmail.com" style="color: ${tokens.light.primary}; text-decoration: none;">ahmadgrahamdev@gmail.com</a> and we'll get back to you.</p>
               <p style="margin-top: 20px;">
-                <a href="https://ahmadgraham.me/divyo" style="color: #667eea; text-decoration: none;">Visit our website</a>
+                <a href="https://ahmadgraham.me/divyo" style="color: ${tokens.light.primary}; text-decoration: none;">Visit our website</a>
               </p>
             </div>
           </body>

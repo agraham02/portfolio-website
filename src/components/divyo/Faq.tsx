@@ -266,10 +266,9 @@ export default function DivyoFAQ() {
                         Frequently Asked Questions
                     </h2>
                     <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
-                        Everything you need to know about Divyo. Can&apos;t find the
-                        answer you&apos;re looking for? Feel free to reach out to our
-                        support team.
+                        Everything you need to know about Divyo.
                     </p>
+                    {/* TODO: add contact info */}
                 </div>
 
                 {/* FAQ Accordion */}
