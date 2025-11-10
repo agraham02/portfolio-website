@@ -108,7 +108,9 @@ export function WaitlistCountClient({
             aria-atomic="true"
         >
             {/* Visible text */}
-            <p className="leading-relaxed">{formattedMessage}</p>
+            <p className="leading-relaxed">
+                {formattedMessage}
+            </p>
 
             {/* Screen reader only: full context */}
             <span className="sr-only">
