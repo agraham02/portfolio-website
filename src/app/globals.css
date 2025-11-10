@@ -206,3 +206,17 @@ body {
     );
     background-size: 20px 20px;
 }
+
+/* Divyo Landing Page Color Overrides */
+/* Override CSS variables to use Divyo brand colors (#00BF86) instead of grayscale */
+#divyo-page {
+    --primary: oklch(0.68 0.15 170); /* #00BF86 - vibrant teal green */
+    --primary-foreground: oklch(1 0 0); /* white */
+}
+
+#divyo-page.dark {
+    --primary: oklch(
+        0.63 0.14 170
+    ); /* #00A574 - slightly darker for dark mode */
+    --primary-foreground: oklch(1 0 0); /* white */
+}
