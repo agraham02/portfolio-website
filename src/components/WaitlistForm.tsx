@@ -1,3 +1,4 @@
+"use client";
 /**
  * Waitlist Form Component
  *
@@ -20,8 +21,6 @@
  * <WaitlistForm source="blog-post" />
  * ```
  */
-
-"use client";
 
 import { useEffect, useState } from "react";
 import {
@@ -191,7 +190,7 @@ export default function WaitlistForm({
 
     return (
         <div className={cn("w-full max-w-md", className)}>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Email Input */}
                 <div className="space-y-2">
                     <Label htmlFor="email" className="sr-only">
@@ -202,14 +201,14 @@ export default function WaitlistForm({
                         name="email"
                         type="email"
                         autoComplete="email"
-                        placeholder="Enter your email"
+                        placeholder="Enter your email address"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
                         disabled={isPending}
                         aria-label="Email address for waitlist signup"
                         aria-required="true"
-                        className="w-full"
+                        className="w-full h-14 px-6 text-base rounded-full border-border/50 bg-background focus:border-primary focus:ring-primary"
                     />
                 </div>
 
@@ -217,20 +216,20 @@ export default function WaitlistForm({
                 <Button
                     type="submit"
                     disabled={isPending || !isRecaptchaReady || !email}
-                    className="w-full"
+                    className="w-full h-14 text-base font-semibold rounded-full bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/25"
                     size="lg"
                 >
-                    {isPending ? "Joining..." : "Notify me"}
+                    {isPending ? "Joining..." : "Join Waitlist"}
                 </Button>
 
                 {/* Status Messages */}
                 {state && (
                     <div
                         className={cn(
-                            "rounded-lg p-3 text-sm text-center animate-in fade-in slide-in-from-top-2",
+                            "rounded-2xl p-4 text-sm text-center animate-in fade-in slide-in-from-top-2",
                             state.ok
-                                ? "bg-green-50 text-green-900 dark:bg-green-900/10 dark:text-green-400"
-                                : "bg-red-50 text-red-900 dark:bg-red-900/10 dark:text-red-400"
+                                ? "bg-green-50 text-green-900 border border-green-200 dark:bg-green-900/10 dark:text-green-400 dark:border-green-900/20"
+                                : "bg-red-50 text-red-900 border border-red-200 dark:bg-red-900/10 dark:text-red-400 dark:border-red-900/20"
                         )}
                         role="alert"
                         aria-live="polite"
@@ -240,26 +239,25 @@ export default function WaitlistForm({
                 )}
 
                 {/* reCAPTCHA Badge Info */}
-                <p className="text-xs text-muted-foreground text-center">
-                    This site is protected by reCAPTCHA and the Google{" "}
+                <p className="text-xs text-muted-foreground/70 text-center leading-relaxed">
+                    Protected by reCAPTCHA •{" "}
                     <a
                         href="https://policies.google.com/privacy"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="underline hover:text-foreground"
+                        className="underline hover:text-foreground transition-colors"
                     >
-                        Privacy Policy
+                        Privacy
                     </a>{" "}
-                    and{" "}
+                    &{" "}
                     <a
                         href="https://policies.google.com/terms"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="underline hover:text-foreground"
+                        className="underline hover:text-foreground transition-colors"
                     >
-                        Terms of Service
-                    </a>{" "}
-                    apply.
+                        Terms
+                    </a>
                 </p>
             </form>
         </div>
