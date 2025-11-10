@@ -25,8 +25,26 @@ export const SOCIALS = [
     },
 ];
 
-export const navItems = [
-    { href: "/projects", label: "Projects" },
+type NavItemWithDropdown = {
+    label: string;
+    items: Array<{ href: string; label: string }>;
+};
+
+type NavItemWithLink = {
+    label: string;
+    href: string;
+};
+
+export type NavItem = NavItemWithDropdown | NavItemWithLink;
+
+export const navItems: NavItem[] = [
+    {
+        label: "Projects",
+        items: [
+            { href: "/divyo", label: "Divyo" },
+            { href: "/projects", label: "All Projects" },
+        ],
+    },
     { href: "/blog", label: "Blog" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },

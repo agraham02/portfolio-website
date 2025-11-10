@@ -4,8 +4,14 @@ import Link from "next/link";
 import { Switch } from "@/components/ui/switch";
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { Sun, Moon, ExternalLink } from "lucide-react";
+import { Sun, Moon, ExternalLink, ChevronDown } from "lucide-react";
 import { navItems, RESUME_URL } from "@/lib/const";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Navbar() {
     // Theme state: 'light' | 'dark'
@@ -86,18 +92,43 @@ export default function Navbar() {
                     <nav className="flex items-center space-x-8">
                         {navItems.map((item, index) => (
                             <motion.div
-                                key={item.href}
+                                key={item.label}
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: index * 0.1 + 0.2 }}
                             >
-                                <Link
-                                    href={item.href}
-                                    className="relative text-gray-700 dark:text-gray-300 font-medium hover:text-blue-600 transition-colors duration-200 group"
-                                >
-                                    {item.label}
-                                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                                </Link>
+                                {"items" in item ? (
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger className="relative text-gray-700 dark:text-gray-300 font-medium hover:text-blue-600 transition-colors duration-200 group flex items-center gap-1 outline-none">
+                                            {item.label}
+                                            <ChevronDown className="h-4 w-4" />
+                                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent className="bg-white dark:bg-slate-900 border-gray-200 dark:border-gray-700">
+                                            {item.items.map((subItem) => (
+                                                <DropdownMenuItem
+                                                    key={subItem.href}
+                                                    asChild
+                                                >
+                                                    <Link
+                                                        href={subItem.href}
+                                                        className="cursor-pointer"
+                                                    >
+                                                        {subItem.label}
+                                                    </Link>
+                                                </DropdownMenuItem>
+                                            ))}
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                ) : (
+                                    <Link
+                                        href={item.href}
+                                        className="relative text-gray-700 dark:text-gray-300 font-medium hover:text-blue-600 transition-colors duration-200 group"
+                                    >
+                                        {item.label}
+                                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                                    </Link>
+                                )}
                             </motion.div>
                         ))}
 

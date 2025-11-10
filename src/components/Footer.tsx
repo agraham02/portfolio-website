@@ -6,7 +6,15 @@ import { Heart, Code, Coffee, Zap } from "lucide-react";
 import { navItems, SOCIALS } from "@/lib/const";
 
 export default function Footer({ version }: { version?: string }) {
-    const footerLinks = [{ href: "/", label: "Home" }, ...navItems];
+    // Flatten navItems to get all links for footer
+    const footerLinks = [
+        { href: "/", label: "Home" },
+        ...navItems.flatMap((item) =>
+            "items" in item
+                ? item.items
+                : [{ href: item.href, label: item.label }]
+        ),
+    ];
 
     return (
         <footer className="relative bg-slate-200/60 dark:bg-slate-900/95 text-gray-700 dark:text-gray-300 overflow-hidden transition-colors duration-300">
