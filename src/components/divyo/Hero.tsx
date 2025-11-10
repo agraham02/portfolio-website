@@ -42,7 +42,21 @@ export default function Hero({ children }: { children?: React.ReactNode }) {
                         transition={{ duration: 0.6, ease: "easeOut" }}
                     >
                         <motion.h1
-                            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
+                            className="text-5xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
+                            initial={
+                                reduceMotion ? false : { opacity: 0, y: 10 }
+                            }
+                            animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                            transition={{
+                                delay: 0.1,
+                                duration: 0.6,
+                                ease: "easeOut",
+                            }}
+                        >
+                            <span className="text-foreground">Divyo</span>
+                        </motion.h1>
+                        <motion.h2
+                            className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1]"
                             initial={
                                 reduceMotion ? false : { opacity: 0, y: 10 }
                             }
@@ -60,7 +74,7 @@ export default function Hero({ children }: { children?: React.ReactNode }) {
                             <span className="text-primary">
                                 Not friendships.
                             </span>
-                        </motion.h1>
+                        </motion.h2>
 
                         <motion.p
                             className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-xl mx-auto md:mx-0"
