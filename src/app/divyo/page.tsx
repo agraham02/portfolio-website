@@ -29,7 +29,7 @@ export default function DivyoLandingPage() {
 
                 <HowItWorks />
                 <Features />
-                <Gallery />
+                {/* <Gallery /> */}
                 <Personas />
                 <Testimonials />
 
@@ -68,12 +68,21 @@ export const metadata: Metadata = {
         siteName: "Divyo",
         type: "website",
         locale: "en_US",
+        images: [
+            {
+                url: "https://ahmadgraham.me/images/divyo/divyo_thumbnail.png",
+                width: 1200,
+                height: 630,
+                alt: "Divyo - Split bills, not friendships",
+            },
+        ],
     },
     twitter: {
         card: "summary_large_image",
         title: "Divyo — Scan. Split. Settle.",
         description:
             "Effortless bill splitting for everyone. Join the waitlist for early access.",
+        images: ["https://ahmadgraham.me/images/divyo/divyo_thumbnail.png"],
     },
     alternates: {
         canonical: "/divyo",

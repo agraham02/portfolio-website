@@ -33,7 +33,7 @@ export default function Hero({ children }: { children?: React.ReactNode }) {
             />
 
             <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-                <div className="flex flex-col md:flex-row items-center justify-between gap-16 md:gap-20">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
                     {/* Text Content */}
                     <motion.div
                         className="flex-1 text-center md:text-left space-y-8 max-w-2xl"
@@ -132,18 +132,12 @@ export default function Hero({ children }: { children?: React.ReactNode }) {
                                 Free to join • No credit card required
                             </p>
                         </motion.div>
-
-                        <motion.p
-                            initial={reduceMotion ? false : { opacity: 0 }}
-                            animate={reduceMotion ? {} : { opacity: 1 }}
-                            transition={{ delay: 0.4, duration: 0.6 }}
-                        ></motion.p>
                     </motion.div>
 
                     {/* Phone Mockup */}
                     <AnimatePresence>
                         <motion.div
-                            className="flex-1 w-full max-w-md md:max-w-lg"
+                            className="flex flex-1 w-full h-full justify-center items-center max-w-md md:max-w-2xl lg:max-w-[72rem] px-4"
                             initial={reduceMotion ? false : { opacity: 0 }}
                             animate={reduceMotion ? {} : { opacity: 1 }}
                             transition={{
@@ -152,14 +146,15 @@ export default function Hero({ children }: { children?: React.ReactNode }) {
                                 ease: "easeOut",
                             }}
                         >
-                            <div className="relative aspect-[9/16] w-3/4 mx-auto rounded-[2.5rem] border border-border/50 shadow-2xl overflow-hidden bg-muted/20">
+                            <div className="w-[300px]  mx-auto rounded-lg border border-border/50 shadow-2xl overflow-hidden bg-muted/20">
                                 <EnhancedImage
-                                    src="/screenshots/placeholder-phone.png"
+                                    src="/images/divyo/divyo_main.png"
                                     alt="Divyo mobile app interface showing receipt scanning"
-                                    fill
+                                    width={900}
+                                    height={1500}
                                     priority
-                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"
-                                    className="object-cover"
+                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 70vw, 640px"
+                                    className="block w-full h-auto"
                                 />
                             </div>
                         </motion.div>
