@@ -3,7 +3,7 @@ import DivyoFAQ from "../../components/divyo/Faq";
 import Hero from "@/components/divyo/Hero";
 import HowItWorks from "@/components/divyo/HowItWorks";
 import Features from "@/components/divyo/Features";
-import Gallery from "@/components/divyo/Gallery";
+// import Gallery from "@/components/divyo/Gallery";
 import Personas from "@/components/divyo/Personas";
 import Testimonials from "@/components/divyo/Testimonials";
 import WaitlistSection from "@/components/divyo/WaitlistSection";
