@@ -94,9 +94,9 @@ export default function RootLayout({
     const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
     return (
-        <html lang="en">
+        <html lang="en" className="scroll-smooth">
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth`}
+                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
                 <Navbar />
                 <MobileNavigation />
