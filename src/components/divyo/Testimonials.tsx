@@ -48,7 +48,7 @@ export default function Testimonials() {
                     {testimonials.map((testimonial, index) => (
                         <motion.article
                             key={index}
-                            className="relative overflow-hidden rounded-3xl border border-border/50 bg-card p-8 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 [transition:box-shadow_300ms,border-color_300ms,background-color_300ms] will-change-[transform,opacity] duration-300"
+                            className="flex flex-col overflow-hidden rounded-3xl border border-border/50 bg-card p-8 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 [transition:box-shadow_300ms,border-color_300ms,background-color_300ms] will-change-[transform,opacity] duration-300"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.3 }}
@@ -62,7 +62,7 @@ export default function Testimonials() {
                             </div>
 
                             {/* Testimonial Text */}
-                            <blockquote className="mb-6">
+                            <blockquote className="mb-6 flex-grow">
                                 <p className="text-base leading-relaxed text-foreground">
                                     &quot;{testimonial.quote}&quot;
                                 </p>
@@ -88,23 +88,6 @@ export default function Testimonials() {
                         </motion.article>
                     ))}
                 </div>
-
-                {/* Built By Credibility Line */}
-                <motion.div
-                    className="mt-16 sm:mt-20 text-center"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true, amount: 0.5 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                >
-                    <p className="text-base sm:text-lg text-muted-foreground">
-                        Built by engineers from{" "}
-                        <span className="font-semibold text-primary">
-                            Amazon
-                        </span>{" "}
-                        and fast-moving startups
-                    </p>
-                </motion.div>
             </div>
         </section>
     );

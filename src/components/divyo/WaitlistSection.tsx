@@ -26,7 +26,7 @@ export default function WaitlistSection({ children }: WaitlistSectionProps) {
                         id="waitlist-heading"
                         className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6"
                     >
-                        Get early access
+                        Get Early Access
                     </h2>
 
                     {/* Server-rendered WaitlistCount passed as children */}

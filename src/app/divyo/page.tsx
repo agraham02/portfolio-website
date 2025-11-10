@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import DivyoFAQ from "./_components/DivyoFAQ";
+import DivyoFAQ from "../../components/divyo/Faq";
 import Hero from "@/components/divyo/Hero";
 import HowItWorks from "@/components/divyo/HowItWorks";
 import Features from "@/components/divyo/Features";
