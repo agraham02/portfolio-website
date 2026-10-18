@@ -283,15 +283,34 @@ body {
     --tono-conversation: #6fc6ff;
 }
 
-/* The phone's travel and size. --tono-shift is how far it moves either side of centre (the story sets -1..1 times this). */
+/*
+ * The phone's travel and size. --tono-shift is how far it moves either side of
+ * centre (the story sets -1..1 times this). On a phone it stays centred, as
+ * large as fits above the words, so the size steps down on shorter screens;
+ * --tono-phone-top is where its centre sits, as a share of the screen height.
+ */
 #tono-page {
     --tono-shift: 0px;
-    --tono-phone-scale: 0.56;
+    --tono-phone-scale: 0.7;
+    --tono-phone-top: 30%;
+}
+@media (max-width: 1023px) and (max-height: 819px) {
+    #tono-page {
+        --tono-phone-scale: 0.58;
+        --tono-phone-top: 28%;
+    }
+}
+@media (max-width: 1023px) and (max-height: 699px) {
+    #tono-page {
+        --tono-phone-scale: 0.44;
+        --tono-phone-top: 26%;
+    }
 }
 @media (min-width: 1024px) {
     #tono-page {
         --tono-shift: 24vw;
         --tono-phone-scale: 1;
+        --tono-phone-top: 50%;
     }
 }
 @media (min-width: 1024px) and (max-height: 820px) {

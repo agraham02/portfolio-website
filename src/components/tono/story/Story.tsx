@@ -87,7 +87,7 @@ function buildKeyframes() {
 const KEYS = buildKeyframes();
 
 const BUTTON =
-    "inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+    "inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium sm:px-6 sm:py-3 sm:text-base transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 type StoryProps = {
     /** Real screenshots found in public/tono/screens, by chapter. Chapters without one show a drawn screen. */
@@ -140,7 +140,7 @@ export default function Story({ screenshots = {} }: StoryProps) {
             <div ref={container} style={{ height: `${UNITS * SCREENS_PER_UNIT * 100 + 100}svh` }} className="relative">
                 <div className="sticky top-0 h-svh overflow-hidden">
                     {/* The phone */}
-                    <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-[29%] z-10 -translate-x-1/2 -translate-y-1/2 lg:top-1/2">
+                    <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-[var(--tono-phone-top)] z-10 -translate-x-1/2 -translate-y-1/2">
                         <div className="[transform:scale(var(--tono-phone-scale))]">
                             <motion.div style={reduceMotion ? { x: "var(--tono-shift)" } : { x }}>
                                 <div className="relative [perspective:1800px]" style={{ width: PHONE_WIDTH, height: PHONE_HEIGHT }}>
@@ -170,7 +170,7 @@ export default function Story({ screenshots = {} }: StoryProps) {
                         className="relative z-20 h-full"
                         render={(index) => (
                             // Each layer lays itself out, so the words keep their own side while they fade.
-                            <div className="grid h-full grid-rows-[1fr_auto] px-6 pb-8 lg:grid-cols-2 lg:grid-rows-1 lg:items-center lg:px-[6vw] lg:pb-0">
+                            <div className="grid h-full grid-rows-[1fr_auto] px-6 pb-24 lg:grid-cols-2 lg:grid-rows-1 lg:items-center lg:px-[6vw] lg:pb-0">
                                 {/* The hero's words are on the left of the phone; every chapter's are on the right. */}
                                 <div className={clsx("row-start-2 lg:row-start-1 lg:max-w-[34rem]", index === 0 || reduceMotion ? "lg:col-start-1" : "lg:col-start-2 lg:pl-[4vw]")}>
                                     {index === 0 ? (
@@ -227,7 +227,7 @@ function Hero({ onSeeHow }: { onSeeHow: () => void }) {
                 <span className="text-2xl font-semibold tracking-tight">Tono</span>
             </div>
 
-            <h1 className="text-4xl font-semibold leading-[1.04] tracking-tight text-balance sm:text-6xl lg:text-[4.5rem]">
+            <h1 className="text-[2rem] font-semibold leading-[1.05] tracking-tight text-balance sm:text-6xl lg:text-[4.5rem]">
                 Get better at speaking, one rep at a time.
             </h1>
 
@@ -236,7 +236,7 @@ function Hero({ onSeeHow }: { onSeeHow: () => void }) {
                 phone.
             </p>
 
-            <div className="flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
+            <div className="flex flex-row flex-wrap items-center justify-center gap-x-5 gap-y-3 lg:justify-start">
                 <button type="button" onClick={onSeeHow} className={`${BUTTON} bg-primary text-primary-foreground hover:bg-primary/90`}>
                     See how it works
                 </button>
