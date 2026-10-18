@@ -227,3 +227,92 @@ body {
     ); /* #00A574 - slightly darker for dark mode */
     --primary-foreground: oklch(1 0 0); /* white */
 }
+
+/* --- Tono landing page --- */
+/* The app's "Quiet Studio" palette: warm neutrals, an ink accent, and colour only for the five skills and the record dot. */
+@theme inline {
+    --color-tono-record: var(--tono-record);
+    --color-tono-success: var(--tono-success);
+    --color-tono-articulation: var(--tono-articulation);
+    --color-tono-cadence: var(--tono-cadence);
+    --color-tono-impromptu: var(--tono-impromptu);
+    --color-tono-confidence: var(--tono-confidence);
+    --color-tono-conversation: var(--tono-conversation);
+}
+
+#tono-page {
+    font-family: var(--font-tono), var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+    --background: #f6f5f1;
+    --foreground: #181714;
+    --card: #ffffff;
+    --card-foreground: #181714;
+    --muted: #efeee9;
+    --muted-foreground: #5d5a52;
+    --border: rgba(28, 25, 15, 0.1);
+    --primary: #181714;
+    --primary-foreground: #ffffff;
+    --ring: #181714;
+    --tono-record: #ff3b30;
+    --tono-success: #14824f;
+    --tono-articulation: #0e7563;
+    --tono-cadence: #6a3fd6;
+    --tono-impromptu: #9a6200;
+    --tono-confidence: #b8285f;
+    --tono-conversation: #0a6fa6;
+    background-color: var(--background);
+    color: var(--foreground);
+}
+
+.dark #tono-page {
+    --background: #0e0e0c;
+    --foreground: #f4f2ec;
+    --card: #181816;
+    --card-foreground: #f4f2ec;
+    --muted: #232320;
+    --muted-foreground: #a9a69d;
+    --border: rgba(255, 250, 235, 0.1);
+    --primary: #f4f2ec;
+    --primary-foreground: #0e0e0c;
+    --ring: #f4f2ec;
+    --tono-record: #ff453a;
+    --tono-success: #5fd69b;
+    --tono-articulation: #5fe0c3;
+    --tono-cadence: #b3a1ff;
+    --tono-impromptu: #ffc85e;
+    --tono-confidence: #ff92b8;
+    --tono-conversation: #6fc6ff;
+}
+
+/* The phone's travel and size. --tono-shift is how far it moves either side of centre (the story sets -1..1 times this). */
+#tono-page {
+    --tono-shift: 0px;
+    --tono-phone-scale: 0.56;
+}
+@media (min-width: 1024px) {
+    #tono-page {
+        --tono-shift: 24vw;
+        --tono-phone-scale: 1;
+    }
+}
+@media (min-width: 1024px) and (max-height: 820px) {
+    #tono-page {
+        --tono-phone-scale: 0.86;
+    }
+}
+
+/* A faint paper grain over the whole page, so flat colour doesn't look digital. */
+#tono-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0.07;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+.dark #tono-page::before {
+    opacity: 0.1;
+    filter: invert(1);
+}
+
+/* --- End Tono landing page --- */

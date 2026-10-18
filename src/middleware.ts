@@ -6,6 +6,7 @@ const ALLOWED_PATHS = new Set<string>([
   "/",
   "/projects",
   "/divyo",
+  "/tono",
   "/debug-env",
   "/coming-soon",
   "/favicon.ico",
@@ -34,6 +35,11 @@ export function middleware(req: NextRequest) {
 
   // Allow subpaths under explicitly allowed roots (e.g., /projects/*)
   if (path.startsWith("/projects/")) {
+    return NextResponse.next();
+  }
+
+  // Tono's landing page and its privacy and terms pages
+  if (path.startsWith("/tono/")) {
     return NextResponse.next();
   }
 
