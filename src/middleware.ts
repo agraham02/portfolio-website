@@ -3,56 +3,51 @@ import type { NextRequest } from "next/server";
 
 // Allowlist of routes that should remain publicly accessible
 const ALLOWED_PATHS = new Set<string>([
-  "/",
-  "/projects",
-  "/divyo",
-  "/tono",
-  "/debug-env",
-  "/coming-soon",
-  "/favicon.ico",
-  "/sitemap.xml",
-  "/robots.txt",
+    "/",
+    "/projects",
+    "/divyo",
+    "/tono",
+    "/debug-env",
+    "/coming-soon",
+    "/favicon.ico",
+    "/sitemap.xml",
+    "/robots.txt",
 ]);
 
+// Roots whose subpages are public too (for example /divyo/privacy)
+const ALLOWED_PREFIXES = ["/projects/", "/divyo/", "/tono/"];
+
 const normalizePath = (pathname: string): string =>
-  pathname.endsWith("/") && pathname !== "/" ? pathname.slice(0, -1) : pathname;
+    pathname.endsWith("/") && pathname !== "/"
+        ? pathname.slice(0, -1)
+        : pathname;
 
 export function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl;
+    const { pathname } = req.nextUrl;
 
-  // Normalize path (treat "/about" and "/about/" the same)
-  const path = normalizePath(pathname);
+    // Normalize path (treat "/about" and "/about/" the same)
+    const path = normalizePath(pathname);
 
-  // Allow exact matches on the allowlist
-  if (ALLOWED_PATHS.has(path)) {
-    return NextResponse.next();
-  }
-
-    // Allow subpaths under explicitly allowed roots (e.g., /projects/*)
-    if (path.startsWith("/projects/")) {
+    // Allow exact matches on the allowlist
+    if (ALLOWED_PATHS.has(path)) {
         return NextResponse.next();
     }
 
-  // Allow subpaths under explicitly allowed roots (e.g., /projects/*)
-  if (path.startsWith("/projects/")) {
-    return NextResponse.next();
-  }
+    // Allow subpaths under explicitly allowed roots (e.g., /projects/*)
+    if (ALLOWED_PREFIXES.some((prefix) => path.startsWith(prefix))) {
+        return NextResponse.next();
+    }
 
-  // Tono's landing page and its privacy and terms pages
-  if (path.startsWith("/tono/")) {
-    return NextResponse.next();
-  }
-
-  // Otherwise, rewrite to the Coming Soon page
-  const url = req.nextUrl.clone();
-  url.pathname = "/coming-soon";
-  return NextResponse.rewrite(url);
+    // Otherwise, rewrite to the Coming Soon page
+    const url = req.nextUrl.clone();
+    url.pathname = "/coming-soon";
+    return NextResponse.rewrite(url);
 }
 
 // Match all paths except Next.js internals and any file with an extension (e.g., assets)
 // Pattern recommended by Next.js examples
 export const config = {
-  matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|.*\\..*).*)",
-  ],
+    matcher: [
+        "/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|.*\\..*).*)",
+    ],
 };
