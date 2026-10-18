@@ -8,6 +8,7 @@ import { useCallback, useRef, useState } from "react";
 import IntonationCurve from "../IntonationCurve";
 import StaggerWords from "../StaggerWords";
 import { CHAPTER_KEYS, STORY, TONO_LAUNCH_MAILTO, type Screenshots } from "../content";
+import Crossfade from "./Crossfade";
 import Phone3D, { PHONE_HEIGHT, PHONE_WIDTH } from "./PhoneFrame";
 import { SCREENS } from "./screens";
 
@@ -124,12 +125,6 @@ export default function Story({ screenshots = {} }: StoryProps) {
         [reduceMotion]
     );
 
-    // The hero's words are on the left of the phone; every chapter's are on the right.
-    const textOnLeft = chapter === 0 || !!reduceMotion;
-    const Screen = SCREENS[shown.screen];
-    const shot = screenshots[CHAPTER_KEYS[shown.screen]];
-    const current = STORY[chapter];
-
     return (
         <section aria-label="How Tono works" className="relative">
             {/* The same story as plain text, for screen readers and search engines */}
@@ -156,16 +151,11 @@ export default function Story({ screenshots = {} }: StoryProps) {
                                         style={reduceMotion ? { rotateY: -REST_ANGLE } : { rotateY }}
                                     >
                                         <Phone3D sheen={reduceMotion ? undefined : sheen}>
-                                            {/* No exit animation: the old screen is replaced and the new one fades in. Exit transitions stalled inside the 3D layers. */}
-                                            <motion.div
-                                                key={shown.screen}
+                                            <Crossfade
+                                                value={shown.screen}
                                                 className="h-full"
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: 1 }}
-                                                transition={{ duration: 0.25 }}
-                                            >
-                                                {shot ? <ScreenImage light={shot.light} dark={shot.dark} priority={shown.screen === 0} /> : <Screen />}
-                                            </motion.div>
+                                                render={(index) => <ScreenView index={index} screenshots={screenshots} />}
+                                            />
                                         </Phone3D>
                                     </motion.div>
                                 </div>
@@ -174,26 +164,39 @@ export default function Story({ screenshots = {} }: StoryProps) {
                     </div>
 
                     {/* The words beside it */}
-                    <div className="relative z-20 grid h-full grid-rows-[1fr_auto] px-6 pb-8 lg:grid-cols-2 lg:grid-rows-1 lg:items-center lg:px-[6vw] lg:pb-0">
-                        <div className={clsx("row-start-2 lg:row-start-1 lg:max-w-[34rem]", textOnLeft ? "lg:col-start-1" : "lg:col-start-2 lg:pl-[4vw]")}>
-                            {/* Enter-only, like the screen: an exit animation here could stall and leave the old words up. */}
-                            <motion.div key={chapter} initial={chapter === 0 ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
-                                {chapter === 0 ? (
-                                    <motion.div style={reduceMotion ? undefined : { opacity: heroOpacity, pointerEvents: heroPointer }}>
-                                        <Hero onSeeHow={() => scrollToChapter(1)} />
-                                    </motion.div>
-                                ) : (
-                                    <ChapterText chapter={chapter} title={current.title} body={current.body} note={current.note} />
-                                )}
-                            </motion.div>
-                        </div>
-                    </div>
+                    <Crossfade
+                        value={chapter}
+                        lift={8}
+                        className="relative z-20 h-full"
+                        render={(index) => (
+                            // Each layer lays itself out, so the words keep their own side while they fade.
+                            <div className="grid h-full grid-rows-[1fr_auto] px-6 pb-8 lg:grid-cols-2 lg:grid-rows-1 lg:items-center lg:px-[6vw] lg:pb-0">
+                                {/* The hero's words are on the left of the phone; every chapter's are on the right. */}
+                                <div className={clsx("row-start-2 lg:row-start-1 lg:max-w-[34rem]", index === 0 || reduceMotion ? "lg:col-start-1" : "lg:col-start-2 lg:pl-[4vw]")}>
+                                    {index === 0 ? (
+                                        <motion.div style={reduceMotion ? undefined : { opacity: heroOpacity, pointerEvents: heroPointer }}>
+                                            <Hero onSeeHow={() => scrollToChapter(1)} />
+                                        </motion.div>
+                                    ) : (
+                                        <ChapterText chapter={index} title={STORY[index].title} body={STORY[index].body} note={STORY[index].note} />
+                                    )}
+                                </div>
+                            </div>
+                        )}
+                    />
 
                     <ProgressDots chapter={chapter} onSelect={scrollToChapter} />
                 </div>
             </div>
         </section>
     );
+}
+
+/** The phone's screen for a chapter: the real screenshot if there is one, otherwise the drawn screen. */
+function ScreenView({ index, screenshots }: { index: number; screenshots: Screenshots }) {
+    const shot = screenshots[CHAPTER_KEYS[index]];
+    const Screen = SCREENS[index];
+    return shot ? <ScreenImage light={shot.light} dark={shot.dark} priority={index === 0} /> : <Screen />;
 }
 
 type ScreenImageProps = { light: string; dark?: string; priority?: boolean };
