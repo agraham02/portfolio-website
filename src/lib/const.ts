@@ -42,6 +42,7 @@ export const navItems: NavItem[] = [
         label: "Projects",
         items: [
             { href: "/divyo", label: "Divyo" },
+            { href: "/tono", label: "Tono" },
             { href: "/projects", label: "All Projects" },
         ],
     },

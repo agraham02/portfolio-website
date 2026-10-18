@@ -8,6 +8,7 @@ import Personas from "@/components/divyo/Personas";
 import Testimonials from "@/components/divyo/Testimonials";
 import WaitlistSection from "@/components/divyo/WaitlistSection";
 import WaitlistCount from "@/components/WaitlistCount";
+import DivyoFooter from "@/components/divyo/Footer";
 
 export default function DivyoLandingPage() {
     return (
@@ -42,6 +43,8 @@ export default function DivyoLandingPage() {
 
                 <DivyoFAQ />
             </main>
+
+            <DivyoFooter />
         </div>
     );
 }
